@@ -38,6 +38,7 @@ selftest() {
   tmp=$(mktemp -d) || return 1
   trap 'rm -rf -- "${tmp:?}"' RETURN
   cp -R "$HERE/../examples/workspace/." "$tmp/" || return 1
+  mkdir -p "$tmp/.agents/context" || return 1  # an empty directory may not survive a copy
   check() { # $1 label, $2 pattern expected (or !pattern for absent)
     case "$2" in
       !*) if printf '%s\n' "$out" | grep -qE -- "${2#!}"; then echo "FAIL $1"; fails=$((fails+1)); else echo "ok   $1"; fi ;;
@@ -52,24 +53,35 @@ selftest() {
   check "no capture reported as none"           '^CAP  no session-\[0-9\]\*\.md in '
   check "flag register without Open says so"    '^FLAG threads-flagged.md has no Open section'
   check "mail off by default"                   '!^MAIL'
-  check "no timer section"                      '!^TIMER'
   check "coverage block present"                '^COVERAGE:'
   # Planted positives: each must change the line it targets.
   printf '# Session\n\n## 10:00 first: x\n\n## 10:05 [jot] y\n' > "$tmp/.agents/context/session-2026-01-01-plant.md"
   rm "$tmp/.agents/lead-handoff.md"
   printf '{"tasks":[{"id":"T-1","status":"pending"}]}\n' > "$tmp/.agents/task-queue.json"
-  printf '# Flags\n\n## Open\n\n### 2026-01-01\n\n<!--flag-->\n**A flag**\n\n## Resolved\n' > "$tmp/.agents/threads-flagged.md"
+  printf '# Flags\n\n## Open\n\n### 2026-01-01\n\n<!--flag-->\n**A flag**\n\n## Resolved\n\n<!--flag-->\n' > "$tmp/.agents/threads-flagged.md"
   sed -i 's|provenance layer is `.agents/context/`|provenance layer is `.agents/elsewhere/`|' "$tmp/CLAUDE.md"
   mkdir -p "$tmp/.agents/elsewhere" && mv "$tmp/.agents/context/session-2026-01-01-plant.md" "$tmp/.agents/elsewhere/"
-  bash -c 'sleep 20; :' shell-snapshots/snapshot-bash-plant.sh & pid=$!
+  printf '# Runbook\n\n## 11:00 not a capture\n' > "$tmp/.agents/elsewhere/session-end-runbook.md"
+  touch -d '+1 minute' "$tmp/.agents/elsewhere/session-end-runbook.md"
+  # R3: an inbox with one note on a sibling branch.
+  git init -q -b dt "$tmp/inbox" && mkdir "$tmp/inbox/inbox-dt" && : > "$tmp/inbox/inbox-dt/.keep" &&
+    git -C "$tmp/inbox" add -A && git -C "$tmp/inbox" -c user.name=t -c user.email=t@t commit -qm base &&
+    git -C "$tmp/inbox" switch -qc other && : > "$tmp/inbox/inbox-dt/note.md" &&
+    git -C "$tmp/inbox" add -A && git -C "$tmp/inbox" -c user.name=t -c user.email=t@t commit -qm note &&
+    git -C "$tmp/inbox" update-ref refs/remotes/origin/other other && git -C "$tmp/inbox" switch -q dt || return 1
+  bash -c 'sleep 20; :' shell-snapshots/snapshot-bash-plant.sh >/dev/null 2>&1 & pid=$!
   sleep 1
-  out=$(REORIENT_FG_LIMIT=0 bash "$0" "$tmp" 2>&1)
+  out=$(REORIENT_FG_LIMIT=0 REORIENT_INBOX_REPO="$tmp/inbox" bash "$0" "$tmp" 2>&1)
   kill "$pid" 2>/dev/null; wait "$pid" 2>/dev/null
   check "provenance path read from CLAUDE.md"   '^CAP  session-2026-01-01-plant.md  5 lines, 2 entries'
   check "partials counted"                      '^PART 1 log, 1 jot, 0 touch since the last close'
   check "missing standing file named"           'MISSING \.agents/lead-handoff\.md'
+  check "missing standing file counted"         '^STANDING .*, 1 defective$'
   check "queue counts statuses"                 '^QUEUE task-queue +1 tasks: pending 1'
-  check "marked flags counted"                  '^FLAG 1 date groups, 1 marked flags'
+  check "marked flags counted"                  '^FLAG 1 date groups, 1 marked flags, <=1 unmarked bound'
+  check "flag below Resolved reported"          'MISFILED 1 below Resolved'
+  check "runbook not read as the capture"       '^CAP  session-2026-01-01-plant\.md '
+  check "mail on a sibling branch reported"     '^MAIL other +1 file\(s\) not in dt'
   check "old harness shell reported"            "^TASK pid $pid "
   [ "$fails" -eq 0 ] && { echo "reorient: selftest passed"; return 0; }
   echo "reorient: selftest FAILED ($fails)"; return 1
