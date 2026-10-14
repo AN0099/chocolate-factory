@@ -3,7 +3,12 @@
 Repo-level log. Records changes to what the kit contains. Design reasoning for an individual
 skill lives in that skill's own `CHANGELOG.md`.
 
-## Unreleased
+## 0.4.0 (2026-10-13)
+
+A MINOR release under `docs/releasing.md`: three new skills, three new scripts, each
+with a gate, and the issue #11 fix, which carries one BREAKING skill change. The
+`scripts/reorient` selftest rows for planted positives (pull request #20) were
+added after the 2026-10-09 cutoff and change the selftest only.
 
 ### Added
 
@@ -59,8 +64,10 @@ skill lives in that skill's own `CHANGELOG.md`.
 
 ### Changed
 
-- `README.md`, `docs/project-state.md` and `CONTRIBUTING.md` list seventeen
-  skills, `remote-level.sh` under `scripts/`, and nine gates.
+- `README.md` and `docs/project-state.md` list eighteen skills, with
+  `merge-proxy`, `weekly-review` and `monthly-review` among those a person
+  invokes; `docs/project-state.md` and `CONTRIBUTING.md` describe ten gates,
+  with `remote-level.sh` and `reorient` under `scripts/`.
 - `docs/quickstart.md` is one path in six steps, from checking the
   prerequisites to a session log on disk, each step ending with what you should
   now see. It clones the kit, copies `examples/workspace/`,
@@ -74,12 +81,13 @@ skill lives in that skill's own `CHANGELOG.md`.
   section describes the example workspace.
 - `CONTRIBUTING.md` lists what `scripts/gates.sh` needs, and its em dash
   check no longer uses `grep -P`, which only GNU grep has.
-- `docs/project-state.md` names the example workspace and eight gates.
-
-- `README.md` and `docs/project-state.md` list sixteen skills, with
-  `weekly-review` among those a person invokes.
+- `docs/project-state.md` names the example workspace and gains an "In v0.4.0"
+  section.
 - `skills/daily-review/` v2: its Scope Pointer names `weekly-review` as
   shipped.
+- `skills/daily-review/` v3 and `skills/weekly-review/` v2: the lanes table
+  and Scope Pointer (daily) and the Scope Pointer (weekly) name
+  `monthly-review` as shipped. No change to either procedure.
 - Every `skills/*/CHANGELOG.md` relabeled to the shape `docs/releasing.md` now
   states (PATCH, no entry text changed): one integer `vN` per heading, unique,
   newest first, title `# CHANGELOG`. Renumbered: `document-standards` second
@@ -111,10 +119,13 @@ skill lives in that skill's own `CHANGELOG.md`.
 
 ### Skill revisions
 
-- `daily-review` v1 to v2.
+- `daily-review` v1 to v3.
+- `merge-proxy` v1, new.
+- `monthly-review` v2, new (v1 and v2 both in this release).
+- `orient` v1 to v2.
 - `session-close` v4 to v5, BREAKING.
 - `session-log` v1 to v2.
-- `weekly-review` v1, new.
+- `weekly-review` v2, new (v1 and v2 both in this release).
 
 ## 0.3.0 (2026-09-29)
 

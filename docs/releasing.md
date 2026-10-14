@@ -262,4 +262,9 @@ them; it does not commit, tag or push, and `GOVERNANCE.md` says why.
 - **0.3.0, cut 2026-09-29.** MINOR, because it adds one skill, `daily-review`.
   It also starts the two-week cadence above, which replaces releasing whenever
   something outside the kit came to depend on a change, and moves version DOIs
-  out of `CITATION.cff`.
+  out of `CITATION.cff`. The 0.3.0 version DOI is `10.5281/zenodo.23045704`.
+- **0.4.0, cut 2026-10-13.** MINOR, because it adds three skills,
+  `merge-proxy`, `weekly-review` and `monthly-review`, and three scripts,
+  `scripts/check-workspace-stubs.py`, `scripts/remote-level.sh` and
+  `scripts/reorient`.
+  `session-close` v5 is BREAKING, which a MINOR bump may carry while MAJOR is 0.
