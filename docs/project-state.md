@@ -3,7 +3,7 @@
 Current status of toothpaste-kit. For what the project is and how to use it, start with
 `README.md`.
 
-Last updated 2026-10-03.
+Last updated 2026-10-13.
 
 ## Live
 
@@ -154,6 +154,11 @@ with Unreleased; `CHANGELOG.md` is the full log.
 - Skill interfaces now have a deprecation rule (`docs/releasing.md`, Deprecation), and no
   interface change has cited it yet (TK-073). How a skill's revision relates to the kit version
   is stated in the same file, under Skill revisions (TK-072).
+- Three follow-ups left open by the 0.4.0 checks. Two lines of `scripts/reorient`'s mail
+  check have no selftest row, though its behavior there has not been shown wrong.
+  `weekly-review` does not record each chase in the task note, which `monthly-review` needs
+  in order to count them. `orient` names `scripts/reorient` by a path that exists only in a kit
+  clone, not in a workspace.
 
 ## Security posture, and what is actually in place
 
@@ -186,8 +191,13 @@ The plan, once the target tier is fixed, belongs in its own document with one ro
 a pointer to the evidence, because a posture claim without per-criterion evidence is the same
 unverifiable clean result this project's own conventions reject.
 
-## Unreleased
+## In v0.4.0
 
+- **`skills/merge-proxy/`.** A procedure a person invokes: for that session an
+  agent may run and push a trunk merge on a repository whose remote is
+  internal or absent, after explaining the plan and halting for approval of
+  each merge. `scripts/remote-level.sh` classifies the remote first; a ninth
+  gate runs its selftest.
 - **`skills/weekly-review/`.** The once-a-week pass over a task board's
   slower lanes: Waiting blockers, carried work, the Done lane, and one
   important task given a day.
@@ -202,6 +212,8 @@ unverifiable clean result this project's own conventions reject.
   `session-close` v5 (BREAKING) and `session-log` v2 came with it.
 - **Skill versioning in `docs/releasing.md`.** Skill revisions, a skill's
   interface, and a Deprecation rule.
+- **Selftest rows for `scripts/reorient`**, added after the 2026-10-09 cutoff
+  and touching the selftest only.
 
 ## In v0.3.0
 
