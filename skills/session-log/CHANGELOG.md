@@ -1,5 +1,23 @@
 # CHANGELOG
 
+## v3
+
+The description names what the capture records, the decisions, corrections, open questions and
+findings its five questions ask for, where it used to say it "writes the reasoning". Same skill,
+same procedure. The old wording read as an attempt to extract model reasoning: on 2026-10-14 an
+Opus 5.5 safety classifier stopped a session, tagged `[reasoning_extraction]`, right after the
+agent read this file, in a conversation already discussing that classifier. The new wording is
+also the more accurate one, since the capture records what was decided and why, not a model's
+internal reasoning.
+
+The body's line about the compaction boundary is reworded the same way, as are the mentions of this
+skill in the kit `README.md`, `docs/quickstart.md`, and the scope pointers of `orient` and
+`session-close`.
+
+**Tested: the description only.** One run read the reworded description with the body unchanged
+and was not stopped. The body line and the three other files were changed after that run and are
+untested. One run is a data point, not a fix.
+
 ## v2
 
 The capture carries the dash rule itself. A newcomer's first run, reported in issue #11, wrote its

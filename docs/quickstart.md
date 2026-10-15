@@ -91,8 +91,9 @@ way; none of the loop's skills starts on its own.
 
 ## 6. Run `session-log`
 
-`session-log` records reasoning that a long conversation would otherwise
-lose, so it needs something to record. Type this as a message first:
+`session-log` records the decisions and findings that a long
+conversation would otherwise lose, so it needs something to record.
+Type this as a message first:
 
 ```text
 We decided to keep the workspace at ~/tpkit-workspace, outside the kit's

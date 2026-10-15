@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v3
+
+The scope pointer to `session-log` says it records decisions and findings, where it said it
+records reasoning, to match `session-log` v3. No change to the procedure. Untested against the
+classifier stop that prompted `session-log` v3.
+
 ## v2
 
 Phase 1 names the kit's own `scripts/reorient`, which now ships, in place of one tree's path. The

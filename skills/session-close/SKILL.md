@@ -167,8 +167,9 @@ implied by omission.
 
 # Scope Pointer
 
-- `session-log`: the cheap mid-session counterpart, for the compaction boundary. It captures
-  reasoning and touches nothing else, so a log written there does not discharge this procedure.
+- `session-log`: the cheap mid-session counterpart, for the compaction boundary. It records
+  decisions and findings and touches nothing else, so a log written there does not discharge
+  this procedure.
 - `daily-dashboard`: the other half of this loop, run at the start of a session
   rather than the end. It reads back what this procedure writes and checks it
   against the working trees instead of trusting it. Anything it finds unrecorded

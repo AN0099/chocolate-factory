@@ -1,6 +1,6 @@
 ---
 name: session-log
-description: Mid-session capture, run when the conversation is about to be compacted, handed off, or otherwise lose its detail while the work is unfinished. Writes the reasoning from the recent stretch to one append-only file in a single pass, with no verification sweep and no standing-file updates. Deliberately cheaper and narrower than session-close, which it does not replace and does not satisfy.
+description: Mid-session capture, run when the conversation is about to be compacted, handed off, or otherwise lose its detail while the work is unfinished. Records the decisions, corrections, open questions and findings from the recent stretch to one append-only file in a single pass, with no verification sweep and no standing-file updates. Deliberately cheaper and narrower than session-close, which it does not replace and does not satisfy.
 disable-model-invocation: true
 ---
 
@@ -15,8 +15,8 @@ whatever your durable store is called. Substitute your own filenames freely.
 `session-close` is expensive on purpose. It sweeps a whole session by category, updates every
 standing file, and runs mechanical checks. That price is correct once, at the end. It is wrong three
 times in an afternoon, and a procedure too expensive to run at the moment it is needed is a
-procedure that does not get run. The gap this fills is the compaction boundary, where reasoning is
-lost quietly and nothing is on fire.
+procedure that does not get run. The gap this fills is the compaction boundary, where decisions and
+findings are lost quietly and nothing is on fire.
 
 **Running this does not satisfy `session-close`.** It skips the sweep, the standing files, and the
 checks by design. A session that ends after a `session-log` is a session that was never closed. Say

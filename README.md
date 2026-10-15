@@ -73,7 +73,7 @@ Eight are procedures a person invokes. All eight set `disable-model-invocation`,
 | `daily-review` | Once a day, before the first task is pulled. Proposes moves across the task board's lanes and ends on questions; assumes a lane-board tool |
 | `weekly-review` | Once a week, after a daily review. Chases Waiting's blockers, names carried work by its count, reads the Done lane back, and schedules one important task; ends on questions |
 | `monthly-review` | Once a month, after a weekly review. Adopts or rejects each Someday item, asks whether long-stalled Waiting work is still committed, and lets the person choose which archive candidates leave the board; ends on questions |
-| `session-log` | Mid-session, before context is compacted. Captures the reasoning from the recent stretch to one append-only file, and nothing else |
+| `session-log` | Mid-session, before context is compacted. Records the decisions, corrections, open questions and findings from the recent stretch to one append-only file, and nothing else |
 | `merge-proxy` | When a person wants the agent to type a merge they have decided. For that session, on a repository whose remote is internal or absent, the agent may run and push a trunk merge after explaining the full plan and halting for approval of each one. Never on a GitHub or other internet remote |
 
 Three are procedures an agent may run on its own at a clean boundary. None sets `disable-model-invocation`, because each one reads or records and none decides anything. None of them satisfies `session-log` or `session-close`.
