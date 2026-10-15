@@ -68,6 +68,6 @@ without starting any work.
 - `daily-dashboard`: the full start-of-day procedure. It reads the standing files, verifies
   carry-over, ranks todos and ends in questions. This is the cheap subset answering only "where are
   we", and running it does not discharge that one.
-- `session-log`: the write half of the same boundary. This reads state, that records reasoning, and
-  a compaction wants both.
+- `session-log`: the write half of the same boundary. This reads state, that records decisions and
+  findings, and a compaction wants both.
 - `session-close`: end of session. Nothing here substitutes for any part of it.

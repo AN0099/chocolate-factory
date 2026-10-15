@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v6
+
+The scope pointer to `session-log` says it records decisions and findings, where it said it
+captures reasoning, to match `session-log` v3. No change to the procedure. Untested against the
+classifier stop that prompted `session-log` v3.
+
 ## v5
 
 **BREAKING.** Migration: name your provenance layer in your `CLAUDE.md`. Where it names none,
