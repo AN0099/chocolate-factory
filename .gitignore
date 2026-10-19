@@ -31,3 +31,6 @@ index/
 repomix-output.*
 .repomixignore
 .temp-secrets
+
+# Claude Code per-user settings, personal, not shared config
+.claude/settings.local.json
