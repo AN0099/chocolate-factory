@@ -3,7 +3,7 @@
 Current status of toothpaste-kit. For what the project is and how to use it, start with
 `README.md`.
 
-Last updated 2026-10-13.
+Last updated 2026-10-18.
 
 ## Live
 
@@ -190,6 +190,17 @@ Since that record, governance, versioning and branch protection have closed; see
 The plan, once the target tier is fixed, belongs in its own document with one row per criterion and
 a pointer to the evidence, because a posture claim without per-criterion evidence is the same
 unverifiable clean result this project's own conventions reject.
+
+## Unreleased
+
+- **`docs/glossary.md`.** The kit's terms of art, one entry each, with a link
+  to the file that defines each in full. The README links it, and
+  `docs/document-accessibility.md` now claims G62 (providing a glossary) and
+  names G55 (linking to definitions) as a gap.
+- **`skills/session-log` v3.** The description says the capture records
+  decisions, corrections, open questions and findings, and `orient` v3,
+  `session-close` v6, the README and `docs/quickstart.md` describe it to match.
+  Only the description was tested.
 
 ## In v0.4.0
 

@@ -62,7 +62,7 @@ of scope here because this repository ships no application.
 | H30: Providing link text that describes the purpose of a link for anchor elements | Same, for anchors specifically | `[the contribution guide](CONTRIBUTING.md)`, not `[CONTRIBUTING.md](CONTRIBUTING.md)` where the sentence needs more |
 | G53: Identifying the purpose of a link using link text combined with the text of the enclosing sentence | The sentence may supply the rest | Acceptable, and weaker than link text that stands alone |
 | F84: failure due to using a non-specific link such as "click here" ([2.1](https://www.w3.org/WAI/WCAG21/Techniques/failures/F84), [2.0](https://www.w3.org/TR/WCAG20-TECHS/F84.html)) | Non-specific link text is a failure, not a weakness | Absent from the local WCAG 2.0 capture, which is why the first citation here was 2.1 only. It is in 2.0 as well, and both URLs were supplied by the maintainer. This is the rule `scripts/mdlint.py` enforces as MD059 |
-| G62: Providing a glossary | Terms of art are defined somewhere | This repository has jargon and no glossary. Named as a gap below |
+| G62: Providing a glossary | Terms of art are defined somewhere | [The glossary](glossary.md) defines the terms of art it lists, each once, and links each to the file that defines it in full; the README links the glossary |
 
 ### Content
 
@@ -104,9 +104,12 @@ discovered by a reader:
 
 ## Gaps, named
 
-- **No glossary**, which G62 asks for. This repository uses "surface", "regime",
-  "seat", "gate", "control fidelity" and "tack" as terms of art. A reader who
-  does not already know them has no single place to look.
+- **Terms are not linked to their definitions where they are used**, so G55
+  (Linking to definitions) is not claimed. A reader who meets "surface",
+  "regime", "seat", "gate", "control fidelity" or "tack" in most documents finds
+  its meaning in [the glossary](glossary.md), which those documents do not
+  point to. Whether every term the documents use has an entry is not checked by
+  any gate.
 - **An automated check exists.** `scripts/mdlint.py` is the seventh gate, run
   by `scripts/gates.sh` and by CI. It enforces nineteen
   markdownlint rules, using markdownlint's own rule IDs so the real tool is a
