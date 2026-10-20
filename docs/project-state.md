@@ -194,6 +194,12 @@ unverifiable clean result this project's own conventions reject.
 
 ## Unreleased
 
+- **Agent instruction files and two learning artifacts (ACMM L2, issues #31 to #35).**
+  `CLAUDE.md`, `.github/copilot-instructions.md` and `.cursor/rules/agents.mdc` point at
+  `AGENTS.md` and add no rule of their own; `docs/prompts/README.md` catalogs the skills from
+  their descriptions; `docs/corrections.md` gives the correction record's format, and the
+  Correction Protocol now keeps those records in the user's own workspace, outside any
+  repository, with the root `corrections.jsonl` left empty.
 - **`docs/glossary.md`.** The kit's terms of art, one entry each, with a link
   to the file that defines each in full. The README links it, and
   `docs/document-accessibility.md` now claims G62 (providing a glossary) and
