@@ -208,6 +208,10 @@ unverifiable clean result this project's own conventions reject.
 - **`scripts/link-skills.sh --selftest`**, run by an eleventh gate (TK-111).
 - **`scripts/reorient`** says `TASK not checked` when `ps` is missing, rather
   than reporting no shells (TK-112).
+- **`scripts/reorient` names what it skips.** A path among the root,
+  `projects/*` and `REORIENT_REPOS` that is not a repository gets a
+  `not a repository` line, and MAIL says `none` or `not read` instead of
+  printing nothing. Five selftest checks cover it.
 
 ## In v0.4.0
 

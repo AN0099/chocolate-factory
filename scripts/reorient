@@ -23,7 +23,8 @@
 #   queues            standing files whose name contains `queue` and ends .json
 #   flag register     the standing file whose name contains `flagged`
 # Repositories read: ROOT itself, ROOT/projects/*, and any in REORIENT_REPOS
-# (colon-separated paths).
+# (colon-separated paths). A path there that is not a repository gets a
+# "not a repository" line, so a skipped tree is never silent.
 #
 # Env:
 #   REORIENT_INBOX_REPO  a repository whose sibling branches deliver mail into
@@ -56,6 +57,7 @@ selftest() {
   check "flag register without Open says so"    '^FLAG threads-flagged.md has no Open section'
   check "mail off by default"                   '!^MAIL'
   check "coverage block present"                '^COVERAGE:'
+  check "root that is not a repository named"  "^GIT  $(basename "$tmp") +not a repository$"
   # Planted positives: each must change the line it targets.
   printf '# Session\n\n## 10:00 first: x\n\n## 10:05 [jot] y\n' > "$tmp/.agents/context/session-2026-01-01-plant.md"
   rm "$tmp/.agents/lead-handoff.md"
@@ -84,11 +86,26 @@ selftest() {
   check "flag below Resolved reported"          'MISFILED 1 below Resolved'
   check "runbook not read as the capture"       '^CAP  session-2026-01-01-plant\.md '
   check "mail on a sibling branch reported"     '^MAIL other +1 file\(s\) not in dt'
+  check "mail found is not also reported none"  '!^MAIL none'
   if command -v ps >/dev/null 2>&1; then
     check "old harness shell reported"          "^TASK pid $pid "
   else
     echo "skip old harness shell reported: no ps on this host, so it cannot be planted"
   fi
+  # An inbox with nothing waiting says so, and a missing inbox says it was not read.
+  git -C "$tmp/inbox" update-ref refs/remotes/origin/other dt
+  out=$(REORIENT_INBOX_REPO="$tmp/inbox" bash "$0" "$tmp" 2>&1)
+  check "empty inbox reported as none"          '^MAIL none: no new file in inbox-dt on any sibling'
+  out=$(REORIENT_INBOX_REPO="$tmp/inbox/inbox-dt" bash "$0" "$tmp" 2>&1)
+  check "inbox not a repository reported"      '^MAIL not read: .*inbox-dt is not a repository'
+  git -C "$tmp/inbox" switch -qc nobox
+  out=$(REORIENT_INBOX_REPO="$tmp/inbox" bash "$0" "$tmp" 2>&1)
+  check "missing inbox directory reported"      '^MAIL not read: .* has no inbox-nobox/'
+  git -C "$tmp/inbox" switch -q dt
+  # A project directory that is not a repository is named, not skipped.
+  mkdir -p "$tmp/projects/plain"
+  out=$(bash "$0" "$tmp" 2>&1)
+  check "project not a repository named"       '^GIT  plain +not a repository$'
   # TK-112: with no process lister, TASK says so instead of reporting no shells.
   out=$(REORIENT_PS=reorient-no-such-ps bash "$0" "$tmp" 2>&1)
   check "missing ps says not checked"           '^TASK not checked: reorient-no-such-ps not found'
@@ -127,7 +144,9 @@ names() { # $1 count, rest: names
 
 repo() { # $1 label, $2 path
   local lab="$1" dir="$2" br staged dirty untr st ahead behind lvl
-  [ -d "$dir/.git" ] || [ -f "$dir/.git" ] || return 0
+  if [ ! -d "$dir/.git" ] && [ ! -f "$dir/.git" ]; then
+    printf 'GIT  %-14s not a repository\n' "$lab"; return 0
+  fi
   [ "$do_fetch" -eq 1 ] && git -C "$dir" fetch --quiet 2>/dev/null
   lvl=$(bash "$HERE/remote-level.sh" "$dir" 2>/dev/null || printf 'external')
   br=$(git -C "$dir" rev-parse --abbrev-ref HEAD 2>/dev/null || printf '?')
@@ -177,6 +196,7 @@ if [ -n "$IB" ] && [ -d "$IB/.git" ]; then
   seat=$(git -C "$IB" rev-parse --abbrev-ref HEAD 2>/dev/null || printf '')
   box="inbox-$seat"
   if [ -d "$IB/$box" ]; then
+    mail=0
     for ref in $(git -C "$IB" for-each-ref --format='%(refname:short)' refs/remotes/origin 2>/dev/null); do
       case "$ref" in origin/HEAD|"origin/$seat") continue ;; esac
       # Three-dot and added-or-modified only: two-dot compares the tips and
@@ -184,8 +204,14 @@ if [ -n "$IB" ] && [ -d "$IB/.git" ]; then
       files=$(git -C "$IB" diff --name-only --diff-filter=AM "HEAD...$ref" -- "$box/" 2>/dev/null | sed 's|.*/||' | sort -r)
       n=$(printf '%s' "$files" | grep -c . || true)
       [ "${n:-0}" -gt 0 ] && printf 'MAIL %-8s %s file(s) not in %s:%s\n' "${ref#origin/}" "$n" "$seat" "$(names "$n" $files)"
+      mail=$((mail + ${n:-0}))
     done
+    [ "$mail" -eq 0 ] && printf 'MAIL none: no new file in %s on any sibling branch\n' "$box"
+  else
+    printf 'MAIL not read: %s has no %s/\n' "$IB" "$box"
   fi
+elif [ -n "$IB" ]; then
+  printf 'MAIL not read: %s is not a repository\n' "$IB"
 fi
 
 # Claude Code only: harness shells older than the foreground limit. Every
@@ -298,8 +324,10 @@ PY
 [ -f "$MAN" ] || printf 'STANDING no manifest at %s\n' "${MAN#$ROOT/}"
 
 printf 'COVERAGE: git state for the workspace, projects/* and REORIENT_REPOS, with\n'
-printf '          the level scripts/remote-level.sh assigns; MAIL only when\n'
-printf '          REORIENT_INBOX_REPO is set%s; harness shells older\n' "$([ -n "$IB" ] && printf ' (set)' || printf ' (unset, not read)')"
+printf '          the level scripts/remote-level.sh assigns, and a line naming\n'
+printf '          each of those paths that is not a repository; MAIL only when\n'
+printf '          REORIENT_INBOX_REPO is set%s, saying none or not read\n' "$([ -n "$IB" ] && printf ' (set)' || printf ' (unset, not read)')"
+printf '          rather than nothing; harness shells older\n'
 printf '          than the foreground limit (Claude Code only; elsewhere TASK finds\n'
 printf '          nothing and that is not a clean result; without ps it says not\n'
 printf '          checked); PIN (Claude Code user settings only, what was\n'
