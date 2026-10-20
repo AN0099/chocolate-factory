@@ -122,11 +122,12 @@ with Unreleased; `CHANGELOG.md` is the full log.
 
 ## Known gaps
 
-- No test suite in this repo (TK-069). An eval harness covering `document-standards` exists and is not
-  ready to ship here. Skills are otherwise validated by use and
-  review. The CI half of this gap is closed: `gates.yml` is installed and runs ten mechanical
-  gates plus a second-party markdown lint, so the checks `CONTRIBUTING.md` documents are now
-  enforced rather than merely documented.
+- No eval suite for the skills in this repo (TK-069). An eval harness covering
+  `document-standards` exists and is not ready to ship here. Skills are otherwise
+  validated by use and review. The CI half of this gap is closed: `gates.yml` is
+  installed and runs eleven mechanical gates plus a second-party markdown lint, so
+  the checks `CONTRIBUTING.md` documents are now enforced rather than merely
+  documented.
 - No drift detection for this repo's own documents (TK-070). A checker exists that records a source path
   and a content hash next to a claim and rehashes on demand, reporting whether
   a claim's source is current, moved, changed, or gone. It is deterministic, costs no tokens, and is
@@ -174,7 +175,7 @@ rather than recalled.
 | Citation metadata | `CITATION.cff`, present, `version` and `date-released` commented out |
 | Issue templates | Four under `.github/ISSUE_TEMPLATE/` |
 | Governance and roles | **Absent.** No `GOVERNANCE.md`, no stated decision process, one maintainer |
-| Automated checks in CI | **Two workflows**, `commit-attribution.yml` and `gates.yml`. The latter runs ten mechanical gates plus a second-party markdown lint |
+| Automated checks in CI | **Two workflows**, `commit-attribution.yml` and `gates.yml`. The latter runs eleven mechanical gates plus a second-party markdown lint |
 | Versioning and releases | **Absent.** No tags, no releases, no release notes |
 | Dependency management | **Absent.** No `dependabot.yml`. The repository ships no package manifest, which is why |
 | Static analysis | **Absent.** The tree is Markdown, shell and one Python script; nothing scans the shell or the Python |
@@ -201,6 +202,12 @@ unverifiable clean result this project's own conventions reject.
   decisions, corrections, open questions and findings, and `orient` v3,
   `session-close` v6, the README and `docs/quickstart.md` describe it to match.
   Only the description was tested.
+- **Contributor files.** A pull request template, `.editorconfig`, a root
+  `AGENTS.md` that points coding agents at the files holding the rules, and
+  `tests/run`, the usual entry point for `scripts/gates.sh --selftest`.
+- **`scripts/link-skills.sh --selftest`**, run by an eleventh gate (TK-111).
+- **`scripts/reorient`** says `TASK not checked` when `ps` is missing, rather
+  than reporting no shells (TK-112).
 
 ## In v0.4.0
 

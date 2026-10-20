@@ -13,21 +13,23 @@
 # claims to enforce.
 #
 # Coverage, stated because a check that does not state its coverage is not a
-# check. These ten gates cover: the em dash ban, the private task ID ban,
+# check. These eleven gates cover: the em dash ban, the private task ID ban,
 # JSON wellformedness, registry self-consistency, skill frontmatter, the
 # reflow script's own selftest, markdown structure via scripts/mdlint.py,
-# which states its own eighteen-rule coverage in its header, and the example
+# which states its own nineteen-rule coverage in its header, and the example
 # workspace's stubs against docs/standing-documents.md via
 # scripts/check-workspace-stubs.py, which states its own coverage too, and
 # the remote classifier's own selftest in scripts/remote-level.sh, and
 # scripts/reorient's selftest, which runs it on examples/workspace as a second
-# tree and against planted positives. They do NOT cover: en dashes (ranges and
-# clause separators are not mechanically separable, so that stays a review
-# prompt), prose quality, internal link validity, whether a skill's Scope
-# Pointer is last, or whether any document's claims are true.
+# tree and against planted positives, and scripts/link-skills.sh's selftest,
+# which links the skills into a temporary directory and checks each link. They
+# do NOT cover: en dashes (ranges and clause separators are not mechanically
+# separable, so that stays a review prompt), prose quality, internal link
+# validity, whether a skill's Scope Pointer is last, or whether any document's
+# claims are true.
 #
 # Usage: scripts/gates.sh            run every gate
-#        scripts/gates.sh --selftest prove each gate can fail, then run them
+#        scripts/gates.sh --selftest show each gate can fire, then run them
 
 set -u
 
@@ -187,6 +189,15 @@ gate_remote_level() {
   fi
 }
 
+gate_link_skills() {
+  gate_start "link-skills selftest"
+  if sh scripts/link-skills.sh --selftest; then
+    gate_ok "link-skills selftest"
+  else
+    gate_bad "link-skills selftest"
+  fi
+}
+
 gate_reorient() {
   gate_start "reorient selftest"
   if bash scripts/reorient --selftest; then
@@ -207,7 +218,8 @@ run_all() {
   gate_stubs
   gate_remote_level
   gate_reorient
-  printf '\n%s of 10 gates passed\n' "$pass_n"
+  gate_link_skills
+  printf '\n%s of 11 gates passed\n' "$pass_n"
   [ "$fail" -eq 0 ] || { echo "gates: FAILED"; return 1; }
   echo "gates: all passed"
   return 0
@@ -215,8 +227,9 @@ run_all() {
 
 # A gate that has never returned a hit has not been shown capable of
 # returning one, so each of the first five, and the eighth, is run against a
-# planted positive in a scratch tree. Gates 6 and 9 carry their own fixture
-# assertions already, and gate 7 plants one positive per rule below.
+# planted positive in a scratch tree. Gates 6, 9, 10 and 11 run their tools'
+# own selftests, which carry their own planted cases, and gate 7 plants one
+# positive per rule below.
 run_selftest() {
   tmp=$(mktemp -d) || return 1
   # Each signal gets its own handler WITH an exit. A handler that only cleans

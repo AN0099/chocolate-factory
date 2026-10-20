@@ -30,6 +30,8 @@
 #                        inbox-<branch>/. Unset, the MAIL section is off.
 #   REORIENT_FG_LIMIT    seconds; a harness shell older than this is reported.
 #                        Default 180, just over Claude Code's tool timeout.
+#   REORIENT_PS          the process lister, default ps. Without one, TASK says
+#                        it did not check rather than reporting no shells.
 set -u
 HERE=$(cd "$(dirname "$0")" && pwd)
 
@@ -82,7 +84,15 @@ selftest() {
   check "flag below Resolved reported"          'MISFILED 1 below Resolved'
   check "runbook not read as the capture"       '^CAP  session-2026-01-01-plant\.md '
   check "mail on a sibling branch reported"     '^MAIL other +1 file\(s\) not in dt'
-  check "old harness shell reported"            "^TASK pid $pid "
+  if command -v ps >/dev/null 2>&1; then
+    check "old harness shell reported"          "^TASK pid $pid "
+  else
+    echo "skip old harness shell reported: no ps on this host, so it cannot be planted"
+  fi
+  # TK-112: with no process lister, TASK says so instead of reporting no shells.
+  out=$(REORIENT_PS=reorient-no-such-ps bash "$0" "$tmp" 2>&1)
+  check "missing ps says not checked"           '^TASK not checked: reorient-no-such-ps not found'
+  check "missing ps is not read as no shells"   '!^TASK no harness shell'
   [ "$fails" -eq 0 ] && { echo "reorient: selftest passed"; return 0; }
   echo "reorient: selftest FAILED ($fails)"; return 1
 }
@@ -183,11 +193,15 @@ fi
 # foreground and background alike, so age is what separates them: a foreground
 # call is bounded by the tool timeout. This script's own ancestry is excluded.
 FG=${REORIENT_FG_LIMIT:-180}
+PS=${REORIENT_PS:-ps}
 Q="'"
+if ! command -v "$PS" >/dev/null 2>&1; then
+  printf 'TASK not checked: %s not found, so harness shells were not read\n' "$PS"
+else
 chain=" $$ "
-p=$(ps -o ppid= -p $$ 2>/dev/null | tr -d ' ')
-while [ -n "${p:-}" ] && [ "$p" != 1 ]; do chain="$chain$p "; p=$(ps -o ppid= -p "$p" 2>/dev/null | tr -d ' '); done
-tasks=$(ps -eo pid=,etimes=,args= 2>/dev/null | while read -r pid secs rest; do
+p=$("$PS" -o ppid= -p $$ 2>/dev/null | tr -d ' ')
+while [ -n "${p:-}" ] && [ "$p" != 1 ]; do chain="$chain$p "; p=$("$PS" -o ppid= -p "$p" 2>/dev/null | tr -d ' '); done
+tasks=$("$PS" -eo pid=,etimes=,args= 2>/dev/null | while read -r pid secs rest; do
   case "$rest"  in *shell-snapshots/snapshot-bash-*) ;; *) continue ;; esac
   case "$chain" in *" $pid "*) continue ;; esac
   [ "$secs" -lt "$FG" ] && continue
@@ -195,6 +209,7 @@ tasks=$(ps -eo pid=,etimes=,args= 2>/dev/null | while read -r pid secs rest; do
   printf 'TASK pid %-7s age %4dm  %.60s\n' "$pid" "$((secs / 60))" "$cmd"
 done)
 if [ -n "$tasks" ]; then printf '%s\n' "$tasks"; else printf 'TASK no harness shell older than %ss\n' "$FG"; fi
+fi
 
 # Newest capture by mtime. A capture is named for the date it covers, so the
 # glob requires a digit after `session-`; without it a runbook named
@@ -286,10 +301,10 @@ printf 'COVERAGE: git state for the workspace, projects/* and REORIENT_REPOS, wi
 printf '          the level scripts/remote-level.sh assigns; MAIL only when\n'
 printf '          REORIENT_INBOX_REPO is set%s; harness shells older\n' "$([ -n "$IB" ] && printf ' (set)' || printf ' (unset, not read)')"
 printf '          than the foreground limit (Claude Code only; elsewhere TASK finds\n'
-printf '          nothing and that is not a clean result); PIN (Claude Code user\n'
-printf '          settings only, what was asked for, not what runs); the newest\n'
-printf '          capture and its partials; queues, flags and standing files found\n'
-printf '          through the manifest.\n'
+printf '          nothing and that is not a clean result; without ps it says not\n'
+printf '          checked); PIN (Claude Code user settings only, what was\n'
+printf '          asked for, not what runs); the newest capture and its partials;\n'
+printf '          queues, flags and standing files found through the manifest.\n'
 printf '          Does not run any gate, verify any claim, judge whether a document\n'
 printf '          is current, or fetch unless asked. STANDING reads mtime, which says\n'
 printf '          when a file was written, never whether it is still true. PART\n'
