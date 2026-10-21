@@ -244,6 +244,8 @@ etime_secs() {
     *:*)   m=${t%%:*}; s=${t#*:} ;;
     *)     s=$t ;;
   esac
+  # bash 3.2 reads an empty 10# as 0, so check the fields rather than rely on the error.
+  for v in "$d" "$h" "$m" "$s"; do case "$v" in (''|*[!0-9]*) return 1 ;; esac; done
   echo $(( 10#$d * 86400 + 10#$h * 3600 + 10#$m * 60 + 10#$s ))
 }
 tasks=$("$PS" -eo pid=,etime=,args= 2>/dev/null | while read -r pid et rest; do
