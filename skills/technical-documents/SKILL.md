@@ -11,6 +11,8 @@ This skill assumes `document-standards` is already active. It adds document-type
 
 **Preset priority:** when a document could plausibly match a preset in both this file and `document-standards`, this file's preset wins whenever its trigger conditions (audience, document type) are met, since it represents the more specific match. `document-standards`' own presets are the fallback for everything else.
 
+Making a new skill is covered by `skill-creation`, and deciding whether a need justifies one, or locating an existing skill, by `skill-discovery`.
+
 # Document-Type Presets
 
 | Type | FORMALITY | DENSITY | AUDIENCE_LEVEL |

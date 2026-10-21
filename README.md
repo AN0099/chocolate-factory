@@ -173,6 +173,7 @@ The lowest-friction first contribution is a surface descriptor in `orchestration
 | [Project state](docs/project-state.md) | Where the kit itself stands right now |
 | [Standing documents](docs/standing-documents.md) | The document structure the procedure skills assume |
 | [Glossary](docs/glossary.md) | What each term of art here means, and which file defines it |
+| [Concepts](docs/concepts.md) | Each idea a contributor needs, with every file that carries it |
 | [Interface accessibility](docs/accessibility.md) | Accessibility of the interface the work is done through |
 | [Document accessibility](docs/document-accessibility.md) | WCAG techniques applied to the Markdown this repository ships |
 | [Document layers](docs/document-layers.md) | How a requirement is marked, and what belongs in this repository at all |
