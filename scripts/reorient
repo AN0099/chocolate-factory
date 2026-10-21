@@ -63,10 +63,11 @@ selftest() {
   rm "$tmp/.agents/lead-handoff.md"
   printf '{"tasks":[{"id":"T-1","status":"pending"}]}\n' > "$tmp/.agents/task-queue.json"
   printf '# Flags\n\n## Open\n\n### 2026-01-01\n\n<!--flag-->\n**A flag**\n\n## Resolved\n\n<!--flag-->\n' > "$tmp/.agents/threads-flagged.md"
-  sed -i 's|provenance layer is `.agents/context/`|provenance layer is `.agents/elsewhere/`|' "$tmp/CLAUDE.md"
+  sed 's|provenance layer is `.agents/context/`|provenance layer is `.agents/elsewhere/`|' "$tmp/CLAUDE.md" > "$tmp/CLAUDE.md.new" && mv "$tmp/CLAUDE.md.new" "$tmp/CLAUDE.md"
   mkdir -p "$tmp/.agents/elsewhere" && mv "$tmp/.agents/context/session-2026-01-01-plant.md" "$tmp/.agents/elsewhere/"
   printf '# Runbook\n\n## 11:00 not a capture\n' > "$tmp/.agents/elsewhere/session-end-runbook.md"
-  touch -d '+1 minute' "$tmp/.agents/elsewhere/session-end-runbook.md"
+  # Known limit: from 2036 the plant capture is newer than this stamp. The plant still bites without it.
+  touch -t 203512312359 "$tmp/.agents/elsewhere/session-end-runbook.md"
   # R3: an inbox with one note on a sibling branch.
   git init -q -b dt "$tmp/inbox" && mkdir "$tmp/inbox/inbox-dt" && : > "$tmp/inbox/inbox-dt/.keep" &&
     git -C "$tmp/inbox" add -A && git -C "$tmp/inbox" -c user.name=t -c user.email=t@t commit -qm base &&
@@ -74,9 +75,10 @@ selftest() {
     git -C "$tmp/inbox" add -A && git -C "$tmp/inbox" -c user.name=t -c user.email=t@t commit -qm note &&
     git -C "$tmp/inbox" update-ref refs/remotes/origin/other other && git -C "$tmp/inbox" switch -q dt || return 1
   bash -c 'sleep 20; :' shell-snapshots/snapshot-bash-plant.sh >/dev/null 2>&1 & pid=$!
+  bash -c 'sleep 20; :' not-a-snapshot.sh >/dev/null 2>&1 & pid2=$!
   sleep 1
   out=$(REORIENT_FG_LIMIT=0 REORIENT_INBOX_REPO="$tmp/inbox" bash "$0" "$tmp" 2>&1)
-  kill "$pid" 2>/dev/null; wait "$pid" 2>/dev/null
+  kill "$pid" "$pid2" 2>/dev/null; wait "$pid" "$pid2" 2>/dev/null
   check "provenance path read from CLAUDE.md"   '^CAP  session-2026-01-01-plant.md  5 lines, 2 entries'
   check "partials counted"                      '^PART 1 log, 1 jot, 0 touch since the last close'
   check "missing standing file named"           'MISSING \.agents/lead-handoff\.md'
@@ -89,6 +91,7 @@ selftest() {
   check "mail found is not also reported none"  '!^MAIL none'
   if command -v ps >/dev/null 2>&1; then
     check "old harness shell reported"          "^TASK pid $pid "
+    check "old process without a snapshot not reported" "!^TASK pid $pid2 "
   else
     echo "skip old harness shell reported: no ps on this host, so it cannot be planted"
   fi
@@ -110,6 +113,11 @@ selftest() {
   out=$(REORIENT_PS=reorient-no-such-ps bash "$0" "$tmp" 2>&1)
   check "missing ps says not checked"           '^TASK not checked: reorient-no-such-ps not found'
   check "missing ps is not read as no shells"   '!^TASK no harness shell'
+  # A malformed age from ps skips the row instead of reading as 0; the good row proves the fake is read.
+  printf '#!/bin/sh\ncase "$1" in -eo) echo "4242 7- bash -c x shell-snapshots/snapshot-bash-9.sh"; echo "4243 10:00 bash -c y shell-snapshots/snapshot-bash-9.sh" ;; *) exec ps "$@" ;; esac\n' > "$tmp/fake-ps" && chmod +x "$tmp/fake-ps"
+  out=$(REORIENT_FG_LIMIT=0 REORIENT_PS="$tmp/fake-ps" bash "$0" "$tmp" 2>&1)
+  check "malformed process age skipped"        '!^TASK pid 4242 '
+  check "fake ps read: well-formed row reported" '^TASK pid 4243 '
   [ "$fails" -eq 0 ] && { echo "reorient: selftest passed"; return 0; }
   echo "reorient: selftest FAILED ($fails)"; return 1
 }
@@ -186,7 +194,7 @@ fi
 repo "$(basename "$ROOT")" "$ROOT"
 for p in "$ROOT"/projects/*; do [ -d "$p" ] && repo "$(basename "$p")" "$p"; done
 IFS=: read -r -a extra <<< "${REORIENT_REPOS:-}"
-for p in "${extra[@]}"; do [ -n "$p" ] && repo "$(basename "$p")" "$p"; done
+for p in ${extra[@]+"${extra[@]}"}; do [ -n "$p" ] && repo "$(basename "$p")" "$p"; done
 
 # Mail, only where a file inbox is configured. Each sibling branch's files in
 # inbox-<this branch>/ that this branch does not carry. Reachability measures
@@ -215,7 +223,7 @@ elif [ -n "$IB" ]; then
 fi
 
 # Claude Code only: harness shells older than the foreground limit. Every
-# harness Bash call runs as a shell sourcing shell-snapshots/snapshot-bash-*,
+# harness Bash call runs as a shell sourcing shell-snapshots/snapshot-<shell>-*,
 # foreground and background alike, so age is what separates them: a foreground
 # call is bounded by the tool timeout. This script's own ancestry is excluded.
 FG=${REORIENT_FG_LIMIT:-180}
@@ -227,9 +235,24 @@ else
 chain=" $$ "
 p=$("$PS" -o ppid= -p $$ 2>/dev/null | tr -d ' ')
 while [ -n "${p:-}" ] && [ "$p" != 1 ]; do chain="$chain$p "; p=$("$PS" -o ppid= -p "$p" 2>/dev/null | tr -d ' '); done
-tasks=$("$PS" -eo pid=,etimes=,args= 2>/dev/null | while read -r pid secs rest; do
-  case "$rest"  in *shell-snapshots/snapshot-bash-*) ;; *) continue ;; esac
-  case "$chain" in *" $pid "*) continue ;; esac
+# ps etime is [[dd-]hh:]mm:ss on GNU and BSD; etimes is GNU only.
+etime_secs() {
+  local t=$1 d=0 h=0 m=0 s=0
+  case "$t" in *-*) d=${t%%-*}; t=${t#*-} ;; esac
+  case "$t" in
+    *:*:*) h=${t%%:*}; t=${t#*:}; m=${t%%:*}; s=${t#*:} ;;
+    *:*)   m=${t%%:*}; s=${t#*:} ;;
+    *)     s=$t ;;
+  esac
+  # bash 3.2 reads an empty 10# as 0, so check the fields rather than rely on the error.
+  for v in "$d" "$h" "$m" "$s"; do case "$v" in (''|*[!0-9]*) return 1 ;; esac; done
+  echo $(( 10#$d * 86400 + 10#$h * 3600 + 10#$m * 60 + 10#$s ))
+}
+tasks=$("$PS" -eo pid=,etime=,args= 2>/dev/null | while read -r pid et rest; do
+  case "$rest"  in (*shell-snapshots/snapshot-*) ;; (*) continue ;; esac
+  case "$chain" in (*" $pid "*) continue ;; esac
+  secs=$(etime_secs "$et" 2>/dev/null)
+  case "$secs" in (''|*[!0-9]*) continue ;; esac
   [ "$secs" -lt "$FG" ] && continue
   cmd=${rest#*eval $Q}; cmd=${cmd%%$Q < /dev/null*}
   printf 'TASK pid %-7s age %4dm  %.60s\n' "$pid" "$((secs / 60))" "$cmd"
