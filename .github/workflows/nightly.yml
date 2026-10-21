@@ -1,0 +1,38 @@
+name: nightly
+
+# The gates on a schedule, so a change in a runner's tools shows up without
+# a pull request to trigger it. Same command as the gates job in gates.yml,
+# on Linux and macOS.
+#
+# A nightly failure with no new commit is a finding about the environment or
+# the scripts, to be raised, and not a reason to loosen the gate.
+#
+# Run the same thing yourself:  ./scripts/gates.sh --selftest   or   tests/run
+
+on:
+  schedule:
+    # Once a day, UTC.
+    - cron: '17 4 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  nightly:
+    timeout-minutes: 15
+    strategy:
+      # Let both systems finish, so one failure does not hide the other result.
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      # Pinned by tag, not by digest, as in gates.yml. See
+      # docs/security-posture.md, row 3.7.
+      - uses: actions/checkout@v7
+
+      # The gate script is the test suite, and it plants a positive for each
+      # gate before the clean result is trusted.
+      - name: Gates selftest
+        run: ./scripts/gates.sh --selftest

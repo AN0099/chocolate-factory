@@ -5,6 +5,25 @@ skill lives in that skill's own `CHANGELOG.md`.
 
 ## Unreleased
 
+### Added
+
+- `docs/document-layers.md`, exception 5: a filed reflection entry may be
+  reformatted where no word changes (line wrapping or whitespace, or markup
+  a new gate requires), and a markup change MUST NOT change what a line
+  means; a change to any word needs a superseding entry. The maintainer's
+  decision of 2026-10-20, made for ACMM compatibility.
+- `docs/risk-tiers.md`, "Per-tool instruction files": every per-tool
+  instruction file (`CLAUDE.md`, `.cursor/rules/agents.mdc`,
+  `.github/copilot-instructions.md`) points at `AGENTS.md` and adds no rule.
+  The maintainer's decision of 2026-10-20, made for ACMM compatibility.
+- ACMM L3 measurement (pull request #44): `docs/metrics.md`, the pull request
+  acceptance metric; `docs/review-rubric.md`, the review rubric;
+  `.github/workflows/ci.yml`, the test matrix on Linux and macOS;
+  `docs/quality.md`, the quality dashboard; `.claude/session-summary.md`, the
+  session summary artifact. `scripts/reorient` now parses under bash 3.2.
+
+### Changed
+
 - Four skills (`working-preferences`, `document-standards`, `technical-documents`,
   `surface-regimes`) each gain one line pointing to `skill-creation` for making a skill and
   `skill-discovery` for deciding whether a need justifies one, or locating one.
