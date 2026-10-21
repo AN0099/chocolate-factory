@@ -247,10 +247,10 @@ etime_secs() {
   echo $(( 10#$d * 86400 + 10#$h * 3600 + 10#$m * 60 + 10#$s ))
 }
 tasks=$("$PS" -eo pid=,etime=,args= 2>/dev/null | while read -r pid et rest; do
-  case "$rest"  in *shell-snapshots/snapshot-*) ;; *) continue ;; esac
-  case "$chain" in *" $pid "*) continue ;; esac
+  case "$rest"  in (*shell-snapshots/snapshot-*) ;; (*) continue ;; esac
+  case "$chain" in (*" $pid "*) continue ;; esac
   secs=$(etime_secs "$et" 2>/dev/null)
-  case "$secs" in ''|*[!0-9]*) continue ;; esac
+  case "$secs" in (''|*[!0-9]*) continue ;; esac
   [ "$secs" -lt "$FG" ] && continue
   cmd=${rest#*eval $Q}; cmd=${cmd%%$Q < /dev/null*}
   printf 'TASK pid %-7s age %4dm  %.60s\n' "$pid" "$((secs / 60))" "$cmd"
