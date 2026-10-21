@@ -60,9 +60,9 @@ not write anything yet.**
 4. **Quadrant check.** Every open task (Inbox, Next, Waiting, Doing) without a quadrant gets a
    proposed one. A task marked urgent with no due date or no consequence gets a proposal to drop to
    Decide, in whichever open lane it sits: a Waiting task keeps its quadrant when it returns to Next.
-5. **Next, ordered.** Do first, then Decide, each in the order proposed. **The Most Important Task**
-   is the top Do task for the person's own seat; when the person's seat has no Do task in Next, it
-   is the top of Next for that seat, and the review says which rule chose it. Name it with its next
+5. **Next, ordered.** Do first, then Decide, within each serves group, in the board's order. **The Most Important Task**
+   is the first task in Next for the person's own seat, in the order this step proposes, which the
+   board shows once phase 4 writes the ranks; the board marks it in words. Name it with its next
    action. For each agent seat whose Doing is empty, name its first pull, or say that Next holds
    nothing for that seat.
 6. **Next actions.** Every task in Next, Waiting or Doing carries one concrete next action, since a
