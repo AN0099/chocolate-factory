@@ -21,12 +21,18 @@ skill lives in that skill's own `CHANGELOG.md`.
   `.github/workflows/ci.yml`, the test matrix on Linux and macOS;
   `docs/quality.md`, the quality dashboard; `.claude/session-summary.md`, the
   session summary artifact. `scripts/reorient` now parses under bash 3.2.
+- `docs/acmm.md`: an index of the ACMM levels, naming the file that meets
+  each criterion and the pull request that added it.
 
 ### Changed
 
 - Four skills (`working-preferences`, `document-standards`, `technical-documents`,
   `surface-regimes`) each gain one line pointing to `skill-creation` for making a skill and
   `skill-discovery` for deciding whether a need justifies one, or locating one.
+- `docs/security-posture.md` rows 3.7 and 4.4 state the rule for every
+  workflow instead of a count, which had gone stale twice.
+- `daily-review` step 5: the Most Important Task is the person's first task
+  in Next, in the order the review proposes, the rule the lane board marks.
 
 ## 0.4.0 (2026-10-13)
 

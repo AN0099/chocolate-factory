@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## v4
+
+Step 5 names the Most Important Task by the lane board's rule: the person's first task in Next,
+in the order the step proposes, which the board shows and marks in words once phase 4 writes the
+ranks. It had said the top Do task, falling back to
+the top of Next, so a Do task later in Next could jump ahead of the person's first task.
+
 ## v3
 
 The lanes table and Scope Pointer name `monthly-review` as part of the kit, now that it ships. No
