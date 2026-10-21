@@ -112,9 +112,9 @@ Operational and business material lives outside this repository entirely and is 
 
 ## What kind of writing goes in this repo
 
-Docs here are written for a person with a task. State what a thing does, how to use it, and what it does not cover. Skip the archaeology: which options were weighed, what a previous version got wrong, how the decision felt at the time.
+Docs here are written for a person with a task. State what a thing does, how to use it, and what it does not cover. Outside the exceptions below, skip the archaeology: which options were weighed, what a previous version got wrong, how the decision felt at the time.
 
-That material is kept, in a separate provenance layer outside this repository. `docs/document-layers.md` states the rule and the tests for applying it. Two exceptions live here on purpose: a skill's `CHANGELOG.md` records why that skill is shaped the way it is, because a later editor needs it to avoid silently undoing a deliberate choice, and the repository's `CHANGELOG.md` records what changed. Neither is a session log.
+That material is kept, in a separate provenance layer outside this repository. `docs/document-layers.md` states the rule and the tests for applying it. Three exceptions live here on purpose: a skill's `CHANGELOG.md` records why that skill is shaped the way it is, because a later editor needs it to avoid silently undoing a deliberate choice, the repository's `CHANGELOG.md` records what changed, and a reflection entry in `docs/reflections/` restates what one documentation row records, including a correction, in the fixed format of `docs/document-layers.md` exception 5. None is a session log.
 
 Practical test before you commit a doc: could a contributor who has never spoken to the maintainers act on it? If a sentence only makes sense to someone who was in the room, it belongs in the provenance layer.
 

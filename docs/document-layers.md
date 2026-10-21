@@ -102,7 +102,7 @@ document is usually worth keeping somewhere.
 
 ## Exceptions
 
-Four kinds of dated or historical statement are documentation, not provenance,
+Five kinds of dated or historical statement are documentation, not provenance,
 and MUST be kept:
 
 1. **`CHANGELOG.md`**, whose entire subject is what changed and when.
@@ -114,6 +114,41 @@ and MUST be kept:
    "this repository does not claim conformance" are current facts about the
    system and are load bearing. They are not archaeology, and removing them
    would make a document overclaim.
+5. **A reflection entry** in `docs/reflections/`. An entry is a bounded record
+   about one documentation row, not free narrative, and its format is fixed:
+   - It MUST be one file, named `NNN-short-slug.md`, where `NNN` is a three
+     digit number assigned in filing order. A number MUST NOT be reused.
+   - It MUST carry exactly these fields, in this order:
+     - **Row**: the file and row it reflects on, at a pinned version: a
+       release tag or a full commit hash.
+     - **Records**: what that row records at the pinned version, restated
+       from the row. It MAY include a prior state or a date only where the
+       row itself records it.
+     - **Lesson**: one sentence, shaped as a rule. The lesson MAY generalise
+       from the row and MUST NOT contradict it. It is informative and MUST
+       NOT use a BCP 14 keyword.
+     - **Supersedes**: the number of the entry it replaces, or "none".
+     - **Filed**: the date the entry was filed.
+   - It MUST NOT hold session residue or a person's name, and outside the
+     **Lesson**, **Supersedes** and **Filed** fields it MUST NOT hold any
+     statement the cited row does not support at the pinned version.
+     **Supersedes** and **Filed** state an entry number and a filing date,
+     which no row records. A named outside system MAY appear where the cited
+     row names it.
+   - Row support is judged against the pinned version, not against the row
+     as it reads later. The entry is a dated citation, and a later change to
+     the row does not make it false.
+   - It MUST NOT be edited after filing. A correction is a new entry whose
+     **Supersedes** field names the entry it replaces; the replaced entry stays
+     as filed.
+   - A filed entry MAY be reformatted where no word changes. Line wrapping
+     and whitespace MAY change for any reason. Markup MAY change only where a
+     new gate requires it, and a markup change MUST NOT change what a line
+     means. A change to any word still needs a superseding entry.
+   - A filed entry is a record dated by its **Filed** field, not
+     documentation of the current state. The present tense rule in
+     [Documentation and provenance](#documentation-and-provenance) does not
+     apply to it.
 
 ## How this is checked
 
