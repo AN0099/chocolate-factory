@@ -3,6 +3,12 @@
 Repo-level log. Records changes to what the kit contains. Design reasoning for an individual
 skill lives in that skill's own `CHANGELOG.md`.
 
+## Unreleased
+
+- Four skills (`working-preferences`, `document-standards`, `technical-documents`,
+  `surface-regimes`) each gain one line pointing to `skill-creation` for making a skill and
+  `skill-discovery` for deciding whether a need justifies one, or locating one.
+
 ## 0.4.0 (2026-10-13)
 
 A MINOR release under `docs/releasing.md`: three new skills, three new scripts, each

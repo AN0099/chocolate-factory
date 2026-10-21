@@ -194,6 +194,10 @@ unverifiable clean result this project's own conventions reject.
 
 ## Unreleased
 
+- **`docs/concepts.md`.** Each idea a contributor needs, grouped under four headings, with a
+  link to every file that carries it, deepest first; the README links it beside the glossary.
+- **Skill cross-references.** Four skills point to `skill-creation` and `skill-discovery`;
+  recorded in `CHANGELOG.md` under Unreleased.
 - **Agent instruction files and two learning artifacts (ACMM L2, issues #31 to #35).**
   `CLAUDE.md`, `.github/copilot-instructions.md` and `.cursor/rules/agents.mdc` point at
   `AGENTS.md` and add no rule of their own; `docs/prompts/README.md` catalogs the skills from

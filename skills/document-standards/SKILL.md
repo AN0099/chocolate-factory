@@ -9,6 +9,8 @@ Test, not a list: any generated artifact meant to be read, run, or referenced ou
 
 Out of scope: conversational chat responses, covered by `working-preferences`' distilled anti-slop reference. Document-type-specific presets and vocabulary for network admin, DevOps, and DevSecOps audiences are covered by the `technical-documents` skill, which extends this one rather than replacing it.
 
+Making a new skill is covered by `skill-creation`, and deciding whether a need justifies one, or locating an existing skill, by `skill-discovery`.
+
 # Dials
 
 **FORMALITY (1-10):** 1 is casual and conversational, 10 is formal or ceremonial.

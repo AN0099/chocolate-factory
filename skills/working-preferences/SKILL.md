@@ -260,3 +260,5 @@ Document authoring generally (dials, Content Read, pre-flight checklist, full an
 Which of this file's own mechanics apply, and at what dial setting, depends on which surface and regime the current session runs under (a human present turn by turn versus an unattended Routine versus a raw API call). That mapping is a separate skill: `surface-regimes`. Not loaded here; consult it before assuming the baselines stated above apply unmodified outside an ordinary chat session.
 
 Frontend and UI design standards are deferred, not yet built. A structural pattern (dials, brief-inference read-back, block template library, pre-flight checklist) has been identified as the model to follow when a real frontend task arises.
+
+Making a new skill is covered by `skill-creation`, and deciding whether a need justifies one, or locating an existing skill, by `skill-discovery`.

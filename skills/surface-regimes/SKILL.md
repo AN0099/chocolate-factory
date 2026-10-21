@@ -68,6 +68,8 @@ Regime sets the mechanics. Two capability fields shift the dials further inside 
 
 This skill does not claim authority over `working-preferences`, `document-standards`, or `technical-documents`. It sets which of their stated mechanics are live for the current regime and where a dial starts before that session's task-specific override applies. Those three remain the source of truth for what the mechanics themselves are.
 
+Making a new skill is covered by `skill-creation`, and deciding whether a need justifies one, or locating an existing skill, by `skill-discovery`.
+
 # Multi-Agent Relay Use
 
 Inside the orchestration protocol's relay and handoff templates, an agent reference carries a required `capability` profile and the `regime` derived from it. The `regime` field is stated explicitly on the wire so a receiving agent without this skill loaded still sees it, and it is derived rather than typed freely so it cannot drift from the derivation rule above.
