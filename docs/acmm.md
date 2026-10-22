@@ -21,7 +21,7 @@ reach. The issues name three levels, and the files for a fourth have begun:
 | L0 | None given; the issues say "Prerequisites not met" | Guardrails an agent needs first: tests, a pull request template, a code style configuration |
 | L2 | Advisory | Instructions an agent reads, and records it learns from |
 | L3 | Quality-Gated | Measures of change quality, and a record of each session |
-| L4 | No issue opened | Not stated in an issue; the first L4 change is below, and more may follow |
+| L4 | No issue opened | Not stated in an issue; two L4 changes are below, and more may follow |
 
 No issue was opened at L1, so no file was added for it.
 
@@ -146,3 +146,13 @@ a reflection entry as documentation and fixes its format, and
 [contributing](../CONTRIBUTING.md#what-kind-of-writing-goes-in-this-repo) now names three
 exceptions to the no-archaeology rule. The [changelog](../CHANGELOG.md) records both, with the
 maintainer's decision that every per-tool instruction file points at `AGENTS.md`.
+
+## L4: the second change
+
+One workflow, added after the first change and separately from it. As with the first, no issue
+names a criterion, so the entry names none.
+
+- **[`.github/workflows/ai-fix.yml`](../.github/workflows/ai-fix.yml).** Acknowledges the `ai-fix`
+  label on an issue, once, and routes the issue to the desk. No agent runs in CI, no stored secret
+  is used, and the token is limited to issues. The label must exist first:
+  `gh label create ai-fix --description "Route to the desk; no agent runs in CI"`.
