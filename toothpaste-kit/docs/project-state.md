@@ -3,7 +3,7 @@
 Current status of toothpaste-kit. For what the project is and how to use it, start with
 `README.md`.
 
-Last updated 2026-10-18.
+Last updated 2026-10-22.
 
 ## Live
 
@@ -194,6 +194,18 @@ unverifiable clean result this project's own conventions reject.
 
 ## Unreleased
 
+- **`docs/acmm.md` (pull request #46).** An index of the files the kit added for ACMM
+  criteria, naming the criterion and pull request behind each. Security posture rows 3.7 and
+  4.4 state the rule for every workflow instead of a count, and `daily-review` step 5 names the
+  Most Important Task from the order the review proposes.
+- **ACMM L4, part a (pull request #45).** `SECURITY-AI.md`; `docs/risk-tiers.md`, including the
+  rule that every per-tool instruction file points at `AGENTS.md` and adds no rule; a path
+  labeler (`.github/labeler.yml` and its workflow); `.github/workflows/nightly.yml`; and
+  `docs/reflections/`, three filed entries and a README. `docs/document-layers.md` gains
+  exception 5, under which a filed reflection may be reformatted but never reworded.
+- **ACMM L3 measurement (pull request #44).** `docs/metrics.md`, `docs/review-rubric.md`,
+  `docs/quality.md`, `.claude/session-summary.md`, and `.github/workflows/ci.yml`, a test matrix
+  on Linux and macOS. `scripts/reorient` now parses under bash 3.2.
 - **`docs/concepts.md`.** Each idea a contributor needs, grouped under four headings, with a
   link to every file that carries it, deepest first; the README links it beside the glossary.
 - **Skill cross-references.** Four skills point to `skill-creation` and `skill-discovery`;
