@@ -1,0 +1,46 @@
+cff-version: 1.2.0
+title: toothpaste-kit
+message: If you use this project or its orchestration protocol in your work, please cite it.
+type: software
+abstract: >-
+  A skill library and agent relay protocol for working with large language model
+  agents, judged on control fidelity: legible state, cheap correction, a reliable
+  halt. Includes a vendor-independent capability taxonomy, a message schema for
+  relaying work between agents and humans across surfaces, and a routing rule that
+  gates dispatch on content sensitivity.
+authors:
+  - family-names: Naveja
+    given-names: Aidan
+repository-code: https://github.com/AN0099/toothpaste-kit
+url: https://github.com/AN0099/toothpaste-kit
+license: MIT
+keywords:
+  - large-language-models
+  - agent-orchestration
+  - human-in-the-loop
+  - provenance
+  - research-software
+  - accessibility
+
+version: 0.4.0
+date-released: '2026-10-13'
+
+# These two were commented out until a release existed, because a file claiming
+# a released version that does not exist is worse than one claiming nothing.
+# They are set as step 3 of docs/releasing.md, in the tree that gets tagged
+# with the version they name. If that tree is not tagged, this file is the lie
+# it was written to avoid.
+#
+# The identifiers block comes after the release exists, because Zenodo mints the
+# DOI from the GitHub release rather than the other way round. First filled in
+# 2026-09-19 once v0.1.0 was published.
+#
+# Only the concept DOI is listed, and it is the one to cite: it covers every
+# version and always resolves to the newest, so this block is right the moment
+# a release is tagged and never changes after it. Per-version DOIs are recorded
+# under "Where releases stand" in docs/releasing.md.
+
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.22850481
+    description: Concept DOI, all versions, resolves to the newest

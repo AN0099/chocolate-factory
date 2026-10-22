@@ -1,0 +1,122 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "orchestration/event-base.json",
+  "title": "EventBase",
+  "type": "object",
+  "required": ["event_id", "timestamp", "thread_id", "from", "to"],
+  "properties": {
+    "event_id": {
+      "type": "string",
+      "description": "Unique identifier for this event, used for idempotency and threading."
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "thread_id": {
+      "type": "string",
+      "description": "Groups events belonging to one orchestration run."
+    },
+    "in_reply_to": {
+      "type": ["string", "null"],
+      "description": "event_id this event responds to, if any."
+    },
+    "from": { "$ref": "#/definitions/agent_ref" },
+    "to": { "$ref": "#/definitions/agent_ref" },
+    "relayed_by": {
+      "type": "array",
+      "description": "Human-relay agents that touched this event en route, in order. Present for auditability when a message crosses more than one relay hop.",
+      "items": { "$ref": "#/definitions/agent_ref" }
+    }
+  },
+  "definitions": {
+    "agent_ref": {
+      "type": "object",
+      "required": ["agent_id", "kind", "capability", "regime"],
+      "properties": {
+        "agent_id": {
+          "type": "string",
+          "description": "Stable label for this agent within the run, e.g. 'planner', 'implementer', 'reviewer-human'."
+        },
+        "kind": {
+          "enum": ["llm", "human"]
+        },
+        "role": {
+          "enum": ["relay", "participant"],
+          "description": "Required when kind=human, absent when kind=llm. Replaces the human-relay and human-participant members of the pre-registry surface enum, which allowed the meaningless combination kind=llm with surface=human-relay."
+        },
+        "surface": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9-]*:[a-z0-9][a-z0-9-]*$",
+          "description": "Namespaced vendor:surface identifier resolvable in orchestration/registry/. Descriptive label for humans and for registry lookup. Where it disagrees with 'capability', capability governs and the mismatch is worth surfacing rather than silently resolving. Omit for kind=human."
+        },
+        "capability": {
+          "$ref": "#/definitions/capability_profile",
+          "description": "Normative. Every routing and gating decision in this system reads these fields rather than the surface name."
+        },
+        "regime": {
+          "enum": [
+            "interactive-synchronous",
+            "autonomous-asynchronous",
+            "programmatic-contractual"
+          ],
+          "description": "Derived from 'capability' by the three-clause rule in taxonomy.md. Stated explicitly so a receiving agent without the surface-regimes skill still sees it, and so the derivation is checkable against the capability profile rather than asserted."
+        },
+        "active_skills": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Operator-side behavioral configuration identifiers active for this agent. Format is vendor-defined. An empty array is valid and expected for vendors with no skill mechanism. A mismatch between this field and a receiving agent's own inference is worth surfacing rather than silently resolving."
+        }
+      }
+    },
+    "capability_profile": {
+      "type": "object",
+      "description": "Vendor-independent predicates. Any surface from any vendor scores on all seven.",
+      "required": [
+        "interface",
+        "autonomy",
+        "human_presence",
+        "workspace",
+        "tool_execution",
+        "egress",
+        "audit"
+      ],
+      "properties": {
+        "interface": {
+          "enum": ["conversational", "programmatic"],
+          "description": "Whether the surface presents a conversational loop or is driven by a caller-owned program."
+        },
+        "autonomy": {
+          "enum": ["none", "redirectable", "full"],
+          "description": "Autonomous multi-step execution between human turns. 'redirectable' means the human can interrupt and steer mid-task."
+        },
+        "human_presence": {
+          "enum": ["required", "optional", "absent"],
+          "description": "Whether a human is present during execution."
+        },
+        "workspace": {
+          "enum": ["none", "session", "local", "remote"],
+          "description": "Persistent file workspace. 'session' means state exists but is lost at session end."
+        },
+        "tool_execution": {
+          "enum": ["none", "sandboxed", "host"],
+          "description": "Whether the surface executes tools, and whether execution reaches the host filesystem. Read by the routing rule's standing tool-call exclusion."
+        },
+        "egress": {
+          "enum": ["local", "operator-hosted", "vendor-cloud"],
+          "description": "Where content goes when this surface processes it. This is the sensitivity gate's join key: a routing rule can read this field instead of relying on an operator remembering which faculties are cloud-hosted."
+        },
+        "audit": {
+          "enum": [
+            "none",
+            "local-only",
+            "vendor-attested",
+            "operator-attested",
+            "unknown"
+          ],
+          "description": "Who, if anyone, attests to a record of what this surface did. 'unknown' is a legitimate and common value; do not guess."
+        }
+      }
+    }
+  }
+}
