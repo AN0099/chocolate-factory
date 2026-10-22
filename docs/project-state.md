@@ -194,6 +194,9 @@ unverifiable clean result this project's own conventions reject.
 
 ## Unreleased
 
+- **The second L4 change.** `.github/workflows/ai-fix.yml` acknowledges the `ai-fix` label
+  once per issue and routes the issue to the desk; no agent runs in CI and no stored secret is
+  used. `SECURITY-AI.md`, `docs/acmm.md` and security posture rows 3.7 and 4.4 name it.
 - **`docs/acmm.md` (pull request #46).** An index of the files the kit added for ACMM
   criteria, naming the criterion and pull request behind each. Security posture rows 3.7 and
   4.4 state the rule for every workflow instead of a count, and `daily-review` step 5 names the

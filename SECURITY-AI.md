@@ -53,7 +53,8 @@ dashes, prose quality, internal link validity, or whether any document's claims 
 `CONTRIBUTING.md`, "What these gates do not cover".
 
 Workflow token permissions are current practice, not a rule: each workflow declares its own
-`permissions`, `contents: read` throughout, and `labeler.yml` adds `pull-requests: write` to label
+`permissions`. Each declares `contents: read` except `ai-fix.yml`, which declares only
+`issues: write` to comment on a labelled issue; `labeler.yml` adds `pull-requests: write` to label
 pull requests. Source: the workflow files in `.github/workflows/`; `docs/security-posture.md`, row
 4.4, records the practice.
 
