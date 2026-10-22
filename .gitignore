@@ -1,0 +1,6 @@
+
+# Riptide artifacts (cloud-synced)
+.humanlayer/tasks/
+
+# Machine-specific HumanLayer workspace overrides
+.humanlayer/workspace.local.json
