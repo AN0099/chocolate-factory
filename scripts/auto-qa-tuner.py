@@ -74,7 +74,8 @@ class Unread(Exception):
 
 
 def strip_comment(line):
-    return re.sub(r"\s+#.*$", "", line).rstrip()
+    m = re.search(r"\s#", line)   # one pass: \s+#.*$ backtracks quadratically on a long run of spaces
+    return (line[:m.start()] if m else line).rstrip()
 
 
 def mapping_key(text):
