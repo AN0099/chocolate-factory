@@ -32,4 +32,6 @@ The cases this rule must block and allow are in `tests/branch-guard-cases.tsv`, 
 
 To delete a remote branch, use `git push origin :refs/heads/<name>`, which this rule allows.
 
+**If it fired on text, not a command:** the rule reads the whole command line, including a heredoc or `--body` that only describes these commands, such as a PR description. Write that text to a file with the file-writing tool and pass the path, for example `--body-file`. That moves prose out of the command. It is not a way around the rule: the command that runs must still pass.
+
 **If this fired on legitimate work,** the person decides. Do not rephrase the command to get past the pattern.
