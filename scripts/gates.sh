@@ -13,7 +13,7 @@
 # claims to enforce.
 #
 # Coverage, stated because a check that does not state its coverage is not a
-# check. These eleven gates cover: the em dash ban, the private task ID ban,
+# check. These twelve gates cover: the em dash ban, the private task ID ban,
 # JSON wellformedness, registry self-consistency, skill frontmatter, the
 # reflow script's own selftest, markdown structure via scripts/mdlint.py,
 # which states its own nineteen-rule coverage in its header, and the example
@@ -22,7 +22,9 @@
 # the remote classifier's own selftest in scripts/remote-level.sh, and
 # scripts/reorient's selftest, which runs it on examples/workspace as a second
 # tree and against planted positives, and scripts/link-skills.sh's selftest,
-# which links the skills into a temporary directory and checks each link. They
+# which links the skills into a temporary directory and checks each link, and
+# the hooks/ rules' structure, regex validity and planted cases via
+# scripts/check-hooks.py, which states its own coverage. They
 # do NOT cover: en dashes (ranges and clause separators are not mechanically
 # separable, so that stays a review prompt), prose quality, internal link
 # validity, whether a skill's Scope Pointer is last, or whether any document's
@@ -198,6 +200,15 @@ gate_link_skills() {
   fi
 }
 
+gate_hooks() {
+  gate_start "hooks rules"
+  if python3 scripts/check-hooks.py; then
+    gate_ok "hooks rules"
+  else
+    gate_bad "hooks rules"
+  fi
+}
+
 gate_reorient() {
   gate_start "reorient selftest"
   if bash scripts/reorient --selftest; then
@@ -219,7 +230,8 @@ run_all() {
   gate_remote_level
   gate_reorient
   gate_link_skills
-  printf '\n%s of 11 gates passed\n' "$pass_n"
+  gate_hooks
+  printf '\n%s of 12 gates passed\n' "$pass_n"
   [ "$fail" -eq 0 ] || { echo "gates: FAILED"; return 1; }
   echo "gates: all passed"
   return 0
@@ -366,9 +378,26 @@ PY
   ( cd "$tmp/st-ok" && python3 "$stubs" ) >/dev/null 2>&1
   plant_rejected $bad $? "workspace stub gate"
 
+  # Each plant is a copy of the real hooks with one fault, so only the check
+  # aimed at that fault can reject it: an uncompilable pattern added, then a
+  # blocking rule weakened so one of its planted cases no longer fires.
+  hk="$PWD/scripts/check-hooks.py"
+  for d in hk-bad hk-case hk-ok; do mkdir -p "$tmp/$d" && cp -R hooks "$tmp/$d/hooks"; done
+  printf -- '---\nname: broken\nevent: bash\naction: block\nconditions:\n  - field: command\n    operator: regex_match\n    pattern: (unclosed\n---\n' > "$tmp/hk-bad/hooks/hookify.broken.local.md"
+  nogi=hooks/hookify.repomix-no-gitignore.local.md
+  sed 's/pattern: --no-gitignore/pattern: --never-given/' "$nogi" > "$tmp/hk-case/$nogi"
+  ( cd "$tmp/hk-bad" && python3 "$hk" ) >/dev/null 2>&1
+  bad=$?
+  ( cd "$tmp/hk-ok" && python3 "$hk" ) >/dev/null 2>&1
+  plant_rejected $bad $? "hooks gate, pattern"
+  ( cd "$tmp/hk-case" && python3 "$hk" ) >/dev/null 2>&1
+  bad=$?
+  ( cd "$tmp/hk-ok" && python3 "$hk" ) >/dev/null 2>&1
+  plant_rejected $bad $? "hooks gate, planted case"
+
   printf '\n'
   [ "$plant_fail" -eq 0 ] || { echo "selftest: a gate could not be shown to fail. Do not trust a clean run."; return 1; }
-  echo "selftest: all six planted positives fired."
+  echo "selftest: all eight planted positives fired."
   echo
   echo "== gate 7 plants its own positives, one per rule =="
   python3 scripts/mdlint.py --selftest >/dev/null 2>&1
