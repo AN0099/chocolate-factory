@@ -156,3 +156,22 @@ names a criterion, so the entry names none.
   label on an issue, once, and routes the issue to the desk. No agent runs in CI, no stored secret
   is used, and the token is limited to issues. The label must exist first:
   `gh label create ai-fix --description "Route to the desk; no agent runs in CI"`.
+
+## L4: the third change
+
+A weekly proposal of job timeouts, and the timeouts it found missing. No issue names a criterion, so
+the entry names none.
+
+- **[`scripts/auto-qa-tuner.py`](../scripts/auto-qa-tuner.py), run by
+  [`.github/workflows/auto-qa.yml`](../.github/workflows/auto-qa.yml).** Reads the last 100 runs of
+  each workflow it tunes and proposes a timeout for each job listed in
+  [`.github/auto-qa-tuning.json`](../.github/auto-qa-tuning.json), from how long its runs took and
+  whether any ended at the timeout. It writes the proposals to the job summary and never edits a
+  workflow: a person accepts one in a pull request. The rules the gates enforce are not thresholds and
+  are never tuned; the gates jobs get timeouts like any other job.
+- **`timeout-minutes: 5` on both jobs in [`gates.yml`](../.github/workflows/gates.yml).** The
+  tuner's first proposals: neither job had a timeout, so each ran under GitHub's 360 minute default,
+  and no run has taken a minute.
+- **`timeout-minutes: 5` on `check` in
+  [`commit-attribution.yml`](../.github/workflows/commit-attribution.yml).** The same proposal for
+  the same reason: no timeout, and no run has taken a minute.
