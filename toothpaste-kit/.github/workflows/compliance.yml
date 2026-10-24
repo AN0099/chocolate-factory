@@ -1,0 +1,40 @@
+# SPDX-FileCopyrightText: 2026 Aidan Naveja
+#
+# SPDX-License-Identifier: Apache-2.0
+
+name: compliance
+
+# The checks that need a tool from outside this repository, kept apart from
+# gates.yml so that scripts/gates.sh stays runnable with nothing installed.
+# Today that is REUSE compliance: every file declares its copyright and
+# licence. Like gates, this binds only once it is a required status check in
+# the ruleset on the default branch.
+#
+# Run the same thing yourself:  ./scripts/compliance.sh --selftest
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  compliance:
+    timeout-minutes: 5
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      # An exact version, and no third party action: an action runs with the
+      # workflow's token, a pinned package in a throwaway runner does not.
+      # pipx ships on the hosted Ubuntu runners.
+      - name: Install reuse
+        run: pipx install reuse==6.2.0
+
+      # --require turns a missing tool into a failure, so a broken install
+      # cannot pass as "not checked". --selftest shows the check rejects a
+      # planted file with no declaration before its clean result is trusted.
+      - name: Compliance checks
+        run: ./scripts/compliance.sh --require --selftest

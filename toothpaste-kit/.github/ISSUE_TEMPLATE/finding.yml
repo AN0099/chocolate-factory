@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2026 Aidan Naveja
+#
+# SPDX-License-Identifier: Apache-2.0
+
 name: Finding or disagreement
 description: Something looks wrong, inconsistent, or wrongly decided, and you want it raised rather than quietly fixed.
 labels: ["finding"]

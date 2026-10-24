@@ -35,3 +35,9 @@ make, and it still ends without starting any work.
 
 **Why it writes nothing.** Anything worth keeping belongs to `session-log` or `session-close`, and a
 finding recorded in two places goes stale in one of them.
+
+<!--
+SPDX-FileCopyrightText: 2026 Aidan Naveja
+
+SPDX-License-Identifier: Apache-2.0
+-->

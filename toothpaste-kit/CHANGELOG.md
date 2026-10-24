@@ -23,9 +23,28 @@ skill lives in that skill's own `CHANGELOG.md`.
   session summary artifact. `scripts/reorient` now parses under bash 3.2.
 - `docs/acmm.md`: an index of the ACMM levels, naming the file that meets
   each criterion and the pull request that added it.
+- REUSE compliance: every file declares its copyright and licence, by an
+  SPDX header or, for files that cannot hold one, in `REUSE.toml`; the
+  licence text is also in `LICENSES/Apache-2.0.txt`. `scripts/compliance.sh`
+  runs `reuse lint` with a planted-file selftest, and
+  `.github/workflows/compliance.yml` runs it in CI with a pinned `reuse`.
+  `scripts/gates.sh` is unchanged and still needs nothing installed.
 
 ### Changed
 
+- **Licence: Apache License 2.0 from this release.** `LICENSE` is the
+  unmodified official text, and `CITATION.cff`, `README.md`, `GOVERNANCE.md`,
+  `references.md`, `docs/security-posture.md` and `docs/project-state.md` name
+  it. Releases 0.1.0 to 0.4.0 were published under MIT and stay under it: their
+  tags and assets are not rewritten, and what MIT granted for them is not
+  revoked. The copyright holder is named in `CITATION.cff` and `README.md`, and
+  no NOTICE file is added.
+- **Contributions need a Developer Certificate of Origin sign-off.**
+  `CONTRIBUTING.md` gains a licence and sign-off section (inbound licence, the
+  DCO, `git commit -s`, how to add a missing sign-off, and the pause when
+  someone else may own the work), `GOVERNANCE.md` states the pause, and
+  `.github/workflows/dco.yml` fails a pull request containing a commit with no
+  sign-off for its author. No contributor licence agreement is asked.
 - Four skills (`working-preferences`, `document-standards`, `technical-documents`,
   `surface-regimes`) each gain one line pointing to `skill-creation` for making a skill and
   `skill-discovery` for deciding whether a need justifies one, or locating one.
@@ -530,3 +549,9 @@ to report a vulnerability against.
 - `LICENSE` (MIT).
 - `philosophy.md`.
 - This file.
+
+<!--
+SPDX-FileCopyrightText: 2026 Aidan Naveja
+
+SPDX-License-Identifier: Apache-2.0
+-->

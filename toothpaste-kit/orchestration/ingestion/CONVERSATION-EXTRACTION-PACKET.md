@@ -50,3 +50,9 @@ Exactly one, last line of every reply:
 
 Begin now. Work through the entire visible conversation history in order. Do not ask me clarifying questions first, if something is ambiguous, extract it as best you can and mark grounding accordingly.
 ```
+
+<!--
+SPDX-FileCopyrightText: 2026 Aidan Naveja
+
+SPDX-License-Identifier: Apache-2.0
+-->

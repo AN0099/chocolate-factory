@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2026 Aidan Naveja
+#
+# SPDX-License-Identifier: Apache-2.0
+
 name: gates
 
 # The mechanical checks CONTRIBUTING.md states as rules.
@@ -23,6 +27,7 @@ permissions:
 
 jobs:
   gates:
+    timeout-minutes: 5
     runs-on: ubuntu-latest
     steps:
       # Pinned by tag, not by digest. Digest pinning is the stricter
@@ -48,6 +53,7 @@ jobs:
   # Promote it in the ruleset once it has been green once, and treat any
   # disagreement with scripts/mdlint.py as a defect in scripts/mdlint.py.
   markdownlint:
+    timeout-minutes: 5
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7

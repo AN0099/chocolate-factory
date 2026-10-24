@@ -62,3 +62,9 @@ Nothing here requires the filenames used above. Substitute your own. What the tw
 - A place where open questions go so they survive the session that raised them
 - A separation between what a person reads and what an agent reads
 - A sensitivity scheme with a stated rule for moving content outward
+
+<!--
+SPDX-FileCopyrightText: 2026 Aidan Naveja
+
+SPDX-License-Identifier: Apache-2.0
+-->

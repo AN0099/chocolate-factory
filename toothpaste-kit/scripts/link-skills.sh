@@ -1,4 +1,9 @@
 #!/bin/sh
+
+# SPDX-FileCopyrightText: 2026 Aidan Naveja
+#
+# SPDX-License-Identifier: Apache-2.0
+
 # Symlink this repository's skills into a Claude skills directory.
 #
 # docs/installing.md describes copying instead, which is the right choice if you

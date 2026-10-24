@@ -182,3 +182,9 @@ reader who wants the why.
 - `skills/commands/SKILL.md`: the vocabulary index, for looking one up without loading the whole
   ruleset.
 - `README.md`: what this repository is and the argument it makes.
+
+<!--
+SPDX-FileCopyrightText: 2026 Aidan Naveja
+
+SPDX-License-Identifier: Apache-2.0
+-->

@@ -21,7 +21,7 @@ reach. The issues name three levels, and the files for a fourth have begun:
 | L0 | None given; the issues say "Prerequisites not met" | Guardrails an agent needs first: tests, a pull request template, a code style configuration |
 | L2 | Advisory | Instructions an agent reads, and records it learns from |
 | L3 | Quality-Gated | Measures of change quality, and a record of each session |
-| L4 | No issue opened | Not stated in an issue; the first L4 change is below, and more may follow |
+| L4 | No issue opened | Not stated in an issue; two L4 changes are below, and more may follow |
 
 No issue was opened at L1, so no file was added for it.
 
@@ -146,3 +146,38 @@ a reflection entry as documentation and fixes its format, and
 [contributing](../CONTRIBUTING.md#what-kind-of-writing-goes-in-this-repo) now names three
 exceptions to the no-archaeology rule. The [changelog](../CHANGELOG.md) records both, with the
 maintainer's decision that every per-tool instruction file points at `AGENTS.md`.
+
+## L4: the second change
+
+One workflow, added after the first change and separately from it. As with the first, no issue
+names a criterion, so the entry names none.
+
+- **[`.github/workflows/ai-fix.yml`](../.github/workflows/ai-fix.yml).** Acknowledges the `ai-fix`
+  label on an issue, once, and routes the issue to the desk. No agent runs in CI, no stored secret
+  is used, and the token is limited to issues. The label must exist first:
+  `gh label create ai-fix --description "Route to the desk; no agent runs in CI"`.
+
+## L4: the third change
+
+A weekly proposal of job timeouts, and the timeouts it found missing. No issue names a criterion, so
+the entry names none.
+
+- **[`scripts/auto-qa-tuner.py`](../scripts/auto-qa-tuner.py), run by
+  [`.github/workflows/auto-qa.yml`](../.github/workflows/auto-qa.yml).** Reads the last 100 runs of
+  each workflow it tunes and proposes a timeout for each job listed in
+  [`.github/auto-qa-tuning.json`](../.github/auto-qa-tuning.json), from how long its runs took and
+  whether any ended at the timeout. It writes the proposals to the job summary and never edits a
+  workflow: a person accepts one in a pull request. The rules the gates enforce are not thresholds and
+  are never tuned; the gates jobs get timeouts like any other job.
+- **`timeout-minutes: 5` on both jobs in [`gates.yml`](../.github/workflows/gates.yml).** The
+  tuner's first proposals: neither job had a timeout, so each ran under GitHub's 360 minute default,
+  and no run has taken a minute.
+- **`timeout-minutes: 5` on `check` in
+  [`commit-attribution.yml`](../.github/workflows/commit-attribution.yml).** The same proposal for
+  the same reason: no timeout, and no run has taken a minute.
+
+<!--
+SPDX-FileCopyrightText: 2026 Aidan Naveja
+
+SPDX-License-Identifier: Apache-2.0
+-->

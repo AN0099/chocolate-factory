@@ -36,3 +36,9 @@ which is `session-log`'s moment.
 - `session-log`: the person-run capture this is the small sibling of. A jot does not satisfy it.
 - `touch`: the other partial. It records facts in standing files; this records reasoning.
 - `session-close`: resets the partial count. Nothing here substitutes for any part of it.
+
+<!--
+SPDX-FileCopyrightText: 2026 Aidan Naveja
+
+SPDX-License-Identifier: Apache-2.0
+-->

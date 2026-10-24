@@ -102,3 +102,9 @@ Every sentence needs an actor doing something.
 ## Generic Ordinal Step Labels
 
 "Step 1 / Step 2," "Stage 1 / Stage 2," "Phase 01 / Phase 02" used as the label itself. The actual step content is the label; if progression must be shown, use the verb-noun directly ("Install," "Configure," "Ship").
+
+<!--
+SPDX-FileCopyrightText: 2026 Aidan Naveja
+
+SPDX-License-Identifier: Apache-2.0
+-->

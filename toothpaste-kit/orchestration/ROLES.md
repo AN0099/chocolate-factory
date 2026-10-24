@@ -121,3 +121,9 @@ different personas, and creating, recording, sharing and orchestrating
 personas is a separate mechanism that does not exist yet. It is queued
 rather than sketched here, so that this file stays a statement about
 authority.
+
+<!--
+SPDX-FileCopyrightText: 2026 Aidan Naveja
+
+SPDX-License-Identifier: Apache-2.0
+-->

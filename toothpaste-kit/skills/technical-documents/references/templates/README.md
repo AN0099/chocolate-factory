@@ -9,3 +9,9 @@ Check the Three-Tier Threshold Framework in the parent SKILL.md once this folder
 ## Entries
 
 - `postmortem-remediation.md`: incident postmortem with a root-cause-driven remediation checklist. Generalized from the RCA-remediation pass on the working-preferences/document-standards/technical-documents skill system itself.
+
+<!--
+SPDX-FileCopyrightText: 2026 Aidan Naveja
+
+SPDX-License-Identifier: Apache-2.0
+-->

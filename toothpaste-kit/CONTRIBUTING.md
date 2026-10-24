@@ -52,11 +52,21 @@ You need a POSIX shell, `bash`, `git`, `python3`, `find`, and a `grep` with `-r`
 ./scripts/gates.sh --selftest
 ```
 
-That is the same script `.github/workflows/gates.yml` runs, which is the point: a check whose local copy and CI copy are separate texts can drift apart, and you find out when a clean local run is rejected by CI. It covers the seven mechanical rules above, including the two greps quoted earlier in this document, and an eighth: the stubs in `examples/workspace/` must match the files `docs/standing-documents.md` describes, checked by `scripts/check-workspace-stubs.py`. A ninth runs `scripts/remote-level.sh --selftest`, so the classifier `merge-proxy` relies on still gives all three answers. A tenth runs `scripts/reorient --selftest`, on `examples/workspace/` as a second tree and against planted positives. An eleventh runs `scripts/link-skills.sh --selftest`, which links the skills into a temporary directory and checks each link.
+That is the same script `.github/workflows/gates.yml` runs, which is the point: a check whose local copy and CI copy are separate texts can drift apart, and you find out when a clean local run is rejected by CI. It covers the seven mechanical rules above, including the two greps quoted earlier in this document, and an eighth: the stubs in `examples/workspace/` must match the files `docs/standing-documents.md` describes, checked by `scripts/check-workspace-stubs.py`. A ninth runs `scripts/remote-level.sh --selftest`, so the classifier `merge-proxy` relies on still gives all three answers. A tenth runs `scripts/reorient --selftest`, on `examples/workspace/` as a second tree and against planted positives. An eleventh runs `scripts/link-skills.sh --selftest`, which links the skills into a temporary directory and checks each link. A twelfth runs `scripts/check-hooks.py`, which checks the structure and patterns of the rules in `hooks/` and that the blocking ones fire on planted commands.
 
 `--selftest` first shows that each gate can fire, by planting a positive and confirming the gate catches it or by running the gate tool's own selftest, then runs the real pass. A gate that has never returned a hit has not been shown capable of returning one, so a clean result on its own is weak evidence.
 
 **What these gates do not cover**, stated because a check that does not state its coverage is not a check: en dashes, which stay a review prompt because a range and a clause separator are not mechanically separable; prose quality; internal link validity; whether a skill's closing section is last; and whether any document's claims are true.
+
+## Compliance checks
+
+Checks that need a tool from outside this repository run from a separate script, so the gates above keep needing nothing installed:
+
+```sh
+./scripts/compliance.sh --selftest
+```
+
+Today it runs `reuse lint`, which checks that every file declares a copyright and a licence in the form the [REUSE specification](https://reuse.software/spec-3.3/) sets out. Install the linter with `pipx install reuse==6.2.0`, the version `.github/workflows/compliance.yml` pins. Without it, the script prints `SKIP` and reports the check as not run, never as passed; CI installs it and fails on any missing declaration.
 
 ## Skills
 
@@ -90,6 +100,29 @@ Three layers enforce this, and only the third binds:
 
 Human co-author trailers are fine and expected. The rule is about tools.
 
+## Licence and sign-off
+
+Contributions are licensed under the Apache License 2.0, the project's licence ([`LICENSE`](LICENSE)). No contributor licence agreement, copyright assignment or indemnity is asked of you.
+
+Every file declares its copyright and licence. A new file carries an `SPDX-FileCopyrightText` and an `SPDX-License-Identifier` line, at the top in a comment, or at the end in an HTML comment for Markdown so the frontmatter and first heading stay first. A file that cannot hold a comment, such as JSON, is covered in [`REUSE.toml`](REUSE.toml) instead. `reuse annotate` writes the header for you; `./scripts/compliance.sh` checks it.
+
+Sign off every commit. A sign-off certifies the [Developer Certificate of Origin](https://developercertificate.org/), version 1.1: that you have the right to submit the work under the project's licence.
+
+```sh
+git commit -s
+```
+
+`-s` adds a `Signed-off-by:` line with your `user.name` and `user.email`. It is your certification, not a cryptographic signature (that is `-S`), and not acceptance: a signed-off contribution is still reviewed, and may be declined. The `dco` workflow fails a pull request containing a commit with no `Signed-off-by:` line for its author's email. Bot accounts are exempt.
+
+To add a missing sign-off, amend the last commit, or rebase every commit on the branch onto `main`, then force-push the branch:
+
+```sh
+git commit --amend -s --no-edit
+git rebase --signoff main
+```
+
+**If someone other than you may own the work**, such as an employer or a client, say so in the pull request. Review pauses until that owner's authorization is documented, since your sign-off cannot stand in for it.
+
 ## Hook rules
 
 `hooks/` holds `hookify` rules as examples. They are inert where they sit and do nothing until copied into a `.claude/` directory.
@@ -121,3 +154,9 @@ Practical test before you commit a doc: could a contributor who has never spoken
 ## Questions
 
 Ask. A question costs less than a wrong assumption acted on.
+
+<!--
+SPDX-FileCopyrightText: 2026 Aidan Naveja
+
+SPDX-License-Identifier: Apache-2.0
+-->

@@ -1,4 +1,9 @@
 #!/usr/bin/env python3
+
+# SPDX-FileCopyrightText: 2026 Aidan Naveja
+#
+# SPDX-License-Identifier: Apache-2.0
+
 """Markdown structure checks for this repository.
 
 Rule IDs and semantics are markdownlint's, read from a local capture of its

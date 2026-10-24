@@ -7,14 +7,19 @@ Last reviewed 2026-09-17.
 
 ## Who decides
 
-**One maintainer.** Aidan Naveja, named in `LICENSE` and `CITATION.cff`. There is
-no committee, no vote, and no independent body to escalate to. Saying otherwise
+**One maintainer.** Aidan Naveja, named in `CITATION.cff` and `README.md`. There
+is no committee, no vote, and no independent body to escalate to. Saying otherwise
 would describe a process that does not exist, which is worse than the honest
 version for anyone deciding whether to depend on this project.
 
 Copyright rests with the individual authors, currently that one person. Bridle
 Works is the name of the project this kit belongs to and is not a formed entity,
 so it holds nothing.
+
+**A contribution whose ownership is uncertain waits.** Where someone other than
+its contributor may own it, review pauses until that owner's authorization is
+documented. [`CONTRIBUTING.md`](CONTRIBUTING.md#licence-and-sign-off) asks the
+contributor to say so.
 
 **Bus factor is one, and the succession plan below is explicit rather than
 assumed.** See [Succession](#succession) below. Until a second maintainer
@@ -109,3 +114,9 @@ read commit history to discover that the rules moved.
 Vulnerability triage is the maintainer's, and the one standing constraint is
 that a gate that fails open is treated as the highest severity class this
 project has, because that failure is invisible to whoever is relying on it.
+
+<!--
+SPDX-FileCopyrightText: 2026 Aidan Naveja
+
+SPDX-License-Identifier: Apache-2.0
+-->

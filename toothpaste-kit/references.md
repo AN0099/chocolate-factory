@@ -51,7 +51,14 @@ one, the citation carries enough to retrieve the document independently.
   `docs/releasing.md`, which applies one version to the whole kit.
 - **[CFF]** "Citation File Format", version 1.2.0. **Used by:** `CITATION.cff`,
   which declares `cff-version: 1.2.0`.
-- **[MIT]** The MIT License. **Used by:** `LICENSE`.
+- **[APACHE-2.0]** Apache License, Version 2.0.
+  <https://www.apache.org/licenses/LICENSE-2.0>. **Used by:** `LICENSE`, from
+  release 0.5.0.
+- **[DCO]** "Developer Certificate of Origin", version 1.1.
+  <https://developercertificate.org/>. **Used by:** `CONTRIBUTING.md`, which
+  asks for a sign-off on every commit, and `.github/workflows/dco.yml`.
+- **[MIT]** The MIT License. **Used by:** releases 0.1.0 to 0.4.0, which stay
+  under it.
 
 ## Informative references
 
@@ -122,3 +129,9 @@ depends on them yet, and listing them here is not a claim that it does.
 Design reasoning, decision history and the record of how any of the above came
 to be adopted. That material is provenance and lives outside this repository,
 per `docs/document-layers.md`.
+
+<!--
+SPDX-FileCopyrightText: 2026 Aidan Naveja
+
+SPDX-License-Identifier: Apache-2.0
+-->

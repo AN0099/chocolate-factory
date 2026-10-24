@@ -40,3 +40,9 @@ Reading six descriptions to find the right one doesn't need a dedicated gateway 
 # Scope Pointer
 
 What a skill does once it's found and triggered is that skill's own content, not repeated here. How to structure a new skill file, once the Worthiness Test above says build one, is `skill-creation`'s job.
+
+<!--
+SPDX-FileCopyrightText: 2026 Aidan Naveja
+
+SPDX-License-Identifier: Apache-2.0
+-->

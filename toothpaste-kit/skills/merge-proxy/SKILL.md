@@ -146,3 +146,9 @@ standing rule applies again: prepare, hand over, do not run.
 - `working-preferences`: the Questions and Answers rules step 4 relies on
 - `session-close`: whether this grant was used belongs in that session's
   record, not in any standing document
+
+<!--
+SPDX-FileCopyrightText: 2026 Aidan Naveja
+
+SPDX-License-Identifier: Apache-2.0
+-->

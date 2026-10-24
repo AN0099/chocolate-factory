@@ -112,3 +112,9 @@ Once-a-week pass over the task board's slower lanes. Chases each Waiting task's 
 [`skills/working-preferences/SKILL.md`](../../skills/working-preferences/SKILL.md)
 
 Standing behavioral defaults, register, prohibitions, correction protocol, and command vocabulary for working with this user. Near-always relevant, load for any task requiring sustained interaction, judgment calls, or multi-step work. Does not cover technical document authoring standards (see document-standards) or frontend/UI design (deferred, not yet built).
+
+<!--
+SPDX-FileCopyrightText: 2026 Aidan Naveja
+
+SPDX-License-Identifier: Apache-2.0
+-->

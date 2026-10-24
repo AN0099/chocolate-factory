@@ -151,3 +151,9 @@ Each regime carries its own adjustments to `working-preferences` dials and its o
 activation. That mapping lives in the `surface-regimes` skill
 (`skills/surface-regimes/SKILL.md`), not duplicated here, so the two cannot drift apart. The
 `regime` field is the join key.
+
+<!--
+SPDX-FileCopyrightText: 2026 Aidan Naveja
+
+SPDX-License-Identifier: Apache-2.0
+-->

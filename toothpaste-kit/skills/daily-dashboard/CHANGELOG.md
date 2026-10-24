@@ -62,3 +62,9 @@ roadmap from decisions waiting on the human, and the closing questions. Added on
 top of it: phase 0, the requirement to walk every working tree rather than the
 remembered one, and the instruction to record standing-file defects found in
 passing, which that instance did well but by accident rather than by procedure.
+
+<!--
+SPDX-FileCopyrightText: 2026 Aidan Naveja
+
+SPDX-License-Identifier: Apache-2.0
+-->

@@ -171,3 +171,9 @@ Cited by tag. Full entries, with the normative and informative split, are in
 - **[BCP 14]** normative. Cited as [RFC 7322] section 4.8.2 requires.
 - **[RFC 7322]** informative. Source of the conventions above.
 - **[GFM]** normative. The dialect these documents render as.
+
+<!--
+SPDX-FileCopyrightText: 2026 Aidan Naveja
+
+SPDX-License-Identifier: Apache-2.0
+-->

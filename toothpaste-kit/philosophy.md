@@ -142,3 +142,9 @@ average rider who does not exist.
 
 The practical result is the one every curb cut demonstrates. Fitting the interface to the widest
 range of operators produces something better for all of them.
+
+<!--
+SPDX-FileCopyrightText: 2026 Aidan Naveja
+
+SPDX-License-Identifier: Apache-2.0
+-->
