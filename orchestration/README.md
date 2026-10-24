@@ -14,6 +14,7 @@ Do not use this system for tasks a single session already handles well. The rela
 
 - `taxonomy.md`: the seven-field capability vector every surface is scored on, the rule deriving a regime from it, the two human roles (relay vs. participant), and a capability matrix.
 - `registry/`: one file per vendor namespace, mapping surface identifiers to capability profiles. Each entry carries its own evidence and expiry date. This is where support for a new vendor gets added.
+- `rounds.md`: the round, one task with its dispatches and replies: its steps and who runs each, report and finding notation, the severity scale, the verification rule, and closing a round.
 - `protocol.md`: the relay mechanism (human-readable header wrapping a JSON payload), turn-taking rules, and state handoff rules.
 - `schemas/`: JSON Schema definitions for events exchanged between agents (`event-base.json`, `request.json`, `response.json`).
 - `templates/relay-message.md`: the literal template a human copies, fills, and pastes to move a message from one agent's surface to another.
