@@ -88,3 +88,9 @@ Adoption covers the rule as written; these two items were flagged during draftin
 2. Whether the storage-persistence axis of the OPSEC tier system is cleared for local-1a/1b, which currently blocks any local routing for Restricted-tier content (Gate 0, third example). Until resolved, Restricted-tier work stays Claude-tier-only, local-1a/1b are not eligible for it regardless of activation status.
 
 Resolving either does not require reopening this document, both are implementation facts this rule already knows how to apply once answered.
+
+<!--
+SPDX-FileCopyrightText: 2026 Aidan Naveja
+
+SPDX-License-Identifier: Apache-2.0
+-->

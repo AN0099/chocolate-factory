@@ -110,3 +110,9 @@ This check earns its place. In practice the most consequential finding a digest 
 - **Over-reading.** Not every conversation needs a deep pass. Triage (Step 3) exists specifically to prevent burning the whole effort budget on low-relevance threads before reaching the ones that matter.
 - **Silently resolving ambiguity in the source data.** If two records plausibly describe the same event/entity but can't be confirmed identical (e.g., two similarly-named, similarly-timed conversations across two accounts), say so in the digest instead of picking one interpretation and presenting it as settled.
 - **Letting tool payload volume drive what gets read.** A single large `tool_use`/`tool_result`/attachment block can be 90% of a conversation's raw size and 0% of its narrative value. Condense first (Step 4); size in the raw export is not a proxy for importance.
+
+<!--
+SPDX-FileCopyrightText: 2026 Aidan Naveja
+
+SPDX-License-Identifier: Apache-2.0
+-->

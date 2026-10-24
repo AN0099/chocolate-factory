@@ -123,3 +123,9 @@ the end of a working session and `/daily-dashboard` at the start of the
 next one. [The installing guide](installing.md) covers updating and
 removing the kit, installing for every project instead of one, hooks, and
 what to read next.
+
+<!--
+SPDX-FileCopyrightText: 2026 Aidan Naveja
+
+SPDX-License-Identifier: Apache-2.0
+-->

@@ -24,3 +24,9 @@ task, and asks which part of the plan was wrong. It never asks who was slow.
 **The Done lane is read back against each task's own verification.** A close that rested on a
 different check from the one written at the start is named, not reopened, so the next task states
 its check more honestly.
+
+<!--
+SPDX-FileCopyrightText: 2026 Aidan Naveja
+
+SPDX-License-Identifier: Apache-2.0
+-->

@@ -33,3 +33,9 @@ in `system/repomix-procedure.md` before treating the pack as usable.
 Note that the allow-list, not the deny-list, is the control actually doing the
 work. Disabling the backstop is tolerable only while `--include` is still scoping
 the run, and it is never safe on its own.
+
+<!--
+SPDX-FileCopyrightText: 2026 Aidan Naveja
+
+SPDX-License-Identifier: Apache-2.0
+-->

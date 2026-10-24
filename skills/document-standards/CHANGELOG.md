@@ -73,3 +73,9 @@ Rewritten from a technical-writing-scoped skill to a universal one, triggering f
 ### Three-tier threshold
 
 Logged as a standing check in SKILL.md, not a one-time decision. Re-evaluate whenever `references/templates/` grows or reference-file token cost changes materially.
+
+<!--
+SPDX-FileCopyrightText: 2026 Aidan Naveja
+
+SPDX-License-Identifier: Apache-2.0
+-->

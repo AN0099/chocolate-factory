@@ -113,3 +113,9 @@ work past 60%.
 - **No agent-to-agent channel.** Seats never message each other directly; a verifier assignment is a
   row in the lead's plan.
 - **No new tooling until a step has been done by hand twice.**
+
+<!--
+SPDX-FileCopyrightText: 2026 Aidan Naveja
+
+SPDX-License-Identifier: Apache-2.0
+-->

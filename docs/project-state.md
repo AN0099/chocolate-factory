@@ -316,3 +316,9 @@ unverifiable clean result this project's own conventions reject.
   closes with `# Failure-Mode Note` and `technical-documents` with `# Templates`. Both are more
   informative than the generic names the checklist allows, which suggests the rule needs widening
   rather than those two files needing renaming.
+
+<!--
+SPDX-FileCopyrightText: 2026 Aidan Naveja
+
+SPDX-License-Identifier: Apache-2.0
+-->

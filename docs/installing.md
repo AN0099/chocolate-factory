@@ -191,3 +191,9 @@ the work's.
 The rules underneath all of it are in `CLAUDE.md` in the example workspace,
 and [standing-documents.md](standing-documents.md) describes the full
 document set.
+
+<!--
+SPDX-FileCopyrightText: 2026 Aidan Naveja
+
+SPDX-License-Identifier: Apache-2.0
+-->

@@ -49,3 +49,9 @@ A human agent with `role: "relay"` forwards the JSON payload byte for byte. If a
 It does not resolve conflicting instructions arriving from two agents in the same thread; that remains a judgment call for whoever holds the token next.
 
 It does not enforce that a human agent claiming `role: "relay"` actually behaves as one rather than as a participant. That enforcement is social, not technical: the format makes deviation visible after the fact, by comparing the payload to what got pasted, but it does not prevent it.
+
+<!--
+SPDX-FileCopyrightText: 2026 Aidan Naveja
+
+SPDX-License-Identifier: Apache-2.0
+-->

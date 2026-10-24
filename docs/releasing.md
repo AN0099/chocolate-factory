@@ -268,3 +268,9 @@ them; it does not commit, tag or push, and `GOVERNANCE.md` says why.
   `scripts/check-workspace-stubs.py`, `scripts/remote-level.sh` and
   `scripts/reorient`.
   `session-close` v5 is BREAKING, which a MINOR bump may carry while MAJOR is 0.
+
+<!--
+SPDX-FileCopyrightText: 2026 Aidan Naveja
+
+SPDX-License-Identifier: Apache-2.0
+-->

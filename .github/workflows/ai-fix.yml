@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2026 Aidan Naveja
+#
+# SPDX-License-Identifier: Apache-2.0
+
 name: ai-fix
 
 # Acknowledges the ai-fix label on an issue and routes the issue to the desk.

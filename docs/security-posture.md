@@ -174,3 +174,9 @@ three rows. No tagged release, actions pinned by tag rather than digest, and no
 written record of whether the checks are binding on the default branch. The
 first is `docs/releasing.md`, the second needs an upstream digest read, and the
 third is a host setting plus a line in this file.
+
+<!--
+SPDX-FileCopyrightText: 2026 Aidan Naveja
+
+SPDX-License-Identifier: Apache-2.0
+-->

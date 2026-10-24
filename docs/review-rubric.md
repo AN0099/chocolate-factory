@@ -47,3 +47,9 @@ Put the items checked in the review text, by number. An item that did not apply 
 ## What this rubric does not cover
 
 It does not judge prose quality, the soundness of a design, or whether a document's claims are true. Those remain a reader's judgment, as `docs/security-posture.md` says of adequacy.
+
+<!--
+SPDX-FileCopyrightText: 2026 Aidan Naveja
+
+SPDX-License-Identifier: Apache-2.0
+-->

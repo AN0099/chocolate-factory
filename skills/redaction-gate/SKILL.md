@@ -126,3 +126,9 @@ If the pass found nothing, say that it found nothing and note what it could not
 check. A clean result from a mechanical pass is not clearance to send. Credential
 scanners in general miss a substantial share of what they are pointed at, so a
 passing scan is one input to the decision rather than the decision itself.
+
+<!--
+SPDX-FileCopyrightText: 2026 Aidan Naveja
+
+SPDX-License-Identifier: Apache-2.0
+-->

@@ -1,4 +1,9 @@
 #!/usr/bin/env python3
+
+# SPDX-FileCopyrightText: 2026 Aidan Naveja
+#
+# SPDX-License-Identifier: Apache-2.0
+
 """Propose job timeouts from the repository's own run history.
 
 A timeout is the one numeric limit in this repository's QA that has no rule

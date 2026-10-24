@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2026 Aidan Naveja
+#
+# SPDX-License-Identifier: Apache-2.0
+
 # Dependency updates.
 #
 # Only GitHub Actions are listed, and that is not an oversight. This

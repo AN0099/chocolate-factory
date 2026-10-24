@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2026 Aidan Naveja
+#
+# SPDX-License-Identifier: Apache-2.0
+
 # CLASSIFIED/ must never be tracked or pushed to the public repo.
 # Kept here as a backstop even though CLASSIFIED/ lives outside this repo's working tree entirely.
 CLASSIFIED/

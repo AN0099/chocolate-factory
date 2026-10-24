@@ -34,3 +34,9 @@ Do not use this system for tasks a single session already handles well. The rela
 ## Relationship to the existing skills repo
 
 This system is a peer to `working-preferences`, `document-standards`, and `technical-documents`, not a replacement. Those skills govern how a single Claude instance writes and behaves. This system governs how multiple instances, and humans, coordinate across a task that spans more than one of them.
+
+<!--
+SPDX-FileCopyrightText: 2026 Aidan Naveja
+
+SPDX-License-Identifier: Apache-2.0
+-->

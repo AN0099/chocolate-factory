@@ -16,3 +16,9 @@ this repository's files.
 **Supersedes**: none.
 
 **Filed**: 2026-10-21.
+
+<!--
+SPDX-FileCopyrightText: 2026 Aidan Naveja
+
+SPDX-License-Identifier: Apache-2.0
+-->

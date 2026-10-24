@@ -44,3 +44,9 @@ At a clean boundary: right after a commit, a dispatch, or a closed decision, whe
 and nothing else is mid-flight. Not in the middle of a task, and not as a substitute for the
 person's `session-log` when compaction is near. Near compaction the right move is to prompt the
 person to run `session-log`.
+
+<!--
+SPDX-FileCopyrightText: 2026 Aidan Naveja
+
+SPDX-License-Identifier: Apache-2.0
+-->

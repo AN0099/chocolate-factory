@@ -114,3 +114,9 @@ is the claimant.
 
 `disable-model-invocation` is set so the human decides when a session ends,
 rather than an agent deciding it has finished.
+
+<!--
+SPDX-FileCopyrightText: 2026 Aidan Naveja
+
+SPDX-License-Identifier: Apache-2.0
+-->

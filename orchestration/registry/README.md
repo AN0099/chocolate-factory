@@ -72,3 +72,9 @@ confident guess, and `anthropic:cowork-interactive` carries one today for exactl
 An operator's own roster of models, endpoints, and quotas is local configuration. This registry
 describes what a product can do, and says nothing about which products any particular operator has
 access to.
+
+<!--
+SPDX-FileCopyrightText: 2026 Aidan Naveja
+
+SPDX-License-Identifier: Apache-2.0
+-->

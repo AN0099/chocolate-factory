@@ -103,3 +103,9 @@ Recorded as a build item rather than an implementation, because whether this
 harness exposes a pre-compaction hook event was not verified when this was written,
 and `system/hookify-notes.md` establishes that guessing at the rule engine's
 behavior produces silently broken rules. Check before building.
+
+<!--
+SPDX-FileCopyrightText: 2026 Aidan Naveja
+
+SPDX-License-Identifier: Apache-2.0
+-->

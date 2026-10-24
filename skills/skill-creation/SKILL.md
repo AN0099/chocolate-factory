@@ -60,3 +60,9 @@ Structural validity, run before a skill counts as live. Separate from content-qu
 # Scope Pointer
 
 Whether a recurring need is worth turning into a skill at all, and how an existing skill gets located and triggered once built, are `skill-discovery`'s job, not this one. Content-quality standards for the prose inside `SKILL.md` and `CHANGELOG.md` (register, banned vocabulary, structural patterns) are `document-standards`' job, applied here like any other generated document.
+
+<!--
+SPDX-FileCopyrightText: 2026 Aidan Naveja
+
+SPDX-License-Identifier: Apache-2.0
+-->

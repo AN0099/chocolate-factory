@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2026 Aidan Naveja
+#
+# SPDX-License-Identifier: Apache-2.0
+
 name: auto-qa
 
 # Proposes job timeouts from this repository's own run history, weekly. It

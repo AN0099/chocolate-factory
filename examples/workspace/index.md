@@ -15,3 +15,9 @@ Read it first in any session, and correct it when it is wrong.
 ## Stale
 
 <!-- List files that are kept but no longer current, and what replaced them. -->
+
+<!--
+SPDX-FileCopyrightText: 2026 Aidan Naveja
+
+SPDX-License-Identifier: Apache-2.0
+-->

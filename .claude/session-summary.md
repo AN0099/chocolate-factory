@@ -35,3 +35,9 @@ Something established by evidence about the harness, the tooling or the environm
 One paragraph a future session can restart from, naming the next concrete action and not the goal.
 
 A log written under this format does not satisfy `session-close`. If the session ended after it, say so in the entry.
+
+<!--
+SPDX-FileCopyrightText: 2026 Aidan Naveja
+
+SPDX-License-Identifier: Apache-2.0
+-->

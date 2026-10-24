@@ -1,4 +1,9 @@
 #!/usr/bin/env python3
+
+# SPDX-FileCopyrightText: 2026 Aidan Naveja
+#
+# SPDX-License-Identifier: Apache-2.0
+
 """Check the example workspace against the document that describes it.
 
 `examples/workspace/` holds stubs of the standing files, and

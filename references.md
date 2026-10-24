@@ -129,3 +129,9 @@ depends on them yet, and listing them here is not a claim that it does.
 Design reasoning, decision history and the record of how any of the above came
 to be adopted. That material is provenance and lives outside this repository,
 per `docs/document-layers.md`.
+
+<!--
+SPDX-FileCopyrightText: 2026 Aidan Naveja
+
+SPDX-License-Identifier: Apache-2.0
+-->

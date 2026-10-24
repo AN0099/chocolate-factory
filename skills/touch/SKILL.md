@@ -49,3 +49,9 @@ missing or doubled anchor fails loudly instead of writing in the wrong place.
 - `jot`: the other partial. It records reasoning; this records facts.
 - `daily-dashboard`: reads the standing files and checks them against the tree, so a touch that got
   a fact wrong is caught there if not before.
+
+<!--
+SPDX-FileCopyrightText: 2026 Aidan Naveja
+
+SPDX-License-Identifier: Apache-2.0
+-->

@@ -71,3 +71,9 @@ without starting any work.
 - `session-log`: the write half of the same boundary. This reads state, that records decisions and
   findings, and a compaction wants both.
 - `session-close`: end of session. Nothing here substitutes for any part of it.
+
+<!--
+SPDX-FileCopyrightText: 2026 Aidan Naveja
+
+SPDX-License-Identifier: Apache-2.0
+-->

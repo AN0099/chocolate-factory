@@ -63,3 +63,9 @@ is, because the answer to "is this still present" depends on it.
 The hook rules and the gates are pattern-based. Every pattern-based control has ways around it, and
 each rule's own body says so. They raise the cost of a mistake and they do not constitute a
 boundary. Treat them as instrumentation rather than as enforcement.
+
+<!--
+SPDX-FileCopyrightText: 2026 Aidan Naveja
+
+SPDX-License-Identifier: Apache-2.0
+-->

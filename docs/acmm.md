@@ -175,3 +175,9 @@ the entry names none.
 - **`timeout-minutes: 5` on `check` in
   [`commit-attribution.yml`](../.github/workflows/commit-attribution.yml).** The same proposal for
   the same reason: no timeout, and no run has taken a minute.
+
+<!--
+SPDX-FileCopyrightText: 2026 Aidan Naveja
+
+SPDX-License-Identifier: Apache-2.0
+-->

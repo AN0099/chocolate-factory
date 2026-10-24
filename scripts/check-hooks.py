@@ -1,4 +1,9 @@
 #!/usr/bin/env python3
+
+# SPDX-FileCopyrightText: 2026 Aidan Naveja
+#
+# SPDX-License-Identifier: Apache-2.0
+
 """Check the hookify rules in hooks/ and show the blocking ones can fire.
 
 Each `hooks/*.md` rule is a frontmatter block of conditions, all of which must

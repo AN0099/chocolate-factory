@@ -23,6 +23,12 @@ skill lives in that skill's own `CHANGELOG.md`.
   session summary artifact. `scripts/reorient` now parses under bash 3.2.
 - `docs/acmm.md`: an index of the ACMM levels, naming the file that meets
   each criterion and the pull request that added it.
+- REUSE compliance: every file declares its copyright and licence, by an
+  SPDX header or, for files that cannot hold one, in `REUSE.toml`; the
+  licence text is also in `LICENSES/Apache-2.0.txt`. `scripts/compliance.sh`
+  runs `reuse lint` with a planted-file selftest, and
+  `.github/workflows/compliance.yml` runs it in CI with a pinned `reuse`.
+  `scripts/gates.sh` is unchanged and still needs nothing installed.
 
 ### Changed
 
@@ -543,3 +549,9 @@ to report a vulnerability against.
 - `LICENSE` (MIT).
 - `philosophy.md`.
 - This file.
+
+<!--
+SPDX-FileCopyrightText: 2026 Aidan Naveja
+
+SPDX-License-Identifier: Apache-2.0
+-->

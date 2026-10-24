@@ -40,3 +40,9 @@ reflected on here.
 | [001](001-predicted-doi-date.md) | `docs/security-posture.md`, row 3.2b | commit `451f63e` | none |
 | [002](002-setting-not-visible-from-the-tree.md) | `docs/security-posture.md`, row 6.3 | commit `451f63e` | none |
 | [003](003-plant-of-one-shape.md) | `docs/security-posture.md`, row 4.7 | commit `451f63e` | none |
+
+<!--
+SPDX-FileCopyrightText: 2026 Aidan Naveja
+
+SPDX-License-Identifier: Apache-2.0
+-->

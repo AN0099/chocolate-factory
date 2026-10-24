@@ -48,3 +48,9 @@ tripwire rather than a boundary: treat a clean security check as information, no
 as clearance to send. And the scanner writes a findings report alongside the
 pack. That report enumerates locations of interest, so treat it at the same
 sensitivity as the material it describes and remove it once read.
+
+<!--
+SPDX-FileCopyrightText: 2026 Aidan Naveja
+
+SPDX-License-Identifier: Apache-2.0
+-->
