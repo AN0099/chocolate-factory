@@ -45,4 +45,5 @@ The same rule is enforced at five points, so that one failing does not let a nam
 - Do not edit `toothpaste-kit/` in this repository. Changes go to toothpaste-kit first, then come here with `git subtree pull`.
 - Inside `toothpaste-kit/`, its own `AGENTS.md` applies wherever it does not contradict this file.
 - Long pull request bodies go in a file passed with `--body-file`. The branch guard matches the whole command text, so prose that mentions a blocked command gets blocked too.
+- Questions to the person use toothpaste-kit's Q-block format (`working-preferences`, "Questions and Answers"), with numbers continuing across blocks from Q1 to Q9 and back to Q1, and carried questions shown again in full. `scripts/check-qblock` checks each reply as a Stop hook; its cases are in `tests/qblock-cases/`.
 - `.github/copilot-instructions.md`, `.cursor/rules/agents.mdc` and `CLAUDE.md` only point here. A rule belongs in this file.

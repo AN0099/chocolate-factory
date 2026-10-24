@@ -7,6 +7,7 @@ What this repository measures, where each measure lives, and how to read it.
 | Test suite | `tests/run` | This repository's gates, then toothpaste-kit's |
 | Gates and their selftest | `scripts/gates.sh --selftest` | Whether attribution, JSON, executable bits and the branch rules hold, after each gate has caught a planted positive |
 | Branch-name rule | `scripts/check-branch-name --selftest`, `scripts/check-branch-guard` | Whether the rule and the agent guard behave as their cases say |
+| Q-block check | `scripts/check-qblock --selftest`, run by the Stop hook on every agent reply | Whether a reply follows the Q-block format the person reads |
 | CI matrix | `.github/workflows/ci.yml` | Whether the suite passes on Linux and macOS |
 | Nightly | `.github/workflows/nightly.yml` | Whether the suite still passes with no change pushed |
 | Code scanning | CodeQL default setup, Python and Actions | Known vulnerability patterns in scripts and workflows |
