@@ -31,3 +31,18 @@ The same rule is enforced at five points, so that one failing does not let a nam
 | `.claude/hookify.branch-name-guard.local.md` | Agent sessions | Blocks pushes without a refspec, `gh pr create` without `--head`, and any way of skipping hooks. `scripts/check-branch-guard` tests it against `tests/branch-guard-cases.tsv` |
 | `.github/rulesets/branch-names.json`, `tag-names.json` | GitHub's servers | Refuse to create a branch or tag outside the allowed prefixes, with no bypass. The layer that holds when a hook does not run |
 | `.github/workflows/branch-name.yml` | Every push and pull request | Fails a non-conforming name, and runs both selftests. A backstop: by then the name is public |
+
+### 2. Provenance, never attribution
+
+- No `Co-Authored-By` line naming an AI, no "Generated with" footer, in a commit or a pull request.
+- A commit you write ends with the lines `scripts/agent-trailers` prints. The `prepare-commit-msg` hook adds them; do not type them yourself, and never fill in a value the script left out.
+- A pull request you open ends its body with the same lines inside `<details><summary>Provenance</summary> … </details>`.
+- Sign every commit with the agent key. `main` refuses unsigned commits.
+
+## Working here
+
+- Read `CONTRIBUTING.md`: setup, pull requests, and the `toothpaste-kit/` subtree.
+- Do not edit `toothpaste-kit/` in this repository. Changes go to toothpaste-kit first, then come here with `git subtree pull`.
+- Inside `toothpaste-kit/`, its own `AGENTS.md` applies wherever it does not contradict this file.
+- Long pull request bodies go in a file passed with `--body-file`. The branch guard matches the whole command text, so prose that mentions a blocked command gets blocked too.
+- `.github/copilot-instructions.md`, `.cursor/rules/agents.mdc` and `CLAUDE.md` only point here. A rule belongs in this file.

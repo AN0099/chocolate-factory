@@ -1,0 +1,21 @@
+#!/bin/sh
+# Add the provenance trailers from scripts/agent-trailers to a commit an
+# agent writes. Does nothing for a person's commit, for a message that
+# already carries the trailers, or for merges and squashes git composes.
+
+msg_file="$1"
+source="${2:-}"
+
+case "$source" in
+    merge|squash) exit 0 ;;
+esac
+
+grep -q '^Assisted-by:' "$msg_file" && exit 0
+
+root=$(git rev-parse --show-toplevel)
+trailers=$("$root/scripts/agent-trailers")
+[ -n "$trailers" ] || exit 0
+
+printf '%s\n' "$trailers" | while IFS= read -r line; do
+    git interpret-trailers --in-place --if-exists addIfDifferent --trailer "$line" "$msg_file"
+done
