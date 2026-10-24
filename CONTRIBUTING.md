@@ -90,6 +90,27 @@ Three layers enforce this, and only the third binds:
 
 Human co-author trailers are fine and expected. The rule is about tools.
 
+## Licence and sign-off
+
+Contributions are licensed under the Apache License 2.0, the project's licence ([`LICENSE`](LICENSE)). No contributor licence agreement, copyright assignment or indemnity is asked of you.
+
+Sign off every commit. A sign-off certifies the [Developer Certificate of Origin](https://developercertificate.org/), version 1.1: that you have the right to submit the work under the project's licence.
+
+```sh
+git commit -s
+```
+
+`-s` adds a `Signed-off-by:` line with your `user.name` and `user.email`. It is your certification, not a cryptographic signature (that is `-S`), and not acceptance: a signed-off contribution is still reviewed, and may be declined. The `dco` workflow fails a pull request containing a commit with no `Signed-off-by:` line for its author's email. Bot accounts are exempt.
+
+To add a missing sign-off, amend the last commit, or rebase every commit on the branch onto `main`, then force-push the branch:
+
+```sh
+git commit --amend -s --no-edit
+git rebase --signoff main
+```
+
+**If someone other than you may own the work**, such as an employer or a client, say so in the pull request. Review pauses until that owner's authorization is documented, since your sign-off cannot stand in for it.
+
 ## Hook rules
 
 `hooks/` holds `hookify` rules as examples. They are inert where they sit and do nothing until copied into a `.claude/` directory.

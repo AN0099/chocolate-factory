@@ -8,7 +8,7 @@ halt.
 **Status: work in progress, pre-alpha.** The skills are in daily use and the
 interfaces still change.
 
-[![gates workflow status](https://github.com/AN0099/toothpaste-kit/actions/workflows/gates.yml/badge.svg?branch=main)](https://github.com/AN0099/toothpaste-kit/actions/workflows/gates.yml) [![licence: MIT](https://img.shields.io/badge/licence-MIT-blue.svg)](LICENSE) [![concept DOI, resolves to the newest version](https://zenodo.org/badge/DOI/10.5281/zenodo.22850481.svg)](https://doi.org/10.5281/zenodo.22850481) [![latest tagged release](https://img.shields.io/github/v/release/AN0099/toothpaste-kit?label=release)](https://github.com/AN0099/toothpaste-kit/releases) [![Software Heritage archive status](https://archive.softwareheritage.org/badge/origin/https%3A%2F%2Fgithub.com%2FAN0099%2Ftoothpaste-kit/)](https://archive.softwareheritage.org/browse/origin/https%3A%2F%2Fgithub.com%2FAN0099%2Ftoothpaste-kit/) [![OpenSSF Best Practices level](https://www.bestpractices.dev/projects/14726/badge)](https://www.bestpractices.dev/projects/14726) [![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/AN0099/toothpaste-kit)
+[![gates workflow status](https://github.com/AN0099/toothpaste-kit/actions/workflows/gates.yml/badge.svg?branch=main)](https://github.com/AN0099/toothpaste-kit/actions/workflows/gates.yml) [![licence: Apache 2.0](https://img.shields.io/badge/licence-Apache%202.0-blue.svg)](LICENSE) [![concept DOI, resolves to the newest version](https://zenodo.org/badge/DOI/10.5281/zenodo.22850481.svg)](https://doi.org/10.5281/zenodo.22850481) [![latest tagged release](https://img.shields.io/github/v/release/AN0099/toothpaste-kit?label=release)](https://github.com/AN0099/toothpaste-kit/releases) [![Software Heritage archive status](https://archive.softwareheritage.org/badge/origin/https%3A%2F%2Fgithub.com%2FAN0099%2Ftoothpaste-kit/)](https://archive.softwareheritage.org/browse/origin/https%3A%2F%2Fgithub.com%2FAN0099%2Ftoothpaste-kit/) [![OpenSSF Best Practices level](https://www.bestpractices.dev/projects/14726/badge)](https://www.bestpractices.dev/projects/14726) [![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/AN0099/toothpaste-kit)
 
 **Accessibility is a requirement here, not an afterthought.** The documents this
 repository ships are authored against
@@ -186,7 +186,12 @@ optimise for are in [the philosophy document](philosophy.md).
 
 ## License and citation
 
-MIT. See [the licence](LICENSE).
+Apache License 2.0, from release 0.5.0. See [the licence](LICENSE). Releases
+0.1.0 to 0.4.0 were published under MIT and stay under it.
+
+Copyright 2026 Aidan Naveja. Contributions are accepted under the same licence,
+each commit signed off under the Developer Certificate of Origin; see
+[`CONTRIBUTING.md`](CONTRIBUTING.md#licence-and-sign-off).
 
 [`CITATION.cff`](CITATION.cff) carries citation metadata for anyone referencing
 this work.

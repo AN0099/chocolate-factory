@@ -26,6 +26,19 @@ skill lives in that skill's own `CHANGELOG.md`.
 
 ### Changed
 
+- **Licence: Apache License 2.0 from this release.** `LICENSE` is the
+  unmodified official text, and `CITATION.cff`, `README.md`, `GOVERNANCE.md`,
+  `references.md`, `docs/security-posture.md` and `docs/project-state.md` name
+  it. Releases 0.1.0 to 0.4.0 were published under MIT and stay under it: their
+  tags and assets are not rewritten, and what MIT granted for them is not
+  revoked. The copyright holder is named in `CITATION.cff` and `README.md`, and
+  no NOTICE file is added.
+- **Contributions need a Developer Certificate of Origin sign-off.**
+  `CONTRIBUTING.md` gains a licence and sign-off section (inbound licence, the
+  DCO, `git commit -s`, how to add a missing sign-off, and the pause when
+  someone else may own the work), `GOVERNANCE.md` states the pause, and
+  `.github/workflows/dco.yml` fails a pull request containing a commit with no
+  sign-off for its author. No contributor licence agreement is asked.
 - Four skills (`working-preferences`, `document-standards`, `technical-documents`,
   `surface-regimes`) each gain one line pointing to `skill-creation` for making a skill and
   `skill-discovery` for deciding whether a need justifies one, or locating one.
