@@ -14,6 +14,7 @@
     {"workflow": "ci", "file": ".github/workflows/ci.yml", "job": "test"},
     {"workflow": "nightly", "file": ".github/workflows/nightly.yml", "job": "nightly"},
     {"workflow": "commit-attribution", "file": ".github/workflows/commit-attribution.yml", "job": "check"},
+    {"workflow": "dco", "file": ".github/workflows/dco.yml", "job": "check"},
     {"workflow": "labeler", "file": ".github/workflows/labeler.yml", "job": "label"},
     {"workflow": "ai-fix", "file": ".github/workflows/ai-fix.yml", "job": "route"},
     {"workflow": "auto-qa", "file": ".github/workflows/auto-qa.yml", "job": "propose"}

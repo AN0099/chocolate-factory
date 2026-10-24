@@ -13,7 +13,7 @@ authors:
     given-names: Aidan
 repository-code: https://github.com/AN0099/toothpaste-kit
 url: https://github.com/AN0099/toothpaste-kit
-license: MIT
+license: Apache-2.0
 keywords:
   - large-language-models
   - agent-orchestration

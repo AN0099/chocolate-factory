@@ -168,7 +168,7 @@ rather than recalled.
 
 | Expected by a reviewer | In this repository today |
 |---|---|
-| License | `LICENSE`, present, names the individual copyright holder |
+| License | `LICENSE`, present, Apache 2.0 from release 0.5.0; `CITATION.cff` and `README.md` name the individual copyright holder |
 | Security policy | `SECURITY.md`, present. No coordinated-disclosure timeline stated |
 | Code of conduct | `CODE_OF_CONDUCT.md`, present, with a real reporting address and no escalation body, stated plainly |
 | Contribution guide | `CONTRIBUTING.md`, present. Documents two mechanical checks that nothing enforces |
@@ -302,7 +302,7 @@ unverifiable clean result this project's own conventions reject.
   conventions the target audience works in. Needs dev-2.
 - **Copyright holder: settled.** Bridle Works is the name of this project and is not a formed
   entity, so it cannot hold a copyright. Copyright rests with the individual authors, currently one
-  person, and `LICENSE` names that person. Forming Bridle Works later and moving the copyright to
+  person, and `CITATION.cff` and `README.md` name that person. Forming Bridle Works later and moving the copyright to
   it would require a written assignment from every individual holder, which is a formality today
   and a collection problem once outside contributors land.
 
