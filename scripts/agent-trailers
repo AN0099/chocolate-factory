@@ -1,0 +1,33 @@
+#!/bin/sh
+# Print the provenance trailers for a commit an agent writes, one per line.
+#
+#   Assisted-by: <model> via claude-code/<version>
+#   Agent-Effort: <level>
+#
+# Every value is read from its source when the commit is made, never typed
+# from memory: the model from the session transcript, the harness version
+# from `claude --version`, the effort from CLAUDE_CODE_EFFORT_LEVEL. A value
+# that cannot be read is left out, and its line with it. Prints nothing
+# outside an agent session (CLAUDECODE unset).
+#
+# Session and task IDs are deliberately not printed: whether they belong in
+# a public repository is still an open question.
+
+[ "${CLAUDECODE:-}" = 1 ] || exit 0
+
+model=
+if [ -n "${CLAUDE_CODE_SESSION_ID:-}" ]; then
+    transcript=$(ls "$HOME"/.claude/projects/*/"$CLAUDE_CODE_SESSION_ID".jsonl 2>/dev/null | head -n 1)
+    if [ -n "$transcript" ]; then
+        model=$(grep -o '"model":"claude-[a-z0-9.-]*"' "$transcript" | tail -n 1 | cut -d'"' -f4)
+    fi
+fi
+
+version=$(claude --version 2>/dev/null | awk 'NR == 1 { print $1 }')
+
+if [ -n "$model" ] && [ -n "$version" ]; then
+    echo "Assisted-by: $model via claude-code/$version"
+fi
+if [ -n "${CLAUDE_CODE_EFFORT_LEVEL:-}" ]; then
+    echo "Agent-Effort: $CLAUDE_CODE_EFFORT_LEVEL"
+fi
