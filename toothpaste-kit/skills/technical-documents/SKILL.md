@@ -37,3 +37,9 @@ Making a new skill is covered by `skill-creation`, and deciding whether a need j
 # Templates
 
 `references/templates/`: technical document-type templates (runbook, ADR, postmortem, and so on), populated iteratively as real documents get produced. Empty at initial build. Apply `document-standards`' Three-Tier Threshold Framework independently once this folder grows toward the same limits.
+
+<!--
+SPDX-FileCopyrightText: 2026 Aidan Naveja
+
+SPDX-License-Identifier: Apache-2.0
+-->

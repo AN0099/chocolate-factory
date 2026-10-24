@@ -1,4 +1,9 @@
 #!/bin/sh
+
+# SPDX-FileCopyrightText: 2026 Aidan Naveja
+#
+# SPDX-License-Identifier: Apache-2.0
+
 # The test suite is scripts/gates.sh --selftest. This is the usual entry point for it.
 cd "$(dirname "$0")/.." || exit 1
 exec ./scripts/gates.sh --selftest

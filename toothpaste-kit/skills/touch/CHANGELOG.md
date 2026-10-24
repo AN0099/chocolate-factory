@@ -22,3 +22,9 @@ party other than the one making it.
 capture file, so each standing-file edit made outside a close has a dated trace in one place, and a
 stack of touches is never taken as a close. Each edit asserts that its anchor occurs exactly once, so
 a missing or doubled anchor fails loudly instead of writing in the wrong place.
+
+<!--
+SPDX-FileCopyrightText: 2026 Aidan Naveja
+
+SPDX-License-Identifier: Apache-2.0
+-->

@@ -35,3 +35,9 @@ means stripping the reasoning and the names, not just deleting a paragraph.
 
 Note that the inbound direction of this gate is still an open question in
 `agents/claude/lead-handoff.md`, not a resolved rule.
+
+<!--
+SPDX-FileCopyrightText: 2026 Aidan Naveja
+
+SPDX-License-Identifier: Apache-2.0
+-->

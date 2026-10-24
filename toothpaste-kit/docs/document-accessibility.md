@@ -130,3 +130,9 @@ discovered by a reader:
   begins.
 - `CONTRIBUTING.md`: the mechanical rules a change has to pass, and the script
   that enforces them.
+
+<!--
+SPDX-FileCopyrightText: 2026 Aidan Naveja
+
+SPDX-License-Identifier: Apache-2.0
+-->

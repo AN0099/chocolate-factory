@@ -54,3 +54,9 @@ A confirmation gate with no human present to answer it doesn't degrade gracefull
 ### Open question, not yet resolved
 
 Whether `working-preferences`' own Scope Pointer section should cross-reference this skill the way it references `document-standards`. Not added unilaterally since it edits a file this skill doesn't own; flagged for the user to decide. Resolved in v2.
+
+<!--
+SPDX-FileCopyrightText: 2026 Aidan Naveja
+
+SPDX-License-Identifier: Apache-2.0
+-->

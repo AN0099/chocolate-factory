@@ -1,4 +1,9 @@
 #!/usr/bin/env bash
+
+# SPDX-FileCopyrightText: 2026 Aidan Naveja
+#
+# SPDX-License-Identifier: Apache-2.0
+
 # reorient: the cheapest true statement of where a workspace stands.
 #
 # The observing half of the `orient` skill. Run it at the start of a session

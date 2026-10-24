@@ -181,3 +181,9 @@ implied by omission.
   output rather than a generated document.
 - `working-preferences`: source of truth for the standing conventions that phase
   1 item 4 asks you to test the session's unwritten rules against.
+
+<!--
+SPDX-FileCopyrightText: 2026 Aidan Naveja
+
+SPDX-License-Identifier: Apache-2.0
+-->

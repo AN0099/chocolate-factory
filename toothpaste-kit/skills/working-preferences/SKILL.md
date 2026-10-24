@@ -262,3 +262,9 @@ Which of this file's own mechanics apply, and at what dial setting, depends on w
 Frontend and UI design standards are deferred, not yet built. A structural pattern (dials, brief-inference read-back, block template library, pre-flight checklist) has been identified as the model to follow when a real frontend task arises.
 
 Making a new skill is covered by `skill-creation`, and deciding whether a need justifies one, or locating an existing skill, by `skill-discovery`.
+
+<!--
+SPDX-FileCopyrightText: 2026 Aidan Naveja
+
+SPDX-License-Identifier: Apache-2.0
+-->

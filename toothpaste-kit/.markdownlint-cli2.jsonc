@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2026 Aidan Naveja
+//
+// SPDX-License-Identifier: Apache-2.0
+
 // markdownlint-cli2 configuration for everything outside skills/.
 // CI only. Nothing here is installed at a contributor's desk.
 //

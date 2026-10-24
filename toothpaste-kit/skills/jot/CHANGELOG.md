@@ -19,3 +19,9 @@ near, which is `session-log`'s moment.
 taken as proof that `session-log` ran. Fifteen lines at most, no reading files to confirm, and no
 edits beyond the append keep it small enough that calling it does not become a second session-log.
 Near compaction the skill prompts the person to run `session-log` instead.
+
+<!--
+SPDX-FileCopyrightText: 2026 Aidan Naveja
+
+SPDX-License-Identifier: Apache-2.0
+-->

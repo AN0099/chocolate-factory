@@ -55,3 +55,9 @@ content is never quietly removed or genericized, however sensitive. Where a
 finding is load-bearing the gate halts and warns with what removal would cost.
 A redaction that silently breaks the document reports as a clean result while
 destroying the thing being published.
+
+<!--
+SPDX-FileCopyrightText: 2026 Aidan Naveja
+
+SPDX-License-Identifier: Apache-2.0
+-->

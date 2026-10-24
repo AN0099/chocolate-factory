@@ -21,3 +21,9 @@ short, and add a line only when something goes wrong twice.
 - Two document layers, never mixed in one file.
 
 <!-- Add your own conventions below this line. -->
+
+<!--
+SPDX-FileCopyrightText: 2026 Aidan Naveja
+
+SPDX-License-Identifier: Apache-2.0
+-->

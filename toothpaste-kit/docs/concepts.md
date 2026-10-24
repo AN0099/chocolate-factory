@@ -28,3 +28,9 @@ again.
 ## Interaction design
 
 - **Design the interface around which hands do the work.** Input conventions are chosen against stated physical constraints, and the assumption of two hands is made visible. Deepest first: [accessibility](accessibility.md#5-keystroke-volume), [the interface contract](interface-contract.md#3-the-brevity-code-and-the-constraint-that-shaped-it), [the interaction manual](interaction-manual.md#6-price-the-input), [the merge-proxy skill](../skills/merge-proxy/SKILL.md). Glossary: [brevity code](glossary.md#b), [answer grammar](glossary.md#a).
+
+<!--
+SPDX-FileCopyrightText: 2026 Aidan Naveja
+
+SPDX-License-Identifier: Apache-2.0
+-->

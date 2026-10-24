@@ -41,3 +41,9 @@ reader to treat the Cowork audit claim as derived and go check the docs. Requiri
 a paragraph one author wrote into a property the whole registry has, and makes the registry
 sweepable by a staleness checker rather than only readable. `unknown` is a legitimate value for
 `audit` and is used where the evidence conflicts.
+
+<!--
+SPDX-FileCopyrightText: 2026 Aidan Naveja
+
+SPDX-License-Identifier: Apache-2.0
+-->

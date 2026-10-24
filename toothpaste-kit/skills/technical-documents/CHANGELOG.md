@@ -17,3 +17,9 @@ This skill was split out of `document-standards` so that skill could apply unive
 ### Data-recovery note
 
 This file was never actually written to disk during initial build. Its intended content was trapped inside `SKILL.md` as leaked shell heredoc scaffolding (a `cat > CHANGELOG.md << FILEEOF` block written into the wrong file), silently corrupting `SKILL.md` with CRLF line endings and non-file content past its Templates section. Recovered and separated out during the RCA-remediation pass.
+
+<!--
+SPDX-FileCopyrightText: 2026 Aidan Naveja
+
+SPDX-License-Identifier: Apache-2.0
+-->

@@ -26,3 +26,9 @@ covered by the approval.
 **Trial merges run in sequence.** Each is simulated against the result of the one before, because a
 parallel pre-check can report every merge clean while the second one, applied after the first,
 conflicts.
+
+<!--
+SPDX-FileCopyrightText: 2026 Aidan Naveja
+
+SPDX-License-Identifier: Apache-2.0
+-->

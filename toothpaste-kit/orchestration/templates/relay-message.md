@@ -50,3 +50,9 @@ Notes:
 Leave unused fields out rather than filling them with null, except where the schema marks them required.
 
 If you, the human, are relaying content produced by an LLM agent that cannot format this block itself, everything inside the JSON payload comes from that agent's actual output. Do not paraphrase into the payload; paraphrase belongs in the header summary line, not inside `params`, `result`, or `human_summary`.
+
+<!--
+SPDX-FileCopyrightText: 2026 Aidan Naveja
+
+SPDX-License-Identifier: Apache-2.0
+-->

@@ -142,3 +142,9 @@ in the restricted tier. That split is asserted here and has not been reviewed.
 - `skills/commands/SKILL.md`: the index, pending the update at 5-1.
 - `interaction-manual.md`: the human-facing half, explaining why these rules exist.
 - `accessibility.md`: the wider input-strain effort this code is one part of.
+
+<!--
+SPDX-FileCopyrightText: 2026 Aidan Naveja
+
+SPDX-License-Identifier: Apache-2.0
+-->

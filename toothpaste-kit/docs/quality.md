@@ -36,3 +36,9 @@ What quality this project measures, where each measure lives, and how to read it
 ## What these measures leave out
 
 They do not measure documentation adequacy, design quality, or whether the skills behave as described when used. Those are judged by a reader.
+
+<!--
+SPDX-FileCopyrightText: 2026 Aidan Naveja
+
+SPDX-License-Identifier: Apache-2.0
+-->

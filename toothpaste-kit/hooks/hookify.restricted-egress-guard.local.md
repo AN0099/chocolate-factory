@@ -48,3 +48,9 @@ pattern-based rule does. Treat this as a third layer behind physical isolation
 and the deny-list rather than as a boundary that stands on its own, and size your
 confidence accordingly. Report a recurring false positive rather than disabling
 the rule.
+
+<!--
+SPDX-FileCopyrightText: 2026 Aidan Naveja
+
+SPDX-License-Identifier: Apache-2.0
+-->

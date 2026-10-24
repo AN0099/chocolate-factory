@@ -62,6 +62,7 @@ are in [`working-preferences`](../skills/working-preferences/SKILL.md).
 ## F
 
 - **Faculty**: a model a Claude-tier agent may route part of a task to, local or vendor-hosted, under the routing threshold. See [the routing threshold](../orchestration/ROUTING-THRESHOLD.md).
+- **Finding**: one claim in a report that something is wrong or missing, numbered within its report (`r12.2.3` is report 2's third finding) and graded major, minor or nit. See [rounds](../orchestration/rounds.md#reports-and-findings).
 
 ## G
 
@@ -98,13 +99,16 @@ are in [`working-preferences`](../skills/working-preferences/SKILL.md).
 
 ## M
 
+- **Major**: the severity grade for a wrong result or a broken rule on input that ordinary use produces. It blocks a round's close. See [rounds](../orchestration/rounds.md#severity).
 - **Manifest**: the file, `index.md` by default, that says what is authoritative, what is stale and what was added when, and names which documents must stay current. Read first in any session. See [the document set](standing-documents.md#the-document-set) and [how the documents work together](standing-documents.md#how-they-work-together).
 - **Merge-proxy**: a skill a person invokes to let the agent type a trunk merge they have decided, for one session, on a repository whose level is `internal` or `none`, and only after the agent explains the exact plan in full and halts for explicit approval of it. It never applies to an external remote. See [`merge-proxy`](../skills/merge-proxy/SKILL.md).
 - **Minion**: the role that executes one atomic task cold, from a brief, and reports. It does not interpret. See [roles](../orchestration/ROLES.md#minions).
+- **Minor**: the severity grade for a wrong result with a small, visible consequence, or a gap a reader would trip on. Fixed before the close unless the operator accepts it. See [rounds](../orchestration/rounds.md#severity).
 - **Most Important Task**: the one task the daily review sets for the day. See [`daily-review`](../skills/daily-review/SKILL.md).
 
 ## N
 
+- **Nit**: the severity grade for a finding that changes no real outcome: wording, a contrived input, or a test gap where the code is right. It never blocks a close. See [rounds](../orchestration/rounds.md#severity).
 - **Normative**: text that states what a conforming reader does, uses a BCP 14 keyword, and can be tested. See [document layers](document-layers.md#normative-and-informative).
 
 ## O
@@ -131,13 +135,16 @@ are in [`working-preferences`](../skills/working-preferences/SKILL.md).
 - **Readback**: the first line of a reply to answers, restating each answer's meaning before any work, so a misread is caught before it becomes an action. See [`working-preferences`](../skills/working-preferences/SKILL.md#questions-and-answers).
 - **Redaction gate**: the pre-publish check run before content crosses a tier boundary outward, against the local restricted material, with the decision handed to a person. See [`redaction-gate`](../skills/redaction-gate/SKILL.md).
 - **Regime**: one of three operating modes derived from a surface's capability profile: interactive-synchronous, autonomous-asynchronous and programmatic-contractual. Each adjusts the dials and which skills load. See [`surface-regimes`](../skills/surface-regimes/SKILL.md).
+- **Register**: the table of rounds, one row each: number, dispatch time, seats, task, state and result. See [rounds](../orchestration/rounds.md#closing-a-round).
 - **Registry**: the directory `orchestration/registry/`, one file per vendor, describing what each surface can actually do. The protocol reads that capability, never the product name. See [the surface registry](../orchestration/registry/README.md).
 - **Regular loop**: the control layer of automation that runs constantly and silently, such as a formatter or a check recipe. Its failure mode is silence that looks like success. See [control layers](control-layers.md#2-the-regular-loop-automation-that-holds-the-value-in-band).
 - **Relay**: the passive human role: copies a message between surfaces without changing it. Its failure mode is transcription drift. See [the taxonomy](../orchestration/taxonomy.md#human) and [the relay protocol](../orchestration/protocol.md#relay-fidelity).
 - **Relief**: a control layer designed to fail on purpose in a known direction, such as a forced push that writes a record naming who forced it and why. See [control layers](control-layers.md#5-relief-designed-to-fail-on-purpose-in-a-known-direction).
+- **Report**: a seat's reply to a round's dispatch, numbered within the round (`r12.2`): what was done, how it was checked, and what the check does not cover. A re-check after fixes is the next report, never a new round. See [rounds](../orchestration/rounds.md#reports-and-findings).
 - **Role**: authority over a decision: operator, lead, aide or minion. One identity may hold several. Role is independent of clearance, seat and reach. See [roles](../orchestration/ROLES.md).
 - **Role name**: a filename that says what a file does for the system, such as a manifest or a thread log. Published freely, unlike a subject name, which says what a file is about and is treated as content. See [standing documents](standing-documents.md#why-these-filenames-are-here-at-all).
 - **Roster**: the part of the handoff document where each agent's clearance is set. See [the document set](standing-documents.md#the-document-set) and [roles](../orchestration/ROLES.md#what-this-axis-is-and-the-three-it-is-not).
+- **Round**: one task: the lead's dispatches for it and the replies, numbered `r1` upward, checked by a seat other than the author and decided by the operator. See [rounds](../orchestration/rounds.md).
 - **Routing threshold**: four ordered gates (sensitivity, capability, cost, trust label) that decide whether part of a task goes to a local model, a vendor faculty or the agent itself. See [the routing threshold](../orchestration/ROUTING-THRESHOLD.md).
 
 ## S
@@ -155,6 +162,7 @@ are in [`working-preferences`](../skills/working-preferences/SKILL.md).
 - **Tack**: the interface through which a person's intent reaches a capable system and its state comes back: the skills, protocols and gates. From the image of a rider and a horse. See [the philosophy](../philosophy.md#riding-tack-interface-and-experience).
 - **Task board**: the task queue seen lane by lane, as the [lane-board tool](#l) prints it. See [`daily-review`](../skills/daily-review/SKILL.md#when-to-use).
 - **Thread**: a loose end raised mid-conversation that has no task yet. It is added to the open-threads log and moves to the resolved log with its resolution written out. See [standing documents](standing-documents.md#how-they-work-together).
+- **Timebox**: the time a round's dispatch allows. A round whose timebox passes closes with the silent seat recorded as unanswered. See [rounds](../orchestration/rounds.md#closing-a-round).
 - **Token**: in the relay protocol, the right to produce the next message in a thread, held by whoever the latest message is addressed to. See [the relay protocol](../orchestration/protocol.md#turn-taking).
 - **Touch**: a partial capture of one fact-level edit to a standing file, with a line marked `[touch]` in the capture file. It discharges nothing. See [`touch`](../skills/touch/SKILL.md) and [partial captures](partial-captures.md).
 - **Trunk**: `main`, or any branch a repository treats as shared truth. A merge into it is a decision rather than a record, so a person decides it; [merge-proxy](#m) moves only the typing. See [`merge-proxy`](../skills/merge-proxy/SKILL.md), [growing the workspace](installing.md#growing-the-workspace) and [roles](../orchestration/ROLES.md#operator).
@@ -168,8 +176,15 @@ are in [`working-preferences`](../skills/working-preferences/SKILL.md).
 ## V
 
 - **Verified**: a claim known with certainty from provided or trained information. One of three knowledge labels, with derived and unknown. Separately, a completion claim counts as fact only once a party other than the claimant has checked it. See [`working-preferences`](../skills/working-preferences/SKILL.md#tripartite-knowledge-labeling) and [control layers](control-layers.md#where-the-human-sits).
+- **Verifier**: the seat that checks a round's work, never its author. It proposes each finding's grade; the lead's grade stands. See [rounds](../orchestration/rounds.md#severity).
 - **Verify lane**: the lane for work whose deliverable exists and has been checked by a second party. It leaves for Done only on the person's word. See [`daily-review`](../skills/daily-review/SKILL.md#the-lanes).
 
 ## W
 
 - **WCAG**: the W3C Web Content Accessibility Guidelines. This repository applies their Markdown-relevant techniques to the documents it ships. See [document accessibility](document-accessibility.md).
+
+<!--
+SPDX-FileCopyrightText: 2026 Aidan Naveja
+
+SPDX-License-Identifier: Apache-2.0
+-->

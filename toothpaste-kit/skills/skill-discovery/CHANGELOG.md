@@ -25,3 +25,9 @@ governs whether a recurring need is worth a skill at all, and how an existing sk
 
 Sibling cross-references, meaning the existing skills naming `skill-discovery` in their own Scope
 Pointer sections, were left for a separate change rather than applied here.
+
+<!--
+SPDX-FileCopyrightText: 2026 Aidan Naveja
+
+SPDX-License-Identifier: Apache-2.0
+-->

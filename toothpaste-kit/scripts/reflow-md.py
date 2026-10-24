@@ -1,4 +1,9 @@
 #!/usr/bin/env python3
+
+# SPDX-FileCopyrightText: 2026 Aidan Naveja
+#
+# SPDX-License-Identifier: Apache-2.0
+
 """Unwrap hard-wrapped Markdown paragraphs to one line each.
 
 Markdown collapses single newlines, so a hard wrap changes nothing about how a

@@ -14,3 +14,9 @@ is described in `docs/standing-documents.md` in toothpaste-kit.
 ## Open items
 
 <!-- What is in flight, and what it waits on. -->
+
+<!--
+SPDX-FileCopyrightText: 2026 Aidan Naveja
+
+SPDX-License-Identifier: Apache-2.0
+-->

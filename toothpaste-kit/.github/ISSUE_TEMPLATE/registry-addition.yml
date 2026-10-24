@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2026 Aidan Naveja
+#
+# SPDX-License-Identifier: Apache-2.0
+
 name: Registry addition
 description: Add or correct a vendor surface in orchestration/registry/.
 labels: ["registry"]

@@ -36,3 +36,9 @@ agent on another account.
 entities abstracted into categories. Only Restricted carries actual reasoning
 and named entities. Moving a fact downward means stripping the reasoning and the
 names, not only deleting a paragraph.
+
+<!--
+SPDX-FileCopyrightText: 2026 Aidan Naveja
+
+SPDX-License-Identifier: Apache-2.0
+-->

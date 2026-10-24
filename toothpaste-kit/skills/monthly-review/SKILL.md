@@ -106,3 +106,9 @@ unanswered.
   claims; this reads the board.
 - `session-close`: updates the standing files at the end of a session. A move made here is already
   in the queue and does not wait for it.
+
+<!--
+SPDX-FileCopyrightText: 2026 Aidan Naveja
+
+SPDX-License-Identifier: Apache-2.0
+-->

@@ -66,3 +66,9 @@ Paired transformations, one per pattern category in `structural-patterns.md` and
 
 **Before:** "This change leverages a holistic approach to optimize outcomes across the platform."
 **After:** "This change touches shared config, so it affects every service on the platform, not just the one being deployed."
+
+<!--
+SPDX-FileCopyrightText: 2026 Aidan Naveja
+
+SPDX-License-Identifier: Apache-2.0
+-->

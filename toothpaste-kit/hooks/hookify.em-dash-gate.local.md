@@ -41,3 +41,9 @@ actual problem, not the glyph alone.
 order to document it. The exemption exists because a gate whose own rule file
 trips it gets ignored within a week. Add your own exemptions the same way, by
 filename rather than by weakening the pattern.
+
+<!--
+SPDX-FileCopyrightText: 2026 Aidan Naveja
+
+SPDX-License-Identifier: Apache-2.0
+-->

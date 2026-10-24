@@ -168,7 +168,7 @@ rather than recalled.
 
 | Expected by a reviewer | In this repository today |
 |---|---|
-| License | `LICENSE`, present, names the individual copyright holder |
+| License | `LICENSE`, present, Apache 2.0 from release 0.5.0; `CITATION.cff` and `README.md` name the individual copyright holder |
 | Security policy | `SECURITY.md`, present. No coordinated-disclosure timeline stated |
 | Code of conduct | `CODE_OF_CONDUCT.md`, present, with a real reporting address and no escalation body, stated plainly |
 | Contribution guide | `CONTRIBUTING.md`, present. Documents two mechanical checks that nothing enforces |
@@ -194,6 +194,9 @@ unverifiable clean result this project's own conventions reject.
 
 ## Unreleased
 
+- **The second L4 change.** `.github/workflows/ai-fix.yml` acknowledges the `ai-fix` label
+  once per issue and routes the issue to the desk; no agent runs in CI and no stored secret is
+  used. `SECURITY-AI.md`, `docs/acmm.md` and security posture rows 3.7 and 4.4 name it.
 - **`docs/acmm.md` (pull request #46).** An index of the files the kit added for ACMM
   criteria, naming the criterion and pull request behind each. Security posture rows 3.7 and
   4.4 state the rule for every workflow instead of a count, and `daily-review` step 5 names the
@@ -299,7 +302,7 @@ unverifiable clean result this project's own conventions reject.
   conventions the target audience works in. Needs dev-2.
 - **Copyright holder: settled.** Bridle Works is the name of this project and is not a formed
   entity, so it cannot hold a copyright. Copyright rests with the individual authors, currently one
-  person, and `LICENSE` names that person. Forming Bridle Works later and moving the copyright to
+  person, and `CITATION.cff` and `README.md` name that person. Forming Bridle Works later and moving the copyright to
   it would require a written assignment from every individual holder, which is a formality today
   and a collection problem once outside contributors land.
 
@@ -313,3 +316,9 @@ unverifiable clean result this project's own conventions reject.
   closes with `# Failure-Mode Note` and `technical-documents` with `# Templates`. Both are more
   informative than the generic names the checklist allows, which suggests the rule needs widening
   rather than those two files needing renaming.
+
+<!--
+SPDX-FileCopyrightText: 2026 Aidan Naveja
+
+SPDX-License-Identifier: Apache-2.0
+-->
