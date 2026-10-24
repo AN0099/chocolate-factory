@@ -21,7 +21,10 @@
         "required_status_checks": [
           { "context": "branch-name" },
           { "context": "Analyze (python)" },
-          { "context": "Analyze (actions)" }
+          { "context": "Analyze (actions)" },
+          { "context": "gates", "integration_id": 15368 },
+          { "context": "test (ubuntu-latest)", "integration_id": 15368 },
+          { "context": "test (macos-latest)", "integration_id": 15368 }
         ]
       }
     },
