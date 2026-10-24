@@ -1,9 +1,9 @@
 {
   "disabled": false,
   "pathTemplate": "~/.humanlayer/workspaces/{{ TASKSLUG }}/{{ REPOBASENAME }}",
-  "branchTemplate": "{{ TASKSLUG }}",
+  "branchTemplate": "local/{{ TASKSLUG }}",
   "sourceRef": "origin/main",
-  "setupCommand": "",
+  "setupCommand": "git config core.hooksPath .githooks",
   "copyGlobs": [
     ".claude/settings.local.json",
     ".humanlayer/workspace.local.json"
