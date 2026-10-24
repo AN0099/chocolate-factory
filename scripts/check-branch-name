@@ -14,7 +14,8 @@
 # Allowed:
 #   main
 #   <prefix>/<words>   prefix from the list below; words are lowercase a-z
-#                      and 0-9 joined by single hyphens; 40 characters total
+#                      and 0-9, joined by single hyphens or dots (dots so a
+#                      version reads as one, release/0.4.0); 40 characters total
 #   v<major>.<minor>.<patch> for tags, checked with --tag
 #
 # Usage: scripts/check-branch-name NAME          exit 0 if allowed, 1 if not
@@ -23,7 +24,7 @@
 
 set -u
 
-PREFIXES='feat fix docs chore sync acmm record'
+PREFIXES='feat fix docs chore sync acmm record ci quality skills scripts release test licence'
 MAX=40
 
 check_branch() {
@@ -41,8 +42,8 @@ check_branch() {
     echo "branch name rejected: '$name' must start with one of: $PREFIXES, then a slash" >&2
     return 1
   fi
-  if ! printf '%s\n' "$rest" | grep -Eq '^[a-z0-9]+(-[a-z0-9]+)*$'; then
-    echo "branch name rejected: '$name' after the prefix must be lowercase words of a-z and 0-9 joined by single hyphens" >&2
+  if ! printf '%s\n' "$rest" | grep -Eq '^[a-z0-9]+([.-][a-z0-9]+)*$'; then
+    echo "branch name rejected: '$name' after the prefix must be lowercase a-z and 0-9, joined by single hyphens or dots" >&2
     return 1
   fi
   return 0
@@ -62,7 +63,9 @@ selftest() {
     if [ "$got" -ne "$1" ]; then echo "FAIL  $2 '$3': wanted exit $1, got $got"; fail=1; fi
   }
   for n in main chore/branch-name-gate sync/toothpaste-kit-64b3c49 acmm/phase-1 \
-           record/history docs/a fix/x1-y2 feat/abcdefghij-abcdefghij-abcdefghij-a; do
+           record/history docs/a fix/x1-y2 feat/abcdefghij-abcdefghij-abcdefghij-a feat/a.b \
+           ci/auto-qa-tuner quality/test-hooks-gate release/0.4.0 docs/v0.2.0-doi \
+           docs/state-after-0.1.0 scripts/reorient-selftest-r81 skills/session-log-v3 test/x licence/apache-2.0; do
     expect 0 branch "$n"
   done
   # The near miss itself: a task slug pushed as-is, and the same slug under
@@ -70,7 +73,8 @@ selftest() {
   for n in i-wanted-to-test-out-humanlayer-but-my-primary-r-c02e \
            local/i-wanted-to-test-out-humanlayer-but-my-primary-r-c02e \
            local/short wip/x feat feat/ /x feat/Upper feat/a--b feat/-a feat/a- \
-           feat/a_b feat/a.b feat/a/b feat/abcdefghij-abcdefghij-abcdefghij-abc \
+           feat/a_b feat/a..b feat/.a feat/a. feat/a.-b feat/a/b feat/abcdefghij-abcdefghij-abcdefghij-abc \
+           AN0099-patch-1 123-title-of-an-issue dependabot/github_actions/actions/checkout-7 \
            HEAD Main; do
     expect 1 branch "$n"
   done

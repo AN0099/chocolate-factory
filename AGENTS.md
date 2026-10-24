@@ -10,7 +10,7 @@ These are not defaults. An agent does not weigh them against convenience, and do
 
 A branch name is public the moment it is pushed. Copies of public push events persist outside GitHub, so deleting the branch, or the repository, does not take the name back. On 2026-10-22 a HumanLayer task branch, named automatically from the opening words of the request that started the task, was pushed and published that way. Nothing sensitive was in it; the next one could carry anything a request says.
 
-- **Allowed names:** `main`, or `<prefix>/<words>`, with `<prefix>` one of `feat`, `fix`, `docs`, `chore`, `sync`, `acmm` or `record`, and `<words>` lowercase `a-z` and `0-9` joined by single hyphens, 40 characters in all. Tags look like `v1.2.3`. `scripts/check-branch-name` is the one definition; check a name with it before using it.
+- **Allowed names:** `main`, or `<prefix>/<words>`, with `<prefix>` one of `feat`, `fix`, `docs`, `chore`, `sync`, `acmm`, `record`, `ci`, `quality`, `skills`, `scripts`, `release`, `test` or `licence`, and `<words>` lowercase `a-z` and `0-9` joined by single hyphens or dots (`release/0.4.0`), 40 characters in all. Names GitHub suggests, such as `AN0099-patch-1` from the web editor or an issue-titled branch, are refused: type a name instead. Only the Dependabot app may create `dependabot/` branches. Tags look like `v1.2.3`. `scripts/check-branch-name` is the one definition; check a name with it before using it.
 - **Never push a task branch.** HumanLayer names each task's branch `local/<task slug>`, and that name never leaves the machine. To publish work, choose a name and push to it explicitly:
 
   ```sh
