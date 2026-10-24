@@ -1,0 +1,31 @@
+name: gates
+
+# Runs tests/run: chocolate-factory's gates with their selftest, then
+# toothpaste-kit's. The same command works locally. Binds only when set as
+# a required status check on main.
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  gates:
+    timeout-minutes: 10
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Test suite
+        # The attribution gate checks the commits this pull request adds.
+        env:
+          BASE: ${{ github.event.pull_request.base.sha }}
+          HEAD: ${{ github.event.pull_request.head.sha }}
+        run: |
+          if [ -n "$BASE" ]; then export GATES_RANGE="$BASE..$HEAD"; fi
+          ./tests/run

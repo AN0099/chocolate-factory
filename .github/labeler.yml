@@ -1,0 +1,37 @@
+# Path labels for pull requests, read by .github/workflows/labeler.yml.
+# A label prompts the reviewer and decides nothing.
+
+# The toothpaste-kit subtree. Changes arrive only by git subtree pull and
+# merge with a merge commit; CONTRIBUTING.md.
+subtree:
+  - changed-files:
+      - any-glob-to-any-file:
+          - 'toothpaste-kit/**'
+
+agent-config:
+  - changed-files:
+      - any-glob-to-any-file:
+          - 'AGENTS.md'
+          - 'CLAUDE.md'
+          - '.claude/**'
+          - '.cursor/**'
+          - '.github/copilot-instructions.md'
+          - '.humanlayer/**'
+
+gates:
+  - changed-files:
+      - any-glob-to-any-file:
+          - 'scripts/**'
+          - 'tests/**'
+          - '.githooks/**'
+
+workflows:
+  - changed-files:
+      - any-glob-to-any-file:
+          - '.github/**'
+
+documentation:
+  - changed-files:
+      - any-glob-to-any-file:
+          - '*.md'
+          - 'docs/**'

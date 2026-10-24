@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: A defect in toothpaste-kit itself
+    url: https://github.com/AN0099/toothpaste-kit/issues/new/choose
+    about: toothpaste-kit is only a copy here. File defects in its own repository.

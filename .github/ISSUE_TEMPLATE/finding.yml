@@ -1,0 +1,25 @@
+name: Finding
+description: Something learned while testing toothpaste-kit, HumanLayer or the agent tooling, worth recording.
+labels: ["documentation"]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What was observed
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence
+      description: Commands, output, or links. No task IDs, request text, or anything that need not be public.
+    validations:
+      required: true
+  - type: dropdown
+    id: upstream
+    attributes:
+      label: Does it belong upstream?
+      options:
+        - "No, it is about this repository"
+        - "Yes, toothpaste-kit should change"
+        - "Not sure"
