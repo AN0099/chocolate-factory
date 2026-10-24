@@ -1,0 +1,207 @@
+#!/usr/bin/env python3
+"""Check an agent reply against toothpaste-kit's Q-block rules.
+
+The rules live in toothpaste-kit/skills/working-preferences/SKILL.md,
+"Questions and Answers". Remembering them was not enough, so this checks
+the parts a machine can check:
+
+  1. The reply opens with "Readback:".
+  2. It ends with exactly three question lines, "Qn. ... (codes)", each
+     optionally followed by its indented or plain "N = ..." options, and
+     nothing after them.
+  3. The numbers run consecutively, cycling Q1 to Q9 and back to Q1. The
+     block starts just after the previous block, or at a question carried
+     from it. A carried question keeps its number and its wording; a new
+     question never reuses a number from the previous block.
+  4. Every Qn named in the body, outside inline code, is in the block or
+     in the readback line. A carried question is shown again in full, never
+     referred to as still open; one settled by default is named in the
+     readback.
+
+What it does not check: whether a question is worth asking, whether `f`
+means "do what the question names", or whether the readback is right.
+
+Usage:
+  scripts/check-qblock --hook             Claude Code Stop hook: reads the
+                                          hook JSON on stdin, checks the
+                                          last reply in the transcript,
+                                          exits 2 with the reasons if it fails
+  scripts/check-qblock FILE [--previous FILE]  check one reply, after another
+  scripts/check-qblock --selftest         run tests/qblock-cases/
+"""
+import json
+import pathlib
+import re
+import sys
+
+ROOT = pathlib.Path(__file__).resolve().parent.parent
+CASES = ROOT / "tests" / "qblock-cases"
+
+QLINE = re.compile(r"^Q([1-9])\. .*\(([^()]*)\)\s*$")
+OPTION = re.compile(r"^\s*[1-4] = \S")
+CODE = re.compile(r"^(?:[fdjksl]|[fdjksl]{2,3}|[1-4])$")
+MENTION = re.compile(r"\bQ([1-9])\b")
+INLINE_CODE = re.compile(r"`[^`]*`")
+
+
+def nxt(n):
+    return n % 9 + 1
+
+
+def stems(text):
+    """Map each question number in the trailing block to its wording."""
+    out = {}
+    for line in text.splitlines():
+        m = QLINE.match(line)
+        if m and int(m.group(1)) in (block_of(text) or []):
+            out[int(m.group(1))] = line[: line.rindex("(")].strip()
+    return out
+
+
+def block_of(text):
+    """Return the question numbers of the trailing block, or None."""
+    lines = [l for l in text.rstrip().splitlines() if l.strip()]
+    qs = []
+    i = len(lines) - 1
+    while i >= 0:
+        line = lines[i]
+        m = QLINE.match(line)
+        if m:
+            qs.insert(0, int(m.group(1)))
+        elif not OPTION.match(line):
+            break
+        i -= 1
+    return qs or None
+
+
+def check(text, previous=None):
+    """Return a list of reasons the reply fails; empty when it passes."""
+    reasons = []
+    body = text.strip()
+    if not body.startswith("Readback:"):
+        reasons.append('it does not open with "Readback:"')
+
+    lines = [l for l in body.splitlines() if l.strip()]
+    qs = block_of(body)
+    if qs is None:
+        reasons.append("it does not end with a Q-block")
+        qs = []
+    else:
+        if len(qs) != 3:
+            reasons.append(f"the closing block has {len(qs)} questions, not 3")
+        for line in lines:
+            m = QLINE.match(line)
+            if m and int(m.group(1)) in qs:
+                codes = [c.strip() for c in re.split(r"[,/]", m.group(2))]
+                bad = [c for c in codes if not CODE.match(c)]
+                if bad or not codes:
+                    reasons.append(f"Q{m.group(1)} has a code list that is not codes: ({m.group(2)})")
+        for a, b in zip(qs, qs[1:]):
+            if b != nxt(a):
+                reasons.append(f"Q{b} does not follow Q{a}; numbers run Q1 to Q9, then Q1")
+        if previous and block_of(previous) and qs:
+            before, now = stems(previous), stems(body)
+            last = block_of(previous)[-1]
+            carried = {n for n in now if before.get(n) == now[n]}
+            for n in now:
+                if n in before and n not in carried:
+                    reasons.append(f"Q{n} reuses a number from the previous block for a different question")
+            if qs[0] != nxt(last) and qs[0] not in carried:
+                reasons.append(f"the block starts at Q{qs[0]}; the previous block ended at Q{last}, so this one starts at Q{nxt(last)} or at a carried question")
+
+    readback = lines[0] if lines and lines[0].startswith("Readback:") else ""
+    settled = {int(n) for n in MENTION.findall(readback)}
+    for line in lines[1:] if readback else lines:
+        if QLINE.match(line):
+            continue
+        for m in MENTION.finditer(INLINE_CODE.sub("", line)):
+            n = int(m.group(1))
+            if n not in qs and n not in settled:
+                reasons.append(f"Q{n} is mentioned but not shown in the block; show a carried question in full")
+    return list(dict.fromkeys(reasons))
+
+
+def assistant_texts(transcript):
+    """Yield (text, ends_turn) for each main-thread assistant text, in order."""
+    for raw in transcript.read_text(encoding="utf-8").splitlines():
+        try:
+            entry = json.loads(raw)
+        except ValueError:
+            continue
+        if entry.get("type") != "assistant" or entry.get("isSidechain"):
+            continue
+        content = entry.get("message", {}).get("content")
+        if not isinstance(content, list):
+            continue
+        text = "".join(c.get("text", "") for c in content if c.get("type") == "text")
+        if text.strip():
+            yield text
+
+
+def hook():
+    data = json.load(sys.stdin)
+    if data.get("stop_hook_active"):
+        return 0  # one correction per reply; never loop
+    path = data.get("transcript_path")
+    if not path or not pathlib.Path(path).exists():
+        return 0
+    texts = list(assistant_texts(pathlib.Path(path)))
+    if not texts:
+        return 0
+    last = texts[-1]
+    previous = None
+    for t in reversed(texts[:-1]):
+        qs = block_of(t)
+        if qs:
+            previous = t
+            break
+    reasons = check(last, previous)
+    if not reasons:
+        return 0
+    print("Q-block check failed (toothpaste-kit working-preferences, Questions and Answers):", file=sys.stderr)
+    for r in reasons:
+        print(f"- {r}", file=sys.stderr)
+    print("Rewrite the reply so it passes. Show carried questions in full.", file=sys.stderr)
+    return 2
+
+
+def selftest():
+    failed = count = 0
+    for case in sorted(CASES.glob("*.md")):
+        text = case.read_text(encoding="utf-8")
+        m = re.match(r"<!-- previous:\n(.*?)\n-->\n", text, re.S)
+        previous = m.group(1) if m else None
+        if m:
+            text = text[m.end():]
+        want = case.name.split("-", 1)[0]
+        if want not in ("pass", "fail"):
+            sys.exit(f"check-qblock: {case.name} must start with pass- or fail-")
+        count += 1
+        got = "fail" if check(text, previous) else "pass"
+        if got != want:
+            failed += 1
+            print(f"MISS {case.name}: wanted {want}, got {got}", file=sys.stderr)
+    if failed or not count:
+        print(f"check-qblock: {failed} of {count} cases wrong", file=sys.stderr)
+        return 1
+    print(f"check-qblock: {count} of {count} cases hold")
+    return 0
+
+
+def main(argv):
+    if argv[1:2] == ["--hook"]:
+        return hook()
+    if argv[1:2] == ["--selftest"]:
+        return selftest()
+    if len(argv) >= 2:
+        previous = pathlib.Path(argv[3]).read_text(encoding="utf-8") if argv[2:3] == ["--previous"] else None
+        reasons = check(pathlib.Path(argv[1]).read_text(encoding="utf-8"), previous)
+        for r in reasons:
+            print(f"- {r}")
+        return 1 if reasons else 0
+    print(__doc__, file=sys.stderr)
+    return 2
+
+
+if __name__ == "__main__":
+    sys.exit(main(sys.argv))

@@ -53,10 +53,12 @@ gate_exec() {
     done
 }
 
-# Gate 4: the branch-name rule and the agent guard pass their own tests.
+# Gate 4: the branch-name rule, the agent guard and the Q-block check pass
+# their own tests.
 gate_branch_rules() {
     scripts/check-branch-name --selftest >/dev/null || fail "check-branch-name --selftest"
     scripts/check-branch-guard >/dev/null || fail "check-branch-guard"
+    scripts/check-qblock --selftest >/dev/null || fail "check-qblock --selftest"
 }
 
 selftest() {
