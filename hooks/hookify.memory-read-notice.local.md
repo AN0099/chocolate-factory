@@ -34,3 +34,9 @@ context, because the surrounding graph informs how that node reads. Treat the
 whole session as contaminated from this point, not just the returned subset.
 
 Full rules in `system/agent-memory-procedure.md`.
+
+<!--
+SPDX-FileCopyrightText: 2026 Aidan Naveja
+
+SPDX-License-Identifier: Apache-2.0
+-->

@@ -83,3 +83,9 @@ an unanswered row stays where it was and is listed as unanswered.
   the person. A Waiting task chased here more than once with no change is a candidate for it.
 - `session-close`: updates the standing files at the end of a session. A move made here is already
   in the queue and does not wait for it.
+
+<!--
+SPDX-FileCopyrightText: 2026 Aidan Naveja
+
+SPDX-License-Identifier: Apache-2.0
+-->

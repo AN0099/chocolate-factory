@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2026 Aidan Naveja
+#
+# SPDX-License-Identifier: Apache-2.0
+
 name: labeler
 
 # Adds path labels to a pull request from .github/labeler.yml.

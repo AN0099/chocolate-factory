@@ -195,3 +195,9 @@ each commit signed off under the Developer Certificate of Origin; see
 
 [`CITATION.cff`](CITATION.cff) carries citation metadata for anyone referencing
 this work.
+
+<!--
+SPDX-FileCopyrightText: 2026 Aidan Naveja
+
+SPDX-License-Identifier: Apache-2.0
+-->

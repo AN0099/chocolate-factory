@@ -65,3 +65,9 @@ This is the phase the skill exists for. A dashboard that slides into doing the w
 - `working-preferences`: source of truth for the command vocabulary and for the standing Q1 through Q3 convention that phase 4 extends.
 - `redaction-gate`: runs before content crosses a sensitivity boundary outward. This skill crosses none; it reads local state and reports in chat. If the day's work will cross one, that gate is a separate invocation.
 - `document-standards`: governs any document written as a result of the dashboard. It does not govern the dashboard itself, which is chat output, not a generated document.
+
+<!--
+SPDX-FileCopyrightText: 2026 Aidan Naveja
+
+SPDX-License-Identifier: Apache-2.0
+-->

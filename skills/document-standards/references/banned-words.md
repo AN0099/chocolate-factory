@@ -113,3 +113,9 @@ Sentences that announce importance without naming the specific thing:
 - "The consequences are real"
 
 If a sentence claims importance, depth, or structure without showing the specific thing, cut it or replace it with the specific thing.
+
+<!--
+SPDX-FileCopyrightText: 2026 Aidan Naveja
+
+SPDX-License-Identifier: Apache-2.0
+-->

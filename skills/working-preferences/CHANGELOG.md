@@ -68,3 +68,9 @@ prompt, and a structured guide) and the single-file skill document that preceded
 ### Retained unchanged
 
 Register, core prohibitions (apology language, em-dash, X-not-Y), reasoning protocol, ambiguity read-back, command vocabulary, Q1-3 format (with two additional stated exceptions: UI-tool turns, and explicit sequenced-confirm instructions).
+
+<!--
+SPDX-FileCopyrightText: 2026 Aidan Naveja
+
+SPDX-License-Identifier: Apache-2.0
+-->

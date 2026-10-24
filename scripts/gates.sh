@@ -1,4 +1,9 @@
 #!/usr/bin/env sh
+
+# SPDX-FileCopyrightText: 2026 Aidan Naveja
+#
+# SPDX-License-Identifier: Apache-2.0
+
 # Mechanical gates for this repository.
 #
 # One implementation, run from two places: `.github/workflows/gates.yml` in

@@ -41,3 +41,9 @@ without loading `working-preferences` in full. Shipped without a `CHANGELOG.md`,
 `skill-creation`'s pre-publish checklist requires of every skill. This file closes that gap
 retroactively; the v1 entry is reconstructed from the file as shipped rather than from a record
 kept at the time.
+
+<!--
+SPDX-FileCopyrightText: 2026 Aidan Naveja
+
+SPDX-License-Identifier: Apache-2.0
+-->

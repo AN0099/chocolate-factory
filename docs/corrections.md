@@ -31,3 +31,9 @@ An invented example:
 ```
 
 The agent writes or updates a line when it corrects an error, states a case, or stands down.
+
+<!--
+SPDX-FileCopyrightText: 2026 Aidan Naveja
+
+SPDX-License-Identifier: Apache-2.0
+-->

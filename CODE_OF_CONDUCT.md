@@ -52,3 +52,9 @@ Adapted in substance from the Contributor Covenant, version 2.1
 (<https://www.contributor-covenant.org/version/2/1/code_of_conduct/>), rewritten in this
 project's own register rather than reproduced verbatim. Where this document is less
 specific than the Covenant, read the Covenant.
+
+<!--
+SPDX-FileCopyrightText: 2026 Aidan Naveja
+
+SPDX-License-Identifier: Apache-2.0
+-->

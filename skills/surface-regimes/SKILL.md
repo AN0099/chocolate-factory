@@ -81,3 +81,9 @@ A receiving agent that has this skill loaded can recompute the regime from the s
 # Failure-Mode Note
 
 AUTONOMY and RIGOR default high under autonomous-asynchronous because a stated baseline of 3 with no human present to answer a confirmation gate produces a stall, not caution, a gate nobody can answer is not a safety mechanism. The default is not forced: an explicit instruction in the initiating request can override it downward (for example, a Routine intentionally run at low autonomy with a human reviewing every logged decision before the next step proceeds). What is not available is the silent case, an unstated baseline of 3 with nobody present to raise it when the gate stalls. Forcing with no override erased legitimate low-autonomy Routine designs; the corrected version keeps the safe default while leaving room for a deliberate, stated choice to run otherwise.
+
+<!--
+SPDX-FileCopyrightText: 2026 Aidan Naveja
+
+SPDX-License-Identifier: Apache-2.0
+-->

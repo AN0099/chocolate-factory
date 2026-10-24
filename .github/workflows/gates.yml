@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2026 Aidan Naveja
+#
+# SPDX-License-Identifier: Apache-2.0
+
 name: gates
 
 # The mechanical checks CONTRIBUTING.md states as rules.

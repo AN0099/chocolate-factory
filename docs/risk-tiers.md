@@ -94,3 +94,9 @@ This tier covers skills under `skills/`, hook rules under `hooks/` and agent con
 
 The tiers grade change risk. They do not grade the sensitivity of content, and they do not replace a
 reviewer's judgment of a design or of whether a document's claims are true.
+
+<!--
+SPDX-FileCopyrightText: 2026 Aidan Naveja
+
+SPDX-License-Identifier: Apache-2.0
+-->

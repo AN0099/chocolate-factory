@@ -86,3 +86,9 @@ These aren't exhaustive and shouldn't be trusted over Step 0's live discovery on
 - **New for the multi-vendor case:** assuming a schema-discovery mapping made for one vendor's export applies unchanged to another vendor, or to a new version of the same vendor's export format: re-run Step 0 whenever the source shape is new, even if it looks superficially similar to one seen before (this includes re-checking segment-type sets per §2 Step 0.7, since two exports from the same vendor have already been observed to differ).
 - Asserting a resemblance between an early source and a later one as confirmed provenance rather than an observed pattern (see §2 Step 8's addition): a strong isomorphism is worth leading with, but only ever as itself, not dressed up as a stated fact from either source.
 - Re-summarizing a block of repeated, re-pasted context as if it were new information in a later thread, inflating the apparent size of the delta a session actually contributed.
+
+<!--
+SPDX-FileCopyrightText: 2026 Aidan Naveja
+
+SPDX-License-Identifier: Apache-2.0
+-->

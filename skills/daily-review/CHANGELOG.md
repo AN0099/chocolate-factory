@@ -38,3 +38,9 @@ consequence. Without that rule everything drifts into Do, and the quadrant stops
 **The lane-board tool is named by its contract, not its path.** A skill that names one tree's script
 ships half of itself: the judging half arrives and the observing half does not. The skill says what
 the tool must print, and the tree's `CLAUDE.md` names the command.
+
+<!--
+SPDX-FileCopyrightText: 2026 Aidan Naveja
+
+SPDX-License-Identifier: Apache-2.0
+-->

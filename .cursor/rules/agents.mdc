@@ -3,3 +3,9 @@ alwaysApply: true
 ---
 
 The instructions for this repository are in `AGENTS.md` at the repository root; this file adds none.
+
+<!--
+SPDX-FileCopyrightText: 2026 Aidan Naveja
+
+SPDX-License-Identifier: Apache-2.0
+-->

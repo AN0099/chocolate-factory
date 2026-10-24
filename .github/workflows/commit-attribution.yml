@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2026 Aidan Naveja
+#
+# SPDX-License-Identifier: Apache-2.0
+
 name: commit-attribution
 
 # Rejects AI attribution trailers in commit messages.

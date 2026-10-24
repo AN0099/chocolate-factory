@@ -289,3 +289,9 @@ Stated so they are visible rather than implied.
   and layer 4 distinction independently from measurement rather than from this model. Its two
   recorded failure modes are textbook: a gate that tripped its own rule is a shared-channel failure,
   and a gate matching the right token in the wrong position is a spurious trip.
+
+<!--
+SPDX-FileCopyrightText: 2026 Aidan Naveja
+
+SPDX-License-Identifier: Apache-2.0
+-->

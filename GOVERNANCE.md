@@ -114,3 +114,9 @@ read commit history to discover that the rules moved.
 Vulnerability triage is the maintainer's, and the one standing constraint is
 that a gate that fails open is treated as the highest severity class this
 project has, because that failure is invisible to whoever is relying on it.
+
+<!--
+SPDX-FileCopyrightText: 2026 Aidan Naveja
+
+SPDX-License-Identifier: Apache-2.0
+-->

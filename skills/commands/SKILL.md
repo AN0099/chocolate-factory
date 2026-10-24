@@ -41,3 +41,9 @@ Commands do not have dedicated files. Depth on any command belongs in `working-p
 - `working-preferences`: source of truth for the command vocabulary, the brevity code table, session-state semantics, and standing behavior rules. Anything this index summarizes is defined there in full.
 - `skill-creation`: structure and checklists for adding a skill.
 - `skill-discovery`: whether a recurring need justifies a new skill.
+
+<!--
+SPDX-FileCopyrightText: 2026 Aidan Naveja
+
+SPDX-License-Identifier: Apache-2.0
+-->

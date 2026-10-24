@@ -58,6 +58,16 @@ That is the same script `.github/workflows/gates.yml` runs, which is the point: 
 
 **What these gates do not cover**, stated because a check that does not state its coverage is not a check: en dashes, which stay a review prompt because a range and a clause separator are not mechanically separable; prose quality; internal link validity; whether a skill's closing section is last; and whether any document's claims are true.
 
+## Compliance checks
+
+Checks that need a tool from outside this repository run from a separate script, so the gates above keep needing nothing installed:
+
+```sh
+./scripts/compliance.sh --selftest
+```
+
+Today it runs `reuse lint`, which checks that every file declares a copyright and a licence in the form the [REUSE specification](https://reuse.software/spec-3.3/) sets out. Install the linter with `pipx install reuse==6.2.0`, the version `.github/workflows/compliance.yml` pins. Without it, the script prints `SKIP` and reports the check as not run, never as passed; CI installs it and fails on any missing declaration.
+
 ## Skills
 
 One directory per skill under `skills/`, containing `SKILL.md` and an optional `references/`. Frontmatter requires `name` and `description`.
@@ -93,6 +103,8 @@ Human co-author trailers are fine and expected. The rule is about tools.
 ## Licence and sign-off
 
 Contributions are licensed under the Apache License 2.0, the project's licence ([`LICENSE`](LICENSE)). No contributor licence agreement, copyright assignment or indemnity is asked of you.
+
+Every file declares its copyright and licence. A new file carries an `SPDX-FileCopyrightText` and an `SPDX-License-Identifier` line, at the top in a comment, or at the end in an HTML comment for Markdown so the frontmatter and first heading stay first. A file that cannot hold a comment, such as JSON, is covered in [`REUSE.toml`](REUSE.toml) instead. `reuse annotate` writes the header for you; `./scripts/compliance.sh` checks it.
 
 Sign off every commit. A sign-off certifies the [Developer Certificate of Origin](https://developercertificate.org/), version 1.1: that you have the right to submit the work under the project's licence.
 
@@ -142,3 +154,9 @@ Practical test before you commit a doc: could a contributor who has never spoken
 ## Questions
 
 Ask. A question costs less than a wrong assumption acted on.
+
+<!--
+SPDX-FileCopyrightText: 2026 Aidan Naveja
+
+SPDX-License-Identifier: Apache-2.0
+-->

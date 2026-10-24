@@ -115,3 +115,9 @@ This is a standing check, not a one-time decision. Re-evaluate whenever `referen
 - `references/structural-patterns.md`: full pattern catalog with detection signals.
 - `references/examples.md`: before/after transformation pairs.
 - `references/templates/`: general document-type templates, populated iteratively as real documents get produced. Empty at initial build.
+
+<!--
+SPDX-FileCopyrightText: 2026 Aidan Naveja
+
+SPDX-License-Identifier: Apache-2.0
+-->

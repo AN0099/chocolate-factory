@@ -92,3 +92,9 @@ this skill turns into a second copy of that one.
   skill never writes to, so a log captured here reaches the next day only through `session-close`.
 - `document-standards`: does not apply. This file is provenance for agents, not a generated document
   for a reader, and the two layers are never mixed in one file.
+
+<!--
+SPDX-FileCopyrightText: 2026 Aidan Naveja
+
+SPDX-License-Identifier: Apache-2.0
+-->

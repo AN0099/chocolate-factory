@@ -44,3 +44,9 @@ confirmed it yourself. An agent auditing its own work does not count. -->
 
 - [ ] Yes, and I checked the output mechanically
 - [ ] No
+
+<!--
+SPDX-FileCopyrightText: 2026 Aidan Naveja
+
+SPDX-License-Identifier: Apache-2.0
+-->

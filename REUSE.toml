@@ -1,0 +1,9 @@
+version = 1
+
+# Files that cannot carry a comment header, and the reflow-md fixtures,
+# whose exact bytes are the test.
+[[annotations]]
+path = ["**/*.json", "**/*.jsonl", "**/.gitkeep", "scripts/reflow-md.test.md", "scripts/reflow-md.expected.md"]
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2026 Aidan Naveja"
+SPDX-License-Identifier = "Apache-2.0"

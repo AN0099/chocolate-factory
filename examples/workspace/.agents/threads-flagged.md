@@ -5,3 +5,9 @@ what was flagged, why it matters, and its current status. A closed entry
 moves to `threads-resolved.md` with its resolution.
 
 <!-- - [ ] YYYY-MM-DD: what was flagged, and why it matters. -->
+
+<!--
+SPDX-FileCopyrightText: 2026 Aidan Naveja
+
+SPDX-License-Identifier: Apache-2.0
+-->

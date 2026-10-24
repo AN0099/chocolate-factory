@@ -175,3 +175,9 @@ repeating it becomes a document nobody finishes.
 - The accessibility of produced artifacts, covering WCAG, PDF/UA and the document pipeline, is
   not covered in this repository. It belongs with the ingestion specification and is named here as
   a gap rather than promised as forthcoming.
+
+<!--
+SPDX-FileCopyrightText: 2026 Aidan Naveja
+
+SPDX-License-Identifier: Apache-2.0
+-->

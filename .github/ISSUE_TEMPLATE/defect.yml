@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2026 Aidan Naveja
+#
+# SPDX-License-Identifier: Apache-2.0
+
 name: Defect
 description: Something in a skill, the protocol, a schema, or a script does not do what it says.
 labels: ["defect"]

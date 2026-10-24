@@ -95,3 +95,9 @@ unanswered row stays where it was and is listed as unanswered.
 - `monthly-review`: Someday adopted or rejected, and archive candidates chosen by the person.
 - `session-close`: updates the standing files at the end of a session. A move made here is already
   in the queue and does not wait for it.
+
+<!--
+SPDX-FileCopyrightText: 2026 Aidan Naveja
+
+SPDX-License-Identifier: Apache-2.0
+-->

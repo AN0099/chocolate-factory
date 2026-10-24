@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2026 Aidan Naveja
+#
+# SPDX-License-Identifier: Apache-2.0
+
 # Path labels for pull requests, read by .github/workflows/labeler.yml.
 #
 # Each label names the area a change touches. docs/risk-tiers.md maps the

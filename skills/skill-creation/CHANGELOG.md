@@ -53,3 +53,9 @@ that both sides are what you think they are.
 
 Sibling cross-references, meaning the existing skills naming `skill-creation` and `skill-discovery`
 in their own Scope Pointer sections, were left for a separate change rather than applied here.
+
+<!--
+SPDX-FileCopyrightText: 2026 Aidan Naveja
+
+SPDX-License-Identifier: Apache-2.0
+-->

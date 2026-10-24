@@ -64,3 +64,9 @@ The figures change with every merge. Rerun the command and replace the table and
 - Reviews that happen outside GitHub's review feature.
 - Pull requests closed by a bot or by their author for reasons unrelated to quality, which count as closed unmerged here and are not separable by this command.
 - Anything about commits pushed directly to a branch without a pull request.
+
+<!--
+SPDX-FileCopyrightText: 2026 Aidan Naveja
+
+SPDX-License-Identifier: Apache-2.0
+-->

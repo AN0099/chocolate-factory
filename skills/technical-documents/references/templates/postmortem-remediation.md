@@ -27,3 +27,9 @@ FORMALITY 5-7, DENSITY 4-6, AUDIENCE_LEVEL 5-7. Matches this skill's Incident Po
 - Root cause stated once at the top and never connected back to each individual finding, leaving the reader to do that mapping themselves.
 - Remediation steps that describe the intended fix in the abstract rather than naming the specific target file or section.
 - Treating "proposed, not yet applied" as understood from context instead of stating it. A checklist that reads as already-shipped invites the reader to assume coverage that doesn't exist yet.
+
+<!--
+SPDX-FileCopyrightText: 2026 Aidan Naveja
+
+SPDX-License-Identifier: Apache-2.0
+-->

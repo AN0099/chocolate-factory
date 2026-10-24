@@ -27,3 +27,9 @@ no decision behind it.
 
 **The archive has two doors.** Reference for work that happened, trash for work that will not,
 marked irrelevant rather than done, so the archive never records work nobody performed.
+
+<!--
+SPDX-FileCopyrightText: 2026 Aidan Naveja
+
+SPDX-License-Identifier: Apache-2.0
+-->

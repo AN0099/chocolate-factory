@@ -60,3 +60,9 @@ pull requests. Source: the workflow files in `.github/workflows/`; `docs/securit
 
 The dependency rules above govern this repository. Source: `docs/security-posture.md`, section 7,
 "Scope", which scopes section 7.
+
+<!--
+SPDX-FileCopyrightText: 2026 Aidan Naveja
+
+SPDX-License-Identifier: Apache-2.0
+-->

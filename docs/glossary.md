@@ -182,3 +182,9 @@ are in [`working-preferences`](../skills/working-preferences/SKILL.md).
 ## W
 
 - **WCAG**: the W3C Web Content Accessibility Guidelines. This repository applies their Markdown-relevant techniques to the documents it ships. See [document accessibility](document-accessibility.md).
+
+<!--
+SPDX-FileCopyrightText: 2026 Aidan Naveja
+
+SPDX-License-Identifier: Apache-2.0
+-->
