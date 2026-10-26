@@ -1,0 +1,39 @@
+name: auto-qa
+
+# Weekly proposal of job timeouts from run history, by
+# scripts/auto-qa-tuner.py, which is toothpaste-kit's tuner copied unchanged.
+# It writes proposals to the job summary and never edits a workflow: a
+# person accepts one in a pull request.
+
+on:
+  schedule:
+    - cron: '53 5 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  propose:
+    timeout-minutes: 5
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Tuner selftest
+        run: python3 -I scripts/auto-qa-tuner.py --selftest
+
+      - name: Read run history
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          for w in $(python3 -I scripts/auto-qa-tuner.py --workflows); do
+            gh run list -w "$w" -L 100 --json workflowName,conclusion,startedAt,updatedAt
+          done | jq -s add > "$RUNNER_TEMP/runs.json"
+
+      - name: Propose
+        run: python3 -I scripts/auto-qa-tuner.py "$RUNNER_TEMP/runs.json" >> "$GITHUB_STEP_SUMMARY"
