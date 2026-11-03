@@ -11,7 +11,7 @@ What this repository measures, where each measure lives, and how to read it.
 | CI matrix | `.github/workflows/ci.yml` | Whether the suite passes on Linux and macOS |
 | Nightly | `.github/workflows/nightly.yml` | Whether the suite still passes with no change pushed |
 | Code scanning | CodeQL default setup, Python and Actions | Known vulnerability patterns in scripts and workflows |
-| PR acceptance | `docs/metrics.md` | Merged against closed unmerged, and recorded reviews |
+| PR acceptance | `docs/metrics/README.md` | Merged against closed unmerged, and recorded reviews |
 | Review rubric | `docs/review-rubric.md` | What a reviewer checked |
 | ACMM level | Hive's ACMM evaluation | Which agent-readiness criteria the repository meets |
 
