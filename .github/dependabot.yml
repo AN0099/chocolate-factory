@@ -1,0 +1,23 @@
+# Dependency updates.
+#
+# Every workflow pins its actions to a commit SHA with the version in a
+# comment, and a pin that never moves misses upstream security fixes. This
+# file has Dependabot propose the new SHA for each release.
+#
+# Dependabot reads only this repository's root .github/, so the subtree's
+# toothpaste-kit/.github/dependabot.yml does not cover these workflows.
+# There is no package manifest, so GitHub Actions is the only ecosystem.
+# If a manifest ever lands, add its ecosystem here in the same commit.
+#
+# Its branches are named dependabot/github_actions/..., which
+# scripts/check-branch-name allows for the Dependabot app only.
+
+version: 2
+updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "deps"
