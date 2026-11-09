@@ -2,4 +2,5 @@
 # The test suite: chocolate-factory's own gates, then toothpaste-kit's.
 cd "$(dirname "$0")/.." || exit 1
 ./scripts/gates.sh --selftest || exit 1
+./tests/agent-trailers || exit 1
 exec ./toothpaste-kit/tests/run

@@ -1,0 +1,37 @@
+#!/bin/sh
+# scripts/agent-trailers prints nothing outside an agent session, and leaves
+# out a trailer whose value it cannot read instead of guessing one.
+cd "$(dirname "$0")/.." || exit 1
+script=$PWD/scripts/agent-trailers
+
+tmp=$(mktemp -d)
+trap 'rm -rf "$tmp"' EXIT
+mkdir -p "$tmp/home/.claude/projects/p" "$tmp/bin"
+printf '{"model":"claude-old-1"}\n{"model":"claude-opus-5-5"}\n' > "$tmp/home/.claude/projects/p/sess.jsonl"
+printf '#!/bin/sh\necho "2.1.308 (Claude Code)"\n' > "$tmp/bin/claude"
+chmod +x "$tmp/bin/claude"
+# A PATH holding only a claude stub and the tools the script calls.
+for t in sh ls head grep cut tail awk; do ln -s "$(command -v $t)" "$tmp/bin/$t"; done
+
+failed=0
+# run NAME EXPECTED -- env assignments...
+run() {
+    name=$1 expected=$2; shift 2
+    actual=$(env -i HOME="$tmp/home" PATH="$tmp/bin" "$@" sh "$script")
+    if [ "$actual" = "$expected" ]; then
+        echo "PASS $name"
+    else
+        echo "FAIL $name: got '$actual'" >&2
+        failed=1
+    fi
+}
+
+full='Assisted-by: claude-opus-5-5 via claude-code/2.1.308
+Agent-Effort: low'
+run "no output outside an agent session" "" CLAUDE_CODE_SESSION_ID=sess CLAUDE_CODE_EFFORT_LEVEL=low
+run "both trailers, newest model in the transcript" "$full" CLAUDECODE=1 CLAUDE_CODE_SESSION_ID=sess CLAUDE_CODE_EFFORT_LEVEL=low
+run "unknown session drops Assisted-by, keeps effort" "Agent-Effort: low" CLAUDECODE=1 CLAUDE_CODE_SESSION_ID=nope CLAUDE_CODE_EFFORT_LEVEL=low
+run "unset effort drops Agent-Effort" "Assisted-by: claude-opus-5-5 via claude-code/2.1.308" CLAUDECODE=1 CLAUDE_CODE_SESSION_ID=sess
+
+[ "$failed" = 0 ] || exit 1
+echo "agent-trailers: all pass"
