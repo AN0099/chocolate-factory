@@ -1,0 +1,48 @@
+#!/bin/sh
+# .githooks/pre-push refuses a bad branch or tag name and lets a deletion
+# through; .githooks/prepare-commit-msg adds the agent trailers once, and not
+# to a merge, a squash or a message that already has them.
+cd "$(dirname "$0")/.." || exit 1
+src=$PWD
+
+tmp=$(mktemp -d)
+trap 'rm -rf "$tmp"' EXIT
+git init -q "$tmp/repo"
+mkdir -p "$tmp/repo/scripts" "$tmp/repo/.githooks"
+cp "$src/scripts/check-branch-name" "$tmp/repo/scripts/"
+cp "$src/.githooks/pre-push" "$src/.githooks/prepare-commit-msg" "$tmp/repo/.githooks/"
+printf '#!/bin/sh\nprintf "Assisted-by: m via claude-code/1\\nAgent-Effort: low\\n"\n' > "$tmp/repo/scripts/agent-trailers"
+chmod +x "$tmp/repo/scripts/"* "$tmp/repo/.githooks/"*
+cd "$tmp/repo" || exit 1
+
+failed=0
+expect() { # NAME WANT_RC GOT_RC
+    if [ "$2" = "$3" ]; then echo "PASS $1"; else echo "FAIL $1: exit $3, wanted $2" >&2; failed=1; fi
+}
+
+zero=0000000000000000000000000000000000000000
+sha=1111111111111111111111111111111111111111
+push() { printf '%s\n' "$1" | .githooks/pre-push origin url >/dev/null 2>&1; }
+
+push "refs/heads/x $sha refs/heads/fix/ok-name $zero"; expect "allowed branch is pushed" 0 $?
+push "refs/heads/x $sha refs/heads/Bad_Name $zero"; expect "bad branch name is refused" 1 $?
+push "refs/tags/v1.2.3 $sha refs/tags/v1.2.3 $zero"; expect "allowed tag is pushed" 0 $?
+push "refs/tags/x $sha refs/tags/release-one $zero"; expect "bad tag name is refused" 1 $?
+push "(delete) $zero refs/heads/Bad_Name $sha"; expect "deleting a bad name is allowed" 0 $?
+push "refs/heads/x $sha refs/notes/commits $zero"; expect "a ref that is not a branch or tag is refused" 1 $?
+push "refs/heads/x $sha refs/heads/fix/ok $zero
+refs/heads/x $sha refs/heads/Bad_Name $zero"; expect "one bad ref in a batch refuses the push" 1 $?
+chmod -x scripts/check-branch-name; push "refs/heads/x $sha refs/heads/fix/ok-name $zero"; expect "a missing checker refuses the push" 1 $?
+chmod +x scripts/check-branch-name
+
+msg() { printf 'Subject\n' > m; .githooks/prepare-commit-msg m "$@"; }
+msg; expect "hook exits 0" 0 $?
+[ "$(grep -c '^Assisted-by:' m)" = 1 ] && [ "$(grep -c '^Agent-Effort:' m)" = 1 ]; expect "trailers added once" 0 $?
+.githooks/prepare-commit-msg m; [ "$(grep -c '^Assisted-by:' m)" = 1 ]; expect "a second run adds nothing" 0 $?
+msg merge; ! grep -q '^Assisted-by:' m; expect "a merge message is left alone" 0 $?
+msg squash; ! grep -q '^Assisted-by:' m; expect "a squash message is left alone" 0 $?
+printf 'S\n\nAssisted-by: mine\n' > m; .githooks/prepare-commit-msg m; ! grep -q 'Agent-Effort' m; expect "existing trailers are kept as written" 0 $?
+printf '#!/bin/sh\n' > scripts/agent-trailers; msg; [ "$(cat m)" = Subject ]; expect "no trailers outside a session leaves the message" 0 $?
+
+[ "$failed" = 0 ] || exit 1
+echo "githooks: all pass"
